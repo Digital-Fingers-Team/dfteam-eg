@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول | فريق الانامل الرقمية</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="icon" type="image/x-icon" href="image/logo1.jpeg">
+  <style>
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .floating-logo {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .error-message {
+      color: #dc3545;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .is-invalid {
+      border-color: #dc3545 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- خلفية متحركة ناعمة -->
+  <div class="background-animated"></div>
+
+  <!-- قسم تسجيل الدخول -->
+  <section class="login-section container">
+    <div class="login-container glass">
+      <div class="login-header">
+        <img src="image/logo1.jpeg" alt="شعار الفريق" class="login-logo floating-logo">
+        <h2>تسجيل الدخول</h2>
+        <p>لأعضاء الفريق فقط - يرجى إدخال بيانات الاعتماد الخاصة بك</p>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="username"><i class="fas fa-user"></i> اسم المستخدم</label>
+          <input type="text" id="username" name="username" required placeholder="أدخل اسم المستخدم">
+          <div id="usernameError" class="error-message">يجب إدخال اسم المستخدم</div>
+        </div>
+
+        <div class="form-group">
+          <label for="password"><i class="fas fa-lock"></i> كلمة المرور</label>
+          <input type="password" id="password" name="password" required placeholder="أدخل كلمة المرور">
+          <span class="toggle-password" id="togglePassword"><i class="fas fa-eye"></i></span>
+          <div id="passwordError" class="error-message">يجب إدخال كلمة المرور</div>
+        </div>
+
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" name="remember" id="remember"> تذكرني
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
+
+        <div id="loginMessage" class="login-message mt-3"></div>
+      </form>
+    </div>
+  </section>
+
+  <script src="static/js/auth.js"></script>
+  <script>
+    // كود لعرض/إخفاء كلمة المرور
+    document.getElementById('togglePassword').addEventListener('click', function () {
+      const passwordInput = document.getElementById('password');
+      const icon = this.querySelector('i');
+
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+      }
+    });
+
+    // التحقق من الحقول قبل الإرسال
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const rememberMe = document.getElementById('remember').checked;
+      let isValid = true;
+
+      // إعادة تعيين رسائل الخطأ
+      document.getElementById('usernameError').style.display = 'none';
+      document.getElementById('passwordError').style.display = 'none';
+      document.getElementById('username').classList.remove('is-invalid');
+      document.getElementById('password').classList.remove('is-invalid');
+
+      // التحقق من اسم المستخدم
+      if (!username) {
+        document.getElementById('usernameError').style.display = 'block';
+        document.getElementById('username').classList.add('is-invalid');
+        isValid = false;
+      }
+
+      // التحقق من كلمة المرور
+      if (!password) {
+        document.getElementById('passwordError').style.display = 'block';
+        document.getElementById('password').classList.add('is-invalid');
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+      // محاولة تسجيل الدخول
+      const loginResult = loginUser(username, password, rememberMe);
+
+      if (loginResult.success) {
+        document.getElementById('loginMessage').textContent = 'جاري تحويلك إلى الصفحة الرئيسية...';
+        document.getElementById('loginMessage').style.color = 'green';
+
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500);
+      } else {
+        document.getElementById('loginMessage').textContent = loginResult.message;
+        document.getElementById('loginMessage').style.color = 'red';
+      }
+    });
+  </script>
+</body>
+
+</html>

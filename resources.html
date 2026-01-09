@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>موارد الفريق | فريق الأنامل الرقمية</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="image/logo1.jpeg">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body data-theme="light">
+  <!-- القائمة الجانبية -->
+  <aside class="side-nav" id="sideNav">
+    <div class="side-nav-header">
+        <img src="image/logo1.jpeg" alt="شعار" class="nav-logo">
+        <span class="nav-close" id="closeNav"><i class="fas fa-times"></i></span>
+    </div>
+    <nav class="side-nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="about.html"><i class="fas fa-users"></i> عن الفريق</a>
+      <a href="history.html"><i class="fas fa-clock-rotate-left"></i> تاريخ الفريق</a>
+      <a href="members.html"><i class="fas fa-address-book"></i> الأعضاء</a>
+      <a href="trainings.html"><i class="fas fa-chalkboard-teacher"></i> التدريبات</a>
+      <a href="projects.html"><i class="fas fa-rocket"></i> المشاريع</a>
+      <a href="announcements.html"><i class="fas fa-bell"></i> الإعلانات</a>
+      <a href="events.html"><i class="fas fa-calendar-check"></i> الفعاليات</a>
+      <a href="resources.html" class="active"><i class="fas fa-book"></i> الموارد</a>
+      <a href="faq.html"><i class="fas fa-question"></i> الأسئلة الشائعة</a>
+    </nav>
+    <div class="side-nav-footer">
+      <div class="side-social">
+        <a href="https://www.facebook.com/share/1ErivsfJZ6/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://github.com/Digital-Fingers-Team" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div class="side-nav-copyright">
+        &copy; 2025 فريق الأنامل الرقمية | DF Team
+      </div>
+    </div>
+  </aside>
+  <div class="overlay" id="navOverlay"></div>
+
+  <!-- الترويسة -->
+  <header class="main-header">
+        <div class="header-left">
+            <img src="image/logo1.jpeg" alt="شعار" class="logo">
+            <span class="brand-name">DF Team</span>
+        </div>
+    <div class="header-center">
+      <span class="welcome-message">مرحباً بكم أعضاء وقائد فريق الأنامل الرقمية</span>
+    </div>
+    <div class="header-right">
+      <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="header-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+
+    </div>
+  </header>
+
+  <!-- المحتوى الرئيسي -->
+  <main class="container">
+    <section class="resources-section">
+      <h2 class="section-title">الموارد التقنية</h2>
+      <p class="hero-desc" style="text-align: center; margin-bottom: 40px;">روابط وأدوات وكتب ودروس لتطوير مهاراتك في البرمجة والتقنية.</p>
+      
+      <div class="resources-grid">
+        <div class="resource-card">
+          <i class="fas fa-graduation-cap"></i>
+          <h3>W3Schools</h3>
+          <p>دروس لتعلم HTML, CSS, JS وغيرها من التقنيات</p>
+          <a href="https://www.w3schools.com/" target="_blank" class="btn btn-primary btn-xs">زيارة الموقع</a>
+        </div>
+        
+        <div class="resource-card">
+          <i class="fas fa-laptop-code"></i>
+          <h3>FreeCodeCamp</h3>
+          <p>مسارات مجانية في البرمجة مع شهادات معتمدة</p>
+          <a href="https://www.freecodecamp.org/" target="_blank" class="btn btn-primary btn-xs">زيارة الموقع</a>
+        </div>
+        
+        <div class="resource-card">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <h3>Coursera</h3>
+          <p>كورسات تقنية متنوعة من أفضل الجامعات العالمية</p>
+          <a href="https://www.coursera.org/" target="_blank" class="btn btn-primary btn-xs">زيارة الموقع</a>
+        </div>
+        
+        <div class="resource-card">
+          <i class="fas fa-chart-bar"></i>
+          <h3>Kaggle</h3>
+          <p>تدريبات ومسابقات علم البيانات والذكاء الاصطناعي</p>
+          <a href="https://www.kaggle.com/" target="_blank" class="btn btn-primary btn-xs">زيارة الموقع</a>
+        </div>
+        
+        <div class="resource-card">
+          <i class="fas fa-shield-alt"></i>
+          <h3>أكاديمية الأمن السيبراني</h3>
+          <p>أكاديمية الأمن السيبراني المصرية للتدريب على الحماية الرقمية</p>
+          <a href="https://cyberacademy.eg/" target="_blank" class="btn btn-primary btn-xs">زيارة الموقع</a>
+        </div>
+        
+        <div class="resource-card">
+          <i class="fas fa-book-open"></i>
+          <h3>مصادر إضافية</h3>
+          <p>مجموعة من الكتب والدورات التدريبية المتقدمة في البرمجة</p>
+          <a href="#" class="btn btn-primary btn-xs">استكشاف المزيد</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- التذييل -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <img src="image/logo1.jpeg" alt="شعار" class="footer-logo">
+          <h3>فريق الانامل الرقمية</h3>
+          <p>الفريق الصاعد</p>
+        </div>
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">عن الفريق</a></li>
+            <li><a href="members.html">الأعضاء</a></li>
+            <li><a href="trainings.html">التدريبات</a></li>
+            <li><a href="projects.html">المشاريع</a></li>
+            <li><a href="events.html">الفعاليات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تواصل معنا</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> info@DF.com</li>
+            <li><i class="fas fa-phone"></i> 01080478274</li>
+            <li><i class="fas fa-map-marker-alt"></i> بنها - القليوبية - مصر</li>
+          </ul>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/share/1ErivsfJZ6/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://github.com/Digital-Fingers-Team" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        جميع الحقوق محفوظة © 2025 فريق الأنامل الرقمية- DF Team
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // عناصر القائمة الجانبية
+      const sideNav = document.getElementById('sideNav');
+      const closeNav = document.getElementById('closeNav');
+      const menuBtn = document.getElementById('menuBtn');
+      const navOverlay = document.getElementById('navOverlay');
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = themeToggle.querySelector('i');
+      
+      // حالات الثيم
+      const themes = ['light', 'dark', 'purple'];
+      let currentThemeIndex = 0;
+      
+      // تطبيق الثيم
+      function applyTheme(themeIndex) {
+        document.body.setAttribute('data-theme', themes[themeIndex]);
+        
+        // تغيير الأيقونة حسب الثيم
+        if (themes[themeIndex] === 'light') {
+          themeIcon.className = 'fas fa-moon';
+        } else if (themes[themeIndex] === 'dark') {
+          themeIcon.className = 'fas fa-star';
+        } else {
+          themeIcon.className = 'fas fa-sun';
+        }
+        
+        // حفظ الثيم في localStorage
+        localStorage.setItem('theme', themes[themeIndex]);
+      }
+      
+      // تبديل الثيم
+      themeToggle.addEventListener('click', function() {
+        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+        applyTheme(currentThemeIndex);
+      });
+      
+      // تحميل الثيم المحفوظ
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        currentThemeIndex = themes.indexOf(savedTheme);
+        if (currentThemeIndex === -1) currentThemeIndex = 0;
+        applyTheme(currentThemeIndex);
+      }
+      
+      // فتح القائمة الجانبية
+      function openSideNav() {
+        sideNav.classList.add('open');
+        navOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      // إغلاق القائمة الجانبية
+      function closeSideNav() {
+        sideNav.classList.remove('open');
+        navOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      // إضافة مستمع الأحداث لزر الإغلاق
+      if (closeNav) {
+        closeNav.addEventListener('click', closeSideNav);
+      }
+
+      // إضافة مستمع الأحداث لزر القائمة
+      if (menuBtn) {
+        menuBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          openSideNav();
+        });
+      }
+
+      // إضافة مستمع الأحداث للخلفية المظللة
+      if (navOverlay) {
+        navOverlay.addEventListener('click', closeSideNav);
+      }
+
+      // إغلاق القائمة عند الضغط على مفتاح Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeSideNav();
+        }
+      });
+
+      // تحديث رسالة الترحيب حسب دور المستخدم
+      function updateWelcomeMessage() {
+        const welcomeMessage = document.querySelector('.welcome-message');
+        if (!welcomeMessage) return;
+        
+        let userData = null;
+        try {
+          userData = JSON.parse(localStorage.getItem('userData')) || 
+                    JSON.parse(sessionStorage.getItem('userData'));
+        } catch (error) {
+          console.log('لا توجد بيانات مستخدم مسجل');
+        }
+        
+        if (userData && userData.loggedIn) {
+          if (userData.role === 'قائد الفريق') {
+            welcomeMessage.textContent = `مرحباً بك قائد فريق الأنامل الرقمية (${userData.name})`;
+          } else {
+            welcomeMessage.textContent = `مرحباً بك عضو فريق الأنامل الرقمية ${userData.name}`;
+          }
+        } else {
+          welcomeMessage.textContent = 'مرحباً بكم في فريق الأنامل الرقمية';
+        }
+      }
+      
+      window.updateWelcomeMessage = updateWelcomeMessage;
+      updateWelcomeMessage();
+      
+      // إضافة تأثيرات ظهور عند التمرير
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      }, observerOptions);
+      
+      // مراقبة العناصر لإضافة تأثير الظهور
+      document.querySelectorAll('.resource-card').forEach(function(card) {
+        observer.observe(card);
+      });
+    });
+  </script>
+</body>
+
+</html>
