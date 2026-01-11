@@ -692,28 +692,125 @@
       font-size: 1rem;
     }
 
-    /* التكيف مع الشاشات الصغيرة */
-    @media (max-width: 1200px) {
-      .hero-title {
-        font-size: 3rem;
-      }
+    /* ================================================ */
+    /* التعديلات الجديدة للتمرير الأفقي على الهاتف فقط */
+    /* ================================================ */
+
+    /* مؤشر التمرير الأفقي (يظهر على الهاتف فقط) */
+    .scroll-hint {
+      text-align: center;
+      margin: 1rem auto 2rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      opacity: 0.9;
+      animation: pulse 2s infinite;
+      max-width: 300px;
+      padding: 10px 20px;
+      background: var(--bg-accent);
+      border-radius: 50px;
+      border: 1px solid var(--contrast-border);
+      display: none; /* مخفي افتراضيًا */
     }
 
-    @media (max-width: 992px) {
-      .hero-title {
-        font-size: 2.7rem;
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    /* خاصية scrolling أفقي للهاتف فقط */
+    @media (max-width: 768px) {
+      .scroll-hint {
+        display: flex; /* يظهر على الهاتف فقط */
       }
       
-      .header-center {
+      .timeline-wrapper {
+        position: relative;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        margin: 2rem 0;
+        padding-bottom: 20px;
+      }
+      
+      .timeline-wrapper::-webkit-scrollbar {
+        height: 6px;
+      }
+      
+      .timeline-wrapper::-webkit-scrollbar-track {
+        background: var(--bg-secondary);
+        border-radius: 10px;
+        margin: 0 15px;
+      }
+      
+      .timeline-wrapper::-webkit-scrollbar-thumb {
+        background: var(--text-accent);
+        border-radius: 10px;
+      }
+      
+      .timeline {
+        position: relative;
+        min-width: 1400px; /* عرض كبير ليكون أفقي */
+        margin: 0;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        height: auto;
+      }
+      
+      /* إخفاء الخط الأصفر والنقاط على الهاتف */
+      .timeline::after {
         display: none;
       }
       
-      .footer-content {
-        grid-template-columns: repeat(2, 1fr);
+      .timeline-item::after {
+        display: none;
       }
-    }
-
-    @media (max-width: 768px) {
+      
+      .timeline-item {
+        position: relative;
+        width: 320px; /* عرض ثابت لكل عنصر */
+        min-width: 320px;
+        margin: 0 25px;
+        padding: 0;
+        flex-shrink: 0;
+        margin-bottom: 0;
+      }
+      
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        right: auto;
+        left: auto;
+        padding: 0;
+        width: 320px;
+      }
+      
+      .timeline-content {
+        margin-top: 0;
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      /* إخفاء تنسيق المخطط الزمني القديم على الهاتف */
+      .timeline-item:nth-child(odd) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      
+      .timeline-item:nth-child(even) {
+        padding-left: 0;
+        padding-right: 0;
+        left: 0;
+      }
+      
+      /* إضافة تنسيق إضافي للهاتف */
       .main-header {
         padding: 0.8rem 4%;
       }
@@ -729,33 +826,6 @@
       .hero-image img {
         width: 220px;
         height: 220px;
-      }
-      
-      .timeline::after {
-        right: 31px;
-      }
-      
-      .timeline-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
-      }
-      
-      .timeline-item:nth-child(odd) {
-        right: 0;
-        padding-left: 70px;
-        padding-right: 25px;
-      }
-      
-      .timeline-item:nth-child(even) {
-        left: 0;
-        padding-left: 70px;
-        padding-right: 25px;
-      }
-      
-      .timeline-item::after {
-        left: 21px;
-        right: auto;
       }
       
       .footer-content {
@@ -778,6 +848,28 @@
       }
     }
 
+    /* التكيف مع الشاشات المتوسطة */
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 2.7rem;
+      }
+      
+      .header-center {
+        display: none;
+      }
+      
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* التكيف مع الشاشات الكبيرة */
+    @media (max-width: 1200px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+    }
+
     @media (max-width: 576px) {
       .brand-name {
         font-size: 1.3rem;
@@ -795,6 +887,29 @@
         width: 100%;
         right: -100%;
       }
+      
+      /* تعديلات إضافية للهواتف الصغيرة */
+      .timeline {
+        min-width: 1300px;
+        padding: 40px 15px;
+      }
+      
+      .timeline-item {
+        width: 280px;
+        min-width: 280px;
+        margin: 0 20px;
+      }
+      
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        width: 280px;
+      }
+      
+      .scroll-hint {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+        max-width: 260px;
+      }
     }
 
     /* تحسينات للوضع المقلل للحركة */
@@ -806,6 +921,10 @@
       }
       
       .hero-image img {
+        animation: none;
+      }
+      
+      .scroll-hint {
         animation: none;
       }
     }
@@ -858,7 +977,6 @@
         <i class="fas fa-moon"></i>
       </button>
       <button class="header-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
-
     </div>
   </header>
 
@@ -877,88 +995,93 @@
         <p>مخطط زمني لأهم المحطات منذ تأسيس الفريق، الإنجازات، الجوائز، المشاركات والفعاليات.</p>
       </div>
       
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <span class="timeline-date"><i class="far fa-calendar-alt"></i> 20 يوليو 2025 </span>
-            <p><strong>تأسيس الفريق</strong> بدأ انتشار اسم الانامل الرقمية في مسابقة "100 معلم مبدع 2" حيث بدأ قائد الفريق في جمع بعض الاعضاء و تجهيزهم حتى يصبحوا ما هم عليه الأن</p>
+      <!-- مؤشر التمرير (يظهر على الهاتف فقط) -->
+      <div class="scroll-hint" id="scrollHint">
+        <span>اسحب يمينًا أو يسارًا لعرض الأحداث</span>
+        <i class="fas fa-arrows-left-right"></i>
+      </div>
+      
+      <!-- تغليف المخطط الزمني -->
+      <div class="timeline-wrapper">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 20 يوليو 2025 </span>
+              <p><strong>تأسيس الفريق</strong> بدأ انتشار اسم الانامل الرقمية في مسابقة "100 معلم مبدع 2" حيث بدأ قائد الفريق في جمع بعض الاعضاء و تجهيزهم حتى يصبحوا ما هم عليه الأن</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 12 اغسطس 2025 </span>
+              <p>بدأ القائد في اول يوم للأعضاء بتدريبهم على <strong> تدريب المدربين TOT </strong> لتوعية الاعضاء على اهمية ما هم فيه و لتمكينهم من تقليل التوتر الطبيعي لهم في البداية</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 20 أغسطس 2025 </span>
+              <p>قام القائد بالإتفاق مع معهد ال ITI وديا بإرسال مدرب معتمد لتدريب الاعضاء على <strong>مهارات التواصل الفعال </strong>تحت مسمى (ندوة ثقافية) ضمن أولى خطوات بناء الكفاءات لدى الاعضاء.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 24 أغسطس 2025 </span>
+              <p>عقد ندوة تعريفية عن <strong>منحة إعداد القادة</strong> لتمكين جميع الأعضاء على أن يكونوا قادة وليس القائد الحالي فقط هو من يمكنه.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 30 أغسطس 2025 </span>
+              <p>تنظيم <strong>ندوة عن مهارات الاتصال والتواصل الفعال</strong> لتطوير قدرات الأعضاء في العمل الجماعي والتفاعل الإيجابي داخل الفريق.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 6 سبتمبر 2025 </span>
+              <p>إطلاق <strong>الموقع الرسمي للفريق</strong> وتوسيع قاعدة المشاركة لتشمل طلاب من مختلف المراحل.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 17 سبتمبر 2025 </span>
+              <p>إقامة <strong>إيفنت عرض إنجازات DF Team</strong> بعد مرور شهر و13 يوم من انطلاقهم، حيث تحوّلوا من متدربين في النشاط الصيفي إلى فريق يُحكى عنه وله منافسين وخصوم. 
+              شهد الإيفنت حضور <strong>أحمد زكي</strong> مدير الإدارة، و<strong>محمد الفرماوي</strong> مدير التجريبيات، وعدد من القيادات المتميزة.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 18 نوفمبر 2025 </span>
+              <p>اول مسابقة للفريق وهي <strong>مسابقة ISEF العالمية المستوى الإداري</strong> وتأهيل اربعة اعضاء وهم 
+                احمد هبد الرؤوف
+                البراء سعد
+                إياد عبد الرؤوف
+              لنس محمد مختار </p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 10 ديسمبر 2025 </span>
+              <p>إطلالة الاعضاء المؤهلين  <strong>لمعرض ISEF العالمية المستوى المحلي</strong> بعد الكثير من المجهودات في التصوير و التعديلات على المشاريع الخاصة بهم </p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 22 ديسمبر 2025 </span>
+              <p>نقل و اعتماد <strong>الفريق من المدرسة إلى مركز التطوير بإدارة بنها التعليمية </strong> واعتماده من مدير الإدارة و اصبحنا على مستوى الإدارة</p>
+            </div>
           </div>
         </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <span class="timeline-date"><i class="far fa-calendar-alt"></i> 12 اغسطس 2025 </span>
-            <p>بدأ القائد في اول يوم للأعضاء بتدريبهم على <strong> تدريب المدربين TOT </strong> لتوعية الاعضاء على اهمية ما هم فيه و لتمكينهم من تقليل التوتر الطبيعي لهم في البداية</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <span class="timeline-date"><i class="far fa-calendar-alt"></i> 20 أغسطس 2025 </span>
-            <p>قام القائد بالإتفاق مع معهد ال ITI وديا بإرسال مدرب معتمد لتدريب الاعضاء على <strong>مهارات التواصل الفعال </strong>تحت مسمى (ندوة ثقافية) ضمن أولى خطوات بناء الكفاءات لدى الاعضاء.</p>
-          </div>
-        </div>
-        
-<div class="timeline-item">
-  <div class="timeline-content">
-    <span class="timeline-date"><i class="far fa-calendar-alt"></i> 24 أغسطس 2025 </span>
-    <p>عقد ندوة تعريفية عن <strong>منحة إعداد القادة</strong> لتمكين جميع الأعضاء على أن يكونوا قادة وليس القائد الحالي فقط هو من يمكنه.</p>
-  </div>
-</div>
-
-<div class="timeline-item">
-  <div class="timeline-content">
-    <span class="timeline-date"><i class="far fa-calendar-alt"></i> 30 أغسطس 2025 </span>
-    <p>تنظيم <strong>ندوة عن مهارات الاتصال والتواصل الفعال</strong> لتطوير قدرات الأعضاء في العمل الجماعي والتفاعل الإيجابي داخل الفريق.</p>
-  </div>
-</div>
-
-<div class="timeline-item">
-  <div class="timeline-content">
-    <span class="timeline-date"><i class="far fa-calendar-alt"></i> 6 سبتمبر 2025 </span>
-    <p>إطلاق <strong>الموقع الرسمي للفريق</strong> وتوسيع قاعدة المشاركة لتشمل طلاب من مختلف المراحل.</p>
-  </div>
-</div>
-
-<div class="timeline-item">
-  <div class="timeline-content">
-    <span class="timeline-date"><i class="far fa-calendar-alt"></i> 17 سبتمبر 2025 </span>
-    <p>إقامة <strong>إيفنت عرض إنجازات DF Team</strong> بعد مرور شهر و13 يوم من انطلاقهم، حيث تحوّلوا من متدربين في النشاط الصيفي إلى فريق يُحكى عنه وله منافسين وخصوم. 
-    شهد الإيفنت حضور <strong>أحمد زكي</strong> مدير الإدارة، و<strong>محمد الفرماوي</strong> مدير التجريبيات، وعدد من القيادات المتميزة.</p>
-  </div>
-</div>
-
-<div class="timeline-item">
-  <div class="timeline-content">
-    <span class="timeline-date"><i class="far fa-calendar-alt"></i> 18 نوفمبر 2025 </span>
-    <p>اول مسابقة للفريق وهي <strong>مسابقة ISEF العالمية المستوى الإداري</strong> وتأهيل اربعة اعضاء وهم 
-      احمد هبد الرؤوف
-      البراء سعد
-      إياد عبد الرؤوف
-    لنس محمد مختار </p>
-  </div>
-</div>
-
-<div class="timeline-item">
-  <div class="timeline-content">
-    <span class="timeline-date"><i class="far fa-calendar-alt"></i> 10 ديسمبر 2025 </span>
-    <p>إطلالة الاعضاء المؤهلين  <strong>لمعرض ISEF العالمية المستوى المحلي</strong> بعد الكثير من المجهودات في التصوير و التعديلات على المشاريع الخاصة بهم </p>
-  </div>
-</div>
-
-<div class="timeline-item">
-  <div class="timeline-content">
-    <span class="timeline-date"><i class="far fa-calendar-alt"></i> 22 ديسمبر 2025 </span>
-    <p>نقل و اعتماد <strong>الفريق من المدرسة إلى مركز التطوير بإدارة بنها التعليمية </strong> واعتماده من مدير الإدارة و اصبحنا على مستوى الإدارة</p>
-  </div>
-</div>
-
-</div>
- </div>
- </div>
- </section> 
-</main>
-
+      </div>
+    </section>
+  </main>
 
   <!-- التذييل -->
   <footer class="main-footer">
@@ -1111,24 +1234,105 @@
       window.updateWelcomeMessage = updateWelcomeMessage;
       updateWelcomeMessage();
       
-      // إضافة تأثيرات ظهور عند التمرير
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
+      // ============================================
+      // التعديلات الجديدة للتمرير الأفقي على الهاتف
+      // ============================================
       
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
+      // إخفاء مؤشر التمرير بعد أول تمريرة
+      const scrollHint = document.getElementById('scrollHint');
+      const timelineWrapper = document.querySelector('.timeline-wrapper');
+      const timelineItems = document.querySelectorAll('.timeline-item');
+
+      if (scrollHint && timelineWrapper && timelineItems.length > 0) {
+        // إخفاء المؤشر إذا كان حجم الشاشة كبيرًا
+        if (window.innerWidth > 768) {
+          scrollHint.style.display = 'none';
+        }
+        
+        // إضافة حدث التمرير لإخفاء المؤشر
+        timelineWrapper.addEventListener('scroll', function() {
+          if (timelineWrapper.scrollLeft > 50) {
+            scrollHint.style.opacity = '0';
+            scrollHint.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+              scrollHint.style.display = 'none';
+            }, 500);
           }
         });
-      }, observerOptions);
+        
+        // إضافة تأثيرات عند تحميل الصفحة على الهاتف
+        if (window.innerWidth <= 768) {
+          // إضافة تأثيرات ظهور للأحداث
+          const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+          };
+          
+          const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'scale(1)';
+              }
+            });
+          }, observerOptions);
+          
+          // تطبيق تأثيرات على عناصر المخطط الزمني
+          timelineItems.forEach(function(item, index) {
+            const content = item.querySelector('.timeline-content');
+            if (content) {
+              content.style.opacity = '0';
+              content.style.transform = 'scale(0.95)';
+              content.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+              content.style.transitionDelay = (index * 0.1) + 's';
+              observer.observe(content);
+            }
+          });
+        }
+      }
       
-      // مراقبة العناصر لإضافة تأثير الظهور
-      document.querySelectorAll('.timeline-content').forEach(function(card) {
-        observer.observe(card);
+      // تحديث عند تغيير حجم النافذة
+      window.addEventListener('resize', function() {
+        if (scrollHint) {
+          if (window.innerWidth > 768) {
+            scrollHint.style.display = 'none';
+            // إعادة الخط والنقاط للأجهزة الكبيرة
+            const timeline = document.querySelector('.timeline');
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            if (timeline && timelineItems.length > 0) {
+              timeline.style.display = 'block';
+              timelineItems.forEach(item => {
+                item.style.display = 'block';
+              });
+            }
+          } else if (timelineWrapper && timelineWrapper.scrollLeft <= 50) {
+            scrollHint.style.display = 'flex';
+            scrollHint.style.opacity = '1';
+          }
+        }
       });
+      
+      // إضافة تأثيرات ظهور للأجهزة الكبيرة
+      if (window.innerWidth > 768) {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-in');
+            }
+          });
+        }, observerOptions);
+        
+        // مراقبة العناصر لإضافة تأثير الظهور
+        document.querySelectorAll('.timeline-content').forEach(function(card) {
+          observer.observe(card);
+        });
+      }
     });
   </script>
 </body>
