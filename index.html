@@ -12,6 +12,83 @@
   <link rel="stylesheet" href="static/css/style.css" />
   <meta name="description"
     content="فريق الأنامل الرقمية - فريق طلابي في إدارة بنها التعليمية يهدف إلى تطوير مهارات البرمجة والتقنية بين الطلاب من خلال مشاريع وتدريبات وفعاليات متنوعة." />
+  <style>
+    /* إضافة تنسيق إضافي لتقصير كروت القادة */
+    .leaders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .leader-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      height: 350px;
+      /* تحديد ارتفاع الكرت */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .leader-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .leader-img {
+      width: 100px;
+      /* تصغير حجم الصورة */
+      height: 100px;
+      /* تصغير حجم الصورة */
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 4px solid var(--primary-color);
+    }
+
+    .leader-info h3 {
+      margin: 10px 0 5px;
+      color: var(--text-color);
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .leader-role {
+      display: block;
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .leader-desc {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin: 8px 0;
+      line-height: 1.4;
+      max-height: 40px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* استجابة للشاشات الصغيرة */
+    @media (max-width: 768px) {
+      .leaders-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .leader-card {
+        max-width: 100%;
+        height: 320px;
+        /* تصغير أكثر للشاشات الصغيرة */
+      }
+    }
+  </style>
 </head>
 
 <body data-theme="light">
@@ -106,40 +183,58 @@
     </div>
   </section>
 
-  <!-- قائد الفريق -->
-  <section class="leader-section container">
-    <h2 class="section-title">قائد الفريق</h2>
-    <div class="leader-card">
-      <img src="image/ahmed.jpg" alt="قائد الفريق" class="leader-img" />
-      <div class="leader-info">
-        <h3>Ahmed Abdelraouf</h3>
-        <span class="leader-role">قائد الفريق</span>
-      </div>
-      <a href="member-details.html?id=0" class="btn btn-primary btn-sm">عرض الصفحة الشخصية</a>
-    </div>
-  </section>
+  <!-- القادة والمشرفون -->
+  <section class="leaders-section container">
+    <h2 class="section-title">القادة والمشرفون</h2>
 
-  <!-- المشرفين -->
-  <section class="leader-section container">
-    <h2 class="section-title">المشرفين</h2>
-    <div class="leader-card">
-      <div class="leader-info">
-        <h3>الإشراف العام و الإداري:</h3>
+    <!-- صف القادة - قائد الفريق والمشرف العام والإداري -->
+    <div class="leaders-grid">
+      <!-- كارت قائد الفريق -->
+      <div class="leader-card">
+        <img src="image/ahmed.jpg" alt="قائد الفريق" class="leader-img" />
+        <div class="leader-info">
+          <h3>Ahmed Abdelraouf</h3>
+          <span class="leader-role">قائد الفريق</span>
+        </div>
+        <a href="member-details.html?id=0" class="btn btn-primary btn-sm">عرض الصفحة الشخصية</a>
       </div>
-      <div>
-        <p><strong>أ. عماد الدين صالح </strong> مدير مركز التطوير بالإدارة</p>
+
+      <!-- كارت المشرف العام والإداري -->
+      <div class="leader-card">
+        <img src="image/profile.jpg" alt="المشرف العام والإداري" class="leader-img" />
+        <div class="leader-info">
+          <h3>أ. عماد الدين صالح</h3>
+          <span class="leader-role">المشرف العام والإداري</span>
+          <p class="leader-desc">مدير مركز التطوير بالإدارة</p>
+        </div>
+        <a href="#" class="btn btn-primary btn-sm">عرض المزيد</a>
       </div>
     </div>
-  </section>
-  <section class="leader-section container">
-    <div class="leader-card">
-      <div class="leader-info">
-        <h3>الإشراف التنفيذي:</h3>
+
+    <!-- صف المشرفين التنفيذيين -->
+    <div class="leaders-grid">
+      <!-- كارت المشرف التنفيذي الأول -->
+      <div class="leader-card">
+        <img src="image/hany.jpeg" alt="المشرف التنفيذي" class="leader-img" />
+        <div class="leader-info">
+          <h3>أ. هاني محمد العزب</h3>
+          <span class="leader-role">المشرف التنفيذي</span>
+          <p class="leader-desc">إشراف تنفيذي</p>
+        </div>
+        <a href="#" class="btn btn-primary btn-sm">عرض المزيد</a>
       </div>
-      <div>
-        <p><strong>أ. هاني محمد العزب </strong> اشراف تنفيذي</p>
-        <p><strong>أ. خضرة السيد عبد الباسط</strong> اشراف تنفيذي</p>
+
+      <!-- كارت المشرف التنفيذي الثاني -->
+      <div class="leader-card">
+        <img src="image/profile.jpg" alt="المشرف التنفيذي" class="leader-img" />
+        <div class="leader-info">
+          <h3>أ. خضرة السيد عبد الباسط</h3>
+          <span class="leader-role">المشرف التنفيذي</span>
+          <p class="leader-desc">إشراف تنفيذي</p>
+        </div>
+        <a href="#" class="btn btn-primary btn-sm">عرض المزيد</a>
       </div>
+    </div>
   </section>
 
   <!-- أحدث التدريبات -->
@@ -152,7 +247,7 @@
           <h3>مهارات التواصل الفعال</h3>
           <span class="training-date"><i class="far fa-calendar-alt"></i> 13 اغسطس 2025</span>
           <p>
-            لتطوير المهارات كثل التواصل مع المتدربين و مهارات الإلقء امام
+            لتطوير المهارات كثل التواصل مع المتدربين و مهارات الإلقاء امام
             الجمهور و غيرها من المهارات المهمة في المجال
           </p>
           <a href="trainings.html" class="btn btn-primary btn-xs">التفاصيل</a>
@@ -181,6 +276,7 @@
           <a href="trainings.html" class="btn btn-primary btn-xs">التفاصيل</a>
         </div>
       </div>
+    </div>
   </section>
 
   <!-- آراء المتدربين -->
@@ -387,7 +483,7 @@
           observer.observe(card);
         });
     });
-    console.log(`DF devolopers are saying hii`);
+    console.log(`DF developers are saying hi`);
   </script>
 </body>
 
