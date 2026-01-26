@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فعاليات الفريق | فريق الأنامل الرقمية</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="image/logo1.jpeg">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body data-theme="light">
+  <!-- القائمة الجانبية (مخفية على الجوال وتظهر بالزر) -->
+  <aside class="side-nav" id="sideNav">
+    <div class="side-nav-header">
+      <img src="image/logo1.jpeg" alt="شعار" class="nav-logo">
+      <span class="nav-close" id="closeNav"><i class="fas fa-times"></i></span>
+    </div>
+    <nav class="side-nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="about.html"><i class="fas fa-users"></i> عن الفريق</a>
+      <a href="history.html"><i class="fas fa-clock-rotate-left"></i> تاريخ الفريق</a>
+      <a href="members.html"><i class="fas fa-address-book"></i> الأعضاء</a>
+      <a href="trainings.html"><i class="fas fa-chalkboard-teacher"></i> التدريبات</a>
+      <a href="projects.html"><i class="fas fa-rocket"></i> المشاريع</a>
+      <a href="announcements.html"><i class="fas fa-bell"></i> الإعلانات</a>
+      <a href="events.html" class="active"><i class="fas fa-calendar-check"></i> الفعاليات</a>
+      <a href="resources.html"><i class="fas fa-book"></i> الموارد</a>
+      <a href="faq.html"><i class="fas fa-question"></i> الأسئلة الشائعة</a>
+    </nav>
+    <div class="side-nav-footer">
+      <div class="side-social">
+        <a href="https://www.facebook.com/share/1ErivsfJZ6/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://github.com/Digital-Fingers-Team" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-instagram" target="_blank"></i></a>
+      </div>
+      <div class="side-nav-copyright">
+        &copy; 2025 فريق الانامل الرقمية | DF Team
+      </div>
+    </div>
+  </aside>
+  <div class="overlay" id="navOverlay"></div>
+
+  <!-- الترويسة -->
+  <header class="main-header">
+    <div class="header-left">
+      <img src="image/logo1.jpeg" alt="شعار" class="logo">
+      <span class="brand-name">DF Team</span>
+    </div>
+    <div class="header-center">
+      <span class="welcome-message">مرحباً بكم أعضاء وقائد فريق الأنامل الرقمية</span>
+    </div>
+    <div class="header-right">
+      <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="header-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+
+    </div>
+  </header>
+
+  <!-- قسم الهيرو -->
+  <section class="hero-section container">
+    <div class="hero-content">
+      <h1 class="hero-title">فعاليات الفريق</h1>
+      <p class="hero-desc">هنا تجد أهم الفعاليات والمعسكرات والأنشطة التي شاركنا فيها</p>
+    </div>
+  </section>
+
+  <!-- المحتوى الرئيسي -->
+  <main class="container">
+    <section class="events-section">
+      <div class="intro-card">
+        <p>هنا تجد أهم الفعاليات والمعسكرات والأنشطة التي شاركنا فيها.</p>
+      </div>
+
+      <div class="events-grid">
+        <!-- existing cards (محتوى سابق) -->
+        <!-- START: الكروت المضافة — عدّل المحتوى بين هاتين التعليمتين -->
+        <div class="event-card">
+          <img src="image/our evvent.jpeg" alt="إيفنت عرض إنجازات DF Team" class="event-img">
+          <div class="event-info">
+            <h3>إيفنت عرض إنجازات DF Team</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> 17 سبتمبر 2025</span>
+            <p>إقامة إيفنت لعرض إنجازات فريق الأنامل الرقمية بعد مرور شهر و13 يوم من انطلاق النشاط الصيفي وتحولهم من
+              متدربين إلى فريق له حضور ومنافسين. شهد الإيفنت حضور قيادات الإدارة وعدد من الضيوف المميزين.</p>
+            <div class="event-trainer">
+              <i class="fas fa-user-tie"></i>
+              <span>القائد: أحمد عبد الرؤوف — نائب القائد: براء سعد السيد</span>
+            </div>
+          </div>
+        </div>
+        <div class="event-card">
+          <img src="image/ISEF QAL.jpeg" alt="معرض مسابقة ISEF المستوى المحلي "class="event-img">
+          <div class="event-info">
+            <h3>معرض مسابقة ISEF المستوى المحلي</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> 10 ديسمبر 2025</span>
+            <p>تعبنا لكن حققنا انجاز عظيم ووضعنا لمسة فريق الانامل في المسابقة وحصل مشروع البراء سعد السيد و احمد
+              عبدالرؤوف سمير على المركز الاول بإدارة بنها لفئة تحت السن</p>
+          </div>
+        </div>
+        <div class="event-card">
+          <img src="image/isef ed.jpeg" alt="معرض مسابقة ISEF المستوى الإداري" class="event-img">
+          <div class="event-info">
+            <h3>معرض مسابقة ISEF المستوى الإداري</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> 18 نوفمبر 2025</span>
+            <p>حيث قدم الاعضاءمشريع ابهرت كل لجنة الحكام و دخلنا بحوالي 4 مشاريع و ب 8 اعضاء و تأهل منهم مشروعان و اربع
+              اعضاء إلى المستوى المحلي.</p>
+          </div>
+        </div>
+        <div class="event-card">
+          <img src="image/WhatsApp Image 2025-09-09 at 1.53.42 AM.jpeg" alt="أحدث ندوة ثقافية" class="event-img">
+          <div class="event-info">
+            <h3>أحدث ندوة ثقافية</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> سبتمبر 2025</span>
+            <p>انعقدت الندوة الثقافية الثالثة بمدرسة الشهيد مدحت طلعت بعنوان مهارات الاتصال والتواصل الفعّال.
+              شهدت حضورًا وتفاعلًا مميزًا من أولياء الأمور والطلاب.
+              وهدفت إلى إبراز الفرق بين الاتصال والتواصل وأثرهما في بناء علاقات فعّالة</p>
+          </div>
+        </div>
+        <div class="event-card">
+          <img src="image/تدريب.jpg" alt="ندوة ثقافية" class="event-img">
+          <div class="event-info">
+            <h3>ندوة ثقافية</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> أغسطس 2025</span>
+            <p>ندوة مميزة عن مهارات العرض والتقديم (Presentation Skills) بهدف تنمية قدرات المشاركين على التواصل الفعّال
+              وتقديم أفكارهم بثقة واحترافية.</p>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img src="image/IMG-20250820-WA0210.jpg" alt="منحة إعداد مهارات القادة" class="event-img">
+          <div class="event-info">
+            <h3>منحة إعداد مهارات القادة</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> 20 أغسطس 2025</span>
+            <p>تم تدريب مهارات تدريب المدربين لمعرفة كيف تصبح مدرب ناجح</p>
+            <div class="event-trainer">
+              <i class="fas fa-user-tie"></i>
+              <span>المدرب القائد: Ahmed AbdelRaouf</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img src="image/logo1.jpeg" alt="ورشة Scratch" class="event-img">
+          <div class="event-info">
+            <h3>ورشة برمجة Scratch</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> 25 أغسطس 2025</span>
+            <p>ورشة تدريبية تفاعلية تعرّف المشاركين بأساسيات البرمجة باستخدام بيئة Scratch، حيث تعلّموا كيفية إنشاء
+              ألعاب وقصص ورسوم متحركة بطريقة ممتعة ومبسطة.</p>
+            <div class="event-trainer">
+              <i class="fas fa-user-tie"></i>
+              <span>مدربو فريق الأنامل الرقمية</span>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="event-card">
+          <img src="image/WhatsApp Image 2025-09-09 at 1.53.42 AM.jpeg" alt="ندوة مهارات الاتصال والتواصل الفعّال"
+            class="event-img">
+          <div class="event-info">
+            <h3>ندوة مهارات الاتصال والتواصل الفعّال</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> 30 أغسطس 2025</span>
+            <p>ندوة لتطوير مهارات الاتصال الفعّال وبناء علاقات عمل ناجحة، شملت تدريبات عملية وتمارين تفاعلية لرفع مستوى
+              التفاعل والتواصل بين أعضاء الفريق والطلاب.</p>
+            <div class="event-trainer">
+              <i class="fas fa-user-tie"></i>
+              <span>منسق الندوة: فريق الأنامل الرقمية</span>
+            </div>
+          </div>
+        </div>
+        <!-- END: الكروت المضافة -->
+
+      </div>
+    </section>
+  </main>
+
+
+  <!-- التذييل -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <img src="image/logo1.jpeg" alt="شعار" class="footer-logo">
+          <h3>فريق الانامل الرقمية</h3>
+          <p>الفريق الصاعد</p>
+        </div>
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">عن الفريق</a></li>
+            <li><a href="members.html">الأعضاء</a></li>
+            <li><a href="trainings.html">التدريبات</a></li>
+            <li><a href="projects.html">المشاريع</a></li>
+            <li><a href="events.html">الفعاليات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تواصل معنا</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> info@DF.com</li>
+            <li><i class="fas fa-phone"></i> 01080478274</li>
+            <li><i class="fas fa-map-marker-alt"></i> بنها - القليوبية - مصر</li>
+          </ul>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/share/1ErivsfJZ6/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://github.com/Digital-Fingers-Team" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        جميع الحقوق محفوظة © 2025 فريق الأنامل الرقمية- DF Team
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // عناصر القائمة الجانبية
+      const sideNav = document.getElementById('sideNav');
+      const closeNav = document.getElementById('closeNav');
+      const menuBtn = document.getElementById('menuBtn');
+      const navOverlay = document.getElementById('navOverlay');
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = themeToggle.querySelector('i');
+
+      // حالات الثيم
+      const themes = ['light', 'dark', 'purple'];
+      let currentThemeIndex = 0;
+
+      // تطبيق الثيم
+      function applyTheme(themeIndex) {
+        document.body.setAttribute('data-theme', themes[themeIndex]);
+
+        // تغيير الأيقونة حسب الثيم
+        if (themes[themeIndex] === 'light') {
+          themeIcon.className = 'fas fa-moon';
+        } else if (themes[themeIndex] === 'dark') {
+          themeIcon.className = 'fas fa-star';
+        } else {
+          themeIcon.className = 'fas fa-sun';
+        }
+
+        // حفظ الثيم في localStorage
+        localStorage.setItem('theme', themes[themeIndex]);
+      }
+
+      // تبديل الثيم
+      themeToggle.addEventListener('click', function () {
+        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+        applyTheme(currentThemeIndex);
+      });
+
+      // تحميل الثيم المحفوظ
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        currentThemeIndex = themes.indexOf(savedTheme);
+        if (currentThemeIndex === -1) currentThemeIndex = 0;
+        applyTheme(currentThemeIndex);
+      }
+
+      // فتح القائمة الجانبية
+      function openSideNav() {
+        sideNav.classList.add('open');
+        navOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      // إغلاق القائمة الجانبية
+      function closeSideNav() {
+        sideNav.classList.remove('open');
+        navOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      // إضافة مستمع الأحداث لزر الإغلاق
+      if (closeNav) {
+        closeNav.addEventListener('click', closeSideNav);
+      }
+
+      // إضافة مستمع الأحداث لزر القائمة
+      if (menuBtn) {
+        menuBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openSideNav();
+        });
+      }
+
+      // إضافة مستمع الأحداث للخلفية المظللة
+      if (navOverlay) {
+        navOverlay.addEventListener('click', closeSideNav);
+      }
+
+      // إغلاق القائمة عند الضغط على مفتاح Escape
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeSideNav();
+        }
+      });
+
+      // تحديث رسالة الترحيب حسب دور المستخدم
+      function updateWelcomeMessage() {
+        const welcomeMessage = document.querySelector('.welcome-message');
+        if (!welcomeMessage) return;
+
+        let userData = null;
+        try {
+          userData = JSON.parse(localStorage.getItem('userData')) ||
+            JSON.parse(sessionStorage.getItem('userData'));
+        } catch (error) {
+          console.log('لا توجد بيانات مستخدم مسجل');
+        }
+
+        if (userData && userData.loggedIn) {
+          if (userData.role === 'قائد الفريق') {
+            welcomeMessage.textContent = `مرحباً بك قائد فريق الأنامل الرقمية (${userData.name})`;
+          } else {
+            welcomeMessage.textContent = `مرحباً بك عضو فريق الأنامل الرقمية ${userData.name}`;
+          }
+        } else {
+          welcomeMessage.textContent = 'مرحباً بكم أعضاء وقائد فريق الأنامل الرقمية';
+        }
+      }
+
+      window.updateWelcomeMessage = updateWelcomeMessage;
+      updateWelcomeMessage();
+
+      // إضافة تأثيرات ظهور عند التمرير
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      }, observerOptions);
+
+      // مراقبة العناصر لإضافة تأثير الظهور
+      document.querySelectorAll('.event-card').forEach(function (card) {
+        observer.observe(card);
+      });
+    });
+  </script>
+</body>
+
+</html>

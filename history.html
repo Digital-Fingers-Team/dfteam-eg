@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تاريخ الفريق | فريق الانامل الرقمية</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="image/logo1.jpeg">
+  <style>
+    :root {
+      /* نظام الألوان */
+      --primary-purple: #8A2BE2;
+      --purple-light: #9370DB;
+      --purple-dark: #4B0082;
+      --purple-bg: #f5f0ff;
+      
+      --black: #121212;
+      --black-light: #2D2D2D;
+      --black-dark: #000000;
+      
+      --white: #FFFFFF;
+      --white-light: #F8F8F8;
+      --white-dark: #E8E8E8;
+      
+      --gray: #888888;
+      --gray-light: #CCCCCC;
+      --gray-dark: #555555;
+      
+      /* متغيرات التصميم */
+      --bg-primary: var(--white);
+      --bg-secondary: var(--white-light);
+      --bg-accent: var(--purple-bg);
+      
+      --text-primary: var(--black);
+      --text-secondary: var(--gray-dark);
+      --text-accent: var(--primary-purple);
+      
+      --border-radius: 16px;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s ease;
+      
+      /* التباين للوصولية */
+      --contrast-border: rgba(138, 43, 226, 0.2);
+    }
+
+    /* نظام الثيمات */
+    [data-theme="dark"] {
+      --bg-primary: var(--black);
+      --bg-secondary: var(--black-light);
+      --bg-accent: #1a0033;
+      
+      --text-primary: var(--white);
+      --text-secondary: var(--gray-light);
+      --text-accent: var(--purple-light);
+      
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.5);
+      --contrast-border: rgba(147, 112, 219, 0.3);
+    }
+    
+    [data-theme="purple"] {
+      --bg-primary: var(--purple-dark);
+      --bg-secondary: #5a1a9c;
+      --bg-accent: #3d0f6b;
+      
+      --text-primary: var(--white);
+      --text-secondary: var(--gray-light);
+      --text-accent: #FFD700;
+      
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.4);
+      --contrast-border: rgba(255, 215, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: var(--transition);
+      min-height: 100vh;
+      padding-top: 90px;
+    }
+
+    /* تحسينات التنقل */
+    .main-header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      background-color: var(--bg-primary);
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      transition: var(--transition);
+      border-bottom: 1px solid var(--contrast-border);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--text-accent);
+      padding: 2px;
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      transform: rotate(10deg);
+      box-shadow: 0 0 15px var(--text-accent);
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: var(--text-accent);
+    }
+
+    .header-center .welcome-message {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .theme-toggle {
+      background: var(--bg-secondary);
+      border: 1px solid var(--contrast-border);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px var(--text-accent);
+    }
+
+    .header-menu-btn {
+      background: var(--text-accent);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .header-menu-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px var(--text-accent);
+    }
+    .fixed-header-logo img {
+      top: 10px;
+      left: 10px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      padding: 2px;
+      z-index: 1100;
+      transition: var(--transition);
+    }
+    
+    /* القائمة الجانبية - تصميم محسّن */
+    .side-nav {
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 350px;
+      height: 100vh;
+      background-color: var(--bg-primary);
+      z-index: 2000;
+      padding: 25px 0;
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .side-nav.open {
+      right: 0;
+    }
+
+    .side-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 25px 20px;
+      border-bottom: 2px solid var(--contrast-border);
+      margin-bottom: 20px;
+    }
+
+    .nav-logo {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 2px solid var(--text-accent);
+      padding: 3px;
+      box-shadow: 0 0 15px var(--text-accent);
+    }
+
+    .nav-close {
+      font-size: 2rem;
+      color: var(--text-accent);
+      cursor: pointer;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .nav-close:hover {
+      background: var(--bg-secondary);
+      transform: rotate(90deg);
+    }
+
+    .side-nav-links {
+      display: flex;
+      flex-direction: column;
+      padding: 0 20px;
+    }
+
+    .side-nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      padding: 18px 20px;
+      margin: 8px 0;
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: var(--transition);
+      font-weight: 500;
+      border: 1px solid transparent;
+    }
+
+    .side-nav-links a i {
+      width: 28px;
+      font-size: 1.3rem;
+      color: var(--text-accent);
+      transition: var(--transition);
+    }
+
+    .side-nav-links a:hover, .side-nav-links a.active {
+      background: var(--bg-accent);
+      transform: translateX(-10px);
+      border-color: var(--text-accent);
+    }
+
+    .side-nav-links a:hover i {
+      transform: scale(1.2);
+    }
+
+    .side-nav-footer {
+      margin-top: auto;
+      padding: 25px 20px;
+      text-align: center;
+      border-top: 2px solid var(--contrast-border);
+    }
+
+    .side-social {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .side-social a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-secondary);
+      color: var(--text-accent);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .side-social a:hover {
+      background: var(--text-accent);
+      color: white;
+      transform: translateY(-5px);
+    }
+
+    .side-nav-copyright {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1500;
+      display: none;
+      backdrop-filter: blur(5px);
+    }
+
+    .overlay.open {
+      display: block;
+    }
+
+    /* المحتوى الرئيسي */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 25px 0;
+    }
+
+    /* قسم الهيرو */
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 0;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--text-accent);
+      line-height: 1.2;
+    }
+
+    .hero-desc {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--text-accent);
+      color: white;
+      box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(138, 43, 226, 0.5);
+    }
+
+    .hero-image {
+      margin-top: 3rem;
+    }
+
+    .hero-image img {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--text-accent);
+      box-shadow: 0 0 50px var(--text-accent);
+      animation: float 6s ease-in-out infinite;
+      transition: var(--transition);
+    }
+
+    .hero-image img:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* قسم التاريخ */
+    .history-section {
+      margin: 3rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--text-accent);
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      transform: translateX(50%);
+      width: 100px;
+      height: 5px;
+      background: var(--text-accent);
+      border-radius: 3px;
+    }
+
+    .intro-card {
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      margin-bottom: 30px;
+      border: 1px solid var(--contrast-border);
+      box-shadow: var(--shadow);
+      text-align: center;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .intro-card p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: var(--text-accent);
+      top: 0;
+      bottom: 0;
+      right: 50%;
+      margin-right: -3px;
+      border-radius: 3px;
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      margin-bottom: 50px;
+    }
+
+    .timeline-item:nth-child(odd) {
+      right: 0;
+      padding-left: 30px;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: -50%;
+      padding-right: 30px;
+    }
+
+    .timeline-content {
+      position: relative;
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      border: 1px solid var(--contrast-border);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--text-accent);
+    }
+
+    .timeline-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-accent);
+      color: var(--text-accent);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      border: 1px solid var(--text-accent);
+    }
+
+    .timeline-content p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: var(--text-accent);
+      border: 4px solid var(--bg-primary);
+      border-radius: 50%;
+      top: 15px;
+      z-index: 1;
+    }
+
+    .timeline-item:nth-child(odd)::after {
+      left: -10px;
+    }
+
+    .timeline-item:nth-child(even)::after {
+      right: -10px;
+    }
+
+    /* التذييل */
+    .main-footer {
+      background: var(--bg-secondary);
+      padding: 4rem 0 2rem;
+      margin-top: 6rem;
+      border-top: 2px solid var(--contrast-border);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col {
+      padding: 0 20px;
+    }
+
+    .footer-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--text-accent);
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px var(--text-accent);
+    }
+
+    .footer-col h3 {
+      font-size: 1.7rem;
+      margin-bottom: 15px;
+      color: var(--text-accent);
+    }
+
+    .footer-col p {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .footer-col h4 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+      position: relative;
+      padding-bottom: 12px;
+    }
+
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--text-accent);
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 15px;
+    }
+
+    .footer-col ul li a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+      display: block;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--text-accent);
+      transform: translateX(-8px);
+    }
+
+    .footer-col ul li i {
+      margin-left: 10px;
+      color: var(--text-accent);
+      width: 25px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-primary);
+      color: var(--text-accent);
+      font-size: 1.2rem;
+      transition: var(--transition);
+      border: 1px solid var(--contrast-border);
+    }
+
+    .footer-social a:hover {
+      background: var(--text-accent);
+      color: white;
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--contrast-border);
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    /* ================================================ */
+    /* التعديلات الجديدة للتمرير الأفقي على الهاتف فقط */
+    /* ================================================ */
+
+    /* مؤشر التمرير الأفقي (يظهر على الهاتف فقط) */
+    .scroll-hint {
+      text-align: center;
+      margin: 1rem auto 2rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      opacity: 0.9;
+      animation: pulse 2s infinite;
+      max-width: 300px;
+      padding: 10px 20px;
+      background: var(--bg-accent);
+      border-radius: 50px;
+      border: 1px solid var(--contrast-border);
+      display: none; /* مخفي افتراضيًا */
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    /* خاصية scrolling أفقي للهاتف فقط */
+    @media (max-width: 768px) {
+      .scroll-hint {
+        display: flex; /* يظهر على الهاتف فقط */
+      }
+      
+      .timeline-wrapper {
+        position: relative;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        margin: 2rem 0;
+        padding-bottom: 20px;
+      }
+      
+      .timeline-wrapper::-webkit-scrollbar {
+        height: 6px;
+      }
+      
+      .timeline-wrapper::-webkit-scrollbar-track {
+        background: var(--bg-secondary);
+        border-radius: 10px;
+        margin: 0 15px;
+      }
+      
+      .timeline-wrapper::-webkit-scrollbar-thumb {
+        background: var(--text-accent);
+        border-radius: 10px;
+      }
+      
+      .timeline {
+        position: relative;
+        min-width: 1400px; /* عرض كبير ليكون أفقي */
+        margin: 0;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        height: auto;
+      }
+      
+      /* إخفاء الخط الأصفر والنقاط على الهاتف */
+      .timeline::after {
+        display: none;
+      }
+      
+      .timeline-item::after {
+        display: none;
+      }
+      
+      .timeline-item {
+        position: relative;
+        width: 320px; /* عرض ثابت لكل عنصر */
+        min-width: 320px;
+        margin: 0 25px;
+        padding: 0;
+        flex-shrink: 0;
+        margin-bottom: 0;
+      }
+      
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        right: auto;
+        left: auto;
+        padding: 0;
+        width: 320px;
+      }
+      
+      .timeline-content {
+        margin-top: 0;
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      /* إخفاء تنسيق المخطط الزمني القديم على الهاتف */
+      .timeline-item:nth-child(odd) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      
+      .timeline-item:nth-child(even) {
+        padding-left: 0;
+        padding-right: 0;
+        left: 0;
+      }
+      
+      /* إضافة تنسيق إضافي للهاتف */
+      .main-header {
+        padding: 0.8rem 4%;
+      }
+      
+      .hero-title {
+        font-size: 2.3rem;
+      }
+      
+      .hero-desc {
+        font-size: 1.1rem;
+      }
+      
+      .hero-image img {
+        width: 220px;
+        height: 220px;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .footer-col h4::after {
+        right: 50%;
+        transform: translateX(50%);
+      }
+      
+      .footer-social {
+        justify-content: center;
+      }
+      
+      .side-nav {
+        width: 85%;
+        right: -85%;
+      }
+    }
+
+    /* التكيف مع الشاشات المتوسطة */
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 2.7rem;
+      }
+      
+      .header-center {
+        display: none;
+      }
+      
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* التكيف مع الشاشات الكبيرة */
+    @media (max-width: 1200px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .brand-name {
+        font-size: 1.3rem;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .side-nav {
+        width: 100%;
+        right: -100%;
+      }
+      
+      /* تعديلات إضافية للهواتف الصغيرة */
+      .timeline {
+        min-width: 1300px;
+        padding: 40px 15px;
+      }
+      
+      .timeline-item {
+        width: 280px;
+        min-width: 280px;
+        margin: 0 20px;
+      }
+      
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        width: 280px;
+      }
+      
+      .scroll-hint {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+        max-width: 260px;
+      }
+    }
+
+    /* تحسينات للوضع المقلل للحركة */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      .hero-image img {
+        animation: none;
+      }
+      
+      .scroll-hint {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+  <!-- القائمة الجانبية (مخفية على الجوال وتظهر بالزر) -->
+  <aside class="side-nav" id="sideNav">
+    <div class="side-nav-header">
+      <img src="image/logo1.jpeg" alt="شعار" class="nav-logo">
+      <span class="nav-close" id="closeNav"><i class="fas fa-times"></i></span>
+    </div>
+    <nav class="side-nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="about.html"><i class="fas fa-users"></i> عن الفريق</a>
+      <a href="history.html" class="active"><i class="fas fa-clock-rotate-left"></i> تاريخ الفريق</a>
+      <a href="members.html"><i class="fas fa-address-book"></i> الأعضاء</a>
+      <a href="trainings.html"><i class="fas fa-chalkboard-teacher"></i> التدريبات</a>
+      <a href="projects.html"><i class="fas fa-rocket"></i> المشاريع</a>
+      <a href="announcements.html"><i class="fas fa-bell"></i> الإعلانات</a>
+      <a href="events.html"><i class="fas fa-calendar-check"></i> الفعاليات</a>
+      <a href="resources.html"><i class="fas fa-book"></i> الموارد</a>
+      <a href="faq.html"><i class="fas fa-question"></i> الأسئلة الشائعة</a>
+    </nav>
+    <div class="side-nav-footer">
+      <div class="side-social">
+        <a href="https://www.facebook.com/share/1ErivsfJZ6/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://github.com/Digital-Fingers-Team" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div class="side-nav-copyright">
+        &copy; 2025 فريق الانامل الرقمية | DF Team
+      </div>
+    </div>
+  </aside>
+  <div class="overlay" id="navOverlay"></div>
+
+  <!-- الترويسة -->
+  <header class="main-header">
+    <div class="header-left">
+      <img src="image/logo1.jpeg" alt="شعار" class="logo">
+      <span class="brand-name">DF Team</span>
+    </div>
+    <div class="header-center">
+      <span class="welcome-message">مرحباً بكم أعضاء وقائد فريق الأنامل الرقمية</span>
+    </div>
+    <div class="header-right">
+      <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="header-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- قسم الهيرو -->
+  <section class="hero-section container">
+    <div class="hero-content">
+      <h1 class="hero-title">تاريخ الفريق</h1>
+      <p class="hero-desc">مخطط زمني لأهم المحطات منذ تأسيس الفريق، الإنجازات، الجوائز، المشاركات والفعاليات</p>
+    </div>
+  </section>
+
+  <!-- المحتوى الرئيسي -->
+  <main class="container">
+    <section class="history-section">
+      <div class="intro-card">
+        <p>مخطط زمني لأهم المحطات منذ تأسيس الفريق، الإنجازات، الجوائز، المشاركات والفعاليات.</p>
+      </div>
+      
+      <!-- مؤشر التمرير (يظهر على الهاتف فقط) -->
+      <div class="scroll-hint" id="scrollHint">
+        <span>اسحب يمينًا أو يسارًا لعرض الأحداث</span>
+        <i class="fas fa-arrows-left-right"></i>
+      </div>
+      
+      <!-- تغليف المخطط الزمني -->
+      <div class="timeline-wrapper">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 20 يوليو 2025 </span>
+              <p><strong>تأسيس الفريق</strong> بدأ انتشار اسم الانامل الرقمية في مسابقة "100 معلم مبدع 2" حيث بدأ قائد الفريق في جمع بعض الاعضاء و تجهيزهم حتى يصبحوا ما هم عليه الأن</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 12 اغسطس 2025 </span>
+              <p>بدأ القائد في اول يوم للأعضاء بتدريبهم على <strong> تدريب المدربين TOT </strong> لتوعية الاعضاء على اهمية ما هم فيه و لتمكينهم من تقليل التوتر الطبيعي لهم في البداية</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 20 أغسطس 2025 </span>
+              <p>قام القائد بالإتفاق مع معهد ال ITI وديا بإرسال مدرب معتمد لتدريب الاعضاء على <strong>مهارات التواصل الفعال </strong>تحت مسمى (ندوة ثقافية) ضمن أولى خطوات بناء الكفاءات لدى الاعضاء.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 24 أغسطس 2025 </span>
+              <p>عقد ندوة تعريفية عن <strong>منحة إعداد القادة</strong> لتمكين جميع الأعضاء على أن يكونوا قادة وليس القائد الحالي فقط هو من يمكنه.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 30 أغسطس 2025 </span>
+              <p>تنظيم <strong>ندوة عن مهارات الاتصال والتواصل الفعال</strong> لتطوير قدرات الأعضاء في العمل الجماعي والتفاعل الإيجابي داخل الفريق.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 6 سبتمبر 2025 </span>
+              <p>إطلاق <strong>الموقع الرسمي للفريق</strong> وتوسيع قاعدة المشاركة لتشمل طلاب من مختلف المراحل.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 17 سبتمبر 2025 </span>
+              <p>إقامة <strong>إيفنت عرض إنجازات DF Team</strong> بعد مرور شهر و13 يوم من انطلاقهم، حيث تحوّلوا من متدربين في النشاط الصيفي إلى فريق يُحكى عنه وله منافسين وخصوم. 
+              شهد الإيفنت حضور <strong>أحمد زكي</strong> مدير الإدارة، و<strong>محمد الفرماوي</strong> مدير التجريبيات، وعدد من القيادات المتميزة.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 18 نوفمبر 2025 </span>
+              <p>اول مسابقة للفريق وهي <strong>مسابقة ISEF العالمية المستوى الإداري</strong> وتأهيل اربعة اعضاء وهم 
+                احمد هبد الرؤوف
+                البراء سعد
+                إياد عبد الرؤوف
+              لنس محمد مختار </p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 10 ديسمبر 2025 </span>
+              <p>إطلالة الاعضاء المؤهلين  <strong>لمعرض ISEF العالمية المستوى المحلي</strong> بعد الكثير من المجهودات في التصوير و التعديلات على المشاريع الخاصة بهم </p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <span class="timeline-date"><i class="far fa-calendar-alt"></i> 22 ديسمبر 2025 </span>
+              <p>نقل و اعتماد <strong>الفريق من المدرسة إلى مركز التطوير بإدارة بنها التعليمية </strong> واعتماده من مدير الإدارة و اصبحنا على مستوى الإدارة</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- التذييل -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <img src="image/logo1.jpeg" alt="شعار" class="footer-logo">
+          <h3>فريق الانامل الرقمية</h3>
+          <p>الفريق الصاعد</p>
+        </div>
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">عن الفريق</a></li>
+            <li><a href="members.html">الأعضاء</a></li>
+            <li><a href="trainings.html">التدريبات</a></li>
+            <li><a href="projects.html">المشاريع</a></li>
+            <li><a href="events.html">الفعاليات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تواصل معنا</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> info@DF.com</li>
+            <li><i class="fas fa-phone"></i> 01080478274</li>
+            <li><i class="fas fa-map-marker-alt"></i> بنها - القليوبية - مصر</li>
+          </ul>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/share/1ErivsfJZ6/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://github.com/Digital-Fingers-Team" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        جميع الحقوق محفوظة © 2025 فريق الأنامل الرقمية- DF Team
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // عناصر القائمة الجانبية
+      const sideNav = document.getElementById('sideNav');
+      const closeNav = document.getElementById('closeNav');
+      const menuBtn = document.getElementById('menuBtn');
+      const navOverlay = document.getElementById('navOverlay');
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = themeToggle.querySelector('i');
+      
+      // حالات الثيم
+      const themes = ['light', 'dark', 'purple'];
+      let currentThemeIndex = 0;
+      
+      // تطبيق الثيم
+      function applyTheme(themeIndex) {
+        document.body.setAttribute('data-theme', themes[themeIndex]);
+        
+        // تغيير الأيقونة حسب الثيم
+        if (themes[themeIndex] === 'light') {
+          themeIcon.className = 'fas fa-moon';
+        } else if (themes[themeIndex] === 'dark') {
+          themeIcon.className = 'fas fa-star';
+        } else {
+          themeIcon.className = 'fas fa-sun';
+        }
+        
+        // حفظ الثيم في localStorage
+        localStorage.setItem('theme', themes[themeIndex]);
+      }
+      
+      // تبديل الثيم
+      themeToggle.addEventListener('click', function() {
+        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+        applyTheme(currentThemeIndex);
+      });
+      
+      // تحميل الثيم المحفوظ
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        currentThemeIndex = themes.indexOf(savedTheme);
+        if (currentThemeIndex === -1) currentThemeIndex = 0;
+        applyTheme(currentThemeIndex);
+      }
+      
+      // فتح القائمة الجانبية
+      function openSideNav() {
+        sideNav.classList.add('open');
+        navOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      // إغلاق القائمة الجانبية
+      function closeSideNav() {
+        sideNav.classList.remove('open');
+        navOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      // إضافة مستمع الأحداث لزر الإغلاق
+      if (closeNav) {
+        closeNav.addEventListener('click', closeSideNav);
+      }
+
+      // إضافة مستمع الأحداث لزر القائمة
+      if (menuBtn) {
+        menuBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          openSideNav();
+        });
+      }
+
+      // إضافة مستمع الأحداث للخلفية المظللة
+      if (navOverlay) {
+        navOverlay.addEventListener('click', closeSideNav);
+      }
+
+      // إغلاق القائمة عند الضغط على مفتاح Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeSideNav();
+        }
+      });
+
+      // تحديث رسالة الترحيب حسب دور المستخدم
+      function updateWelcomeMessage() {
+        const welcomeMessage = document.querySelector('.welcome-message');
+        if (!welcomeMessage) return;
+        
+        let userData = null;
+        try {
+          userData = JSON.parse(localStorage.getItem('userData')) || 
+                    JSON.parse(sessionStorage.getItem('userData'));
+        } catch (error) {
+          console.log('لا توجد بيانات مستخدم مسجل');
+        }
+        
+        if (userData && userData.loggedIn) {
+          if (userData.role === 'قائد الفريق') {
+            welcomeMessage.textContent = `مرحباً بك قائد فريق الأنامل الرقمية (${userData.name})`;
+          } else {
+            welcomeMessage.textContent = `مرحباً بك عضو فريق الأنامل الرقمية ${userData.name}`;
+          }
+        } else {
+          welcomeMessage.textContent = 'مرحباً بكم أعضاء وقائد فريق الأنامل الرقمية';
+        }
+      }
+      
+      window.updateWelcomeMessage = updateWelcomeMessage;
+      updateWelcomeMessage();
+      
+      // ============================================
+      // التعديلات الجديدة للتمرير الأفقي على الهاتف
+      // ============================================
+      
+      // إخفاء مؤشر التمرير بعد أول تمريرة
+      const scrollHint = document.getElementById('scrollHint');
+      const timelineWrapper = document.querySelector('.timeline-wrapper');
+      const timelineItems = document.querySelectorAll('.timeline-item');
+
+      if (scrollHint && timelineWrapper && timelineItems.length > 0) {
+        // إخفاء المؤشر إذا كان حجم الشاشة كبيرًا
+        if (window.innerWidth > 768) {
+          scrollHint.style.display = 'none';
+        }
+        
+        // إضافة حدث التمرير لإخفاء المؤشر
+        timelineWrapper.addEventListener('scroll', function() {
+          if (timelineWrapper.scrollLeft > 50) {
+            scrollHint.style.opacity = '0';
+            scrollHint.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+              scrollHint.style.display = 'none';
+            }, 500);
+          }
+        });
+        
+        // إضافة تأثيرات عند تحميل الصفحة على الهاتف
+        if (window.innerWidth <= 768) {
+          // إضافة تأثيرات ظهور للأحداث
+          const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+          };
+          
+          const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'scale(1)';
+              }
+            });
+          }, observerOptions);
+          
+          // تطبيق تأثيرات على عناصر المخطط الزمني
+          timelineItems.forEach(function(item, index) {
+            const content = item.querySelector('.timeline-content');
+            if (content) {
+              content.style.opacity = '0';
+              content.style.transform = 'scale(0.95)';
+              content.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+              content.style.transitionDelay = (index * 0.1) + 's';
+              observer.observe(content);
+            }
+          });
+        }
+      }
+      
+      // تحديث عند تغيير حجم النافذة
+      window.addEventListener('resize', function() {
+        if (scrollHint) {
+          if (window.innerWidth > 768) {
+            scrollHint.style.display = 'none';
+            // إعادة الخط والنقاط للأجهزة الكبيرة
+            const timeline = document.querySelector('.timeline');
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            if (timeline && timelineItems.length > 0) {
+              timeline.style.display = 'block';
+              timelineItems.forEach(item => {
+                item.style.display = 'block';
+              });
+            }
+          } else if (timelineWrapper && timelineWrapper.scrollLeft <= 50) {
+            scrollHint.style.display = 'flex';
+            scrollHint.style.opacity = '1';
+          }
+        }
+      });
+      
+      // إضافة تأثيرات ظهور للأجهزة الكبيرة
+      if (window.innerWidth > 768) {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-in');
+            }
+          });
+        }, observerOptions);
+        
+        // مراقبة العناصر لإضافة تأثير الظهور
+        document.querySelectorAll('.timeline-content').forEach(function(card) {
+          observer.observe(card);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

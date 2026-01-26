@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>أعضاء الفريق | فريق الأنامل الرقمية</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="icon" type="image/x-icon" href="image/logo1.jpeg" />
+    <link rel="stylesheet" href="static/css/style.css" />
+
+    <style>
+      /* 3D Carousel Styles */
+      .carousel-container {
+        width: 100%;
+        padding: 2rem 0;
+        text-align: center;
+        position: relative;
+        margin-top: 60px;
+      }
+
+      .carousel-title {
+        color: var(--text-color);
+        margin-bottom: 3rem;
+        font-size: 2.5rem;
+        font-weight: 700;
+        font-family: "Tajawal", sans-serif;
+      }
+
+      .carousel-wrapper {
+        width: 100%;
+        height: 600px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        perspective: 1200px;
+      }
+
+      .carousel-inner {
+        --w: 180px;
+        --h: 300px;
+        --translateZ: calc((var(--w) + var(--h)) * 0.8);
+        --rotateX: 5deg;
+        --rotateY: 0deg;
+        --perspective: 493600px;
+        position: absolute;
+        width: var(--w);
+        height: var(--h);
+        top: 35%;
+        left: calc(50% - (var(--w) / 2));
+        z-index: 2;
+        transform-style: preserve-3d;
+        transform: perspective(var(--perspective)) rotateX(var(--rotateX))
+          rotateY(var(--rotateY));
+        transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .carousel-card {
+        position: absolute;
+        border: 3px solid rgba(var(--color-card), 0.8);
+        border-radius: 16px;
+        overflow: hidden;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(var(--color-card), 0.1) 0%,
+          rgba(var(--color-card), 0.05) 100%
+        );
+        backdrop-filter: blur(10px);
+        transform: rotateY(calc((360deg / var(--quantity)) * var(--index)))
+          translateZ(var(--translateZ));
+        transition: all 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+
+      [data-theme="light"] .carousel-card {
+        background: linear-gradient(
+          135deg,
+          rgba(var(--color-card), 0.3) 0%,
+          rgba(var(--color-card), 0.2) 100%
+        );
+        border-color: rgba(var(--color-card), 1);
+      }
+
+      .carousel-card:hover {
+        transform: rotateY(calc((360deg / var(--quantity)) * var(--index)))
+          translateZ(calc(var(--translateZ) + 50px)) scale(1.05);
+        border-color: rgba(var(--color-card), 1);
+        box-shadow: 0 10px 30px rgba(var(--color-card), 0.3);
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .carousel-img {
+        width: 100%;
+        height: 70%;
+        object-fit: cover;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+      }
+
+      .carousel-img::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(
+          transparent,
+          rgba(var(--color-card), 0.1) 50%,
+          rgba(var(--color-card), 0.3)
+        );
+      }
+
+      .carousel-info {
+        padding: 1rem 0.5rem;
+        text-align: center;
+        height: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+      }
+
+      .carousel-name {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text-color);
+        margin: 0 0 0.5rem 0;
+        line-height: 1.2;
+        font-family: "Tajawal", sans-serif;
+      }
+
+      .carousel-role {
+        font-size: 0.75rem;
+        color: rgba(var(--color-card), 0.9);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        font-family: "Tajawal", sans-serif;
+      }
+
+      .leader-badge {
+        background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        color: white;
+        padding: 0.2rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        margin-top: 0.3rem;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 5px #ff6b6b;
+        }
+
+        to {
+          box-shadow: 0 0 15px #ff6b6b, 0 0 20px #ff8e8e;
+        }
+      }
+
+      .carousel-controls {
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 1rem;
+        z-index: 10;
+      }
+
+      .control-btn {
+        width: 50px;
+        height: 50px;
+        border: none;
+        border-radius: 50%;
+        background: var(--primary-color);
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .control-btn:hover {
+        background: var(--secondary-color);
+        transform: scale(1.1);
+      }
+
+      .control-btn:active {
+        transform: scale(0.95);
+      }
+
+      /* Auto-rotation animation */
+      .carousel-inner.auto-rotate {
+        animation: rotating 40s linear infinite;
+      }
+
+      @keyframes rotating {
+        from {
+          transform: perspective(var(--perspective)) rotateX(var(--rotateX))
+            rotateY(0deg);
+        }
+
+        to {
+          transform: perspective(var(--perspective)) rotateX(var(--rotateX))
+            rotateY(360deg);
+        }
+      }
+
+      /* Responsive Design - Switch to Grid on Mobile */
+      @media (max-width: 992px) {
+        .carousel-container {
+          margin-top: 30px;
+          padding: 1rem 0;
+        }
+
+        .carousel-title {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+        }
+
+        /* Disable 3D Carousel */
+        .carousel-wrapper {
+          height: auto;
+          overflow: visible;
+          perspective: none;
+          padding: 0 20px;
+        }
+
+        .carousel-inner {
+          position: relative;
+          width: 100%;
+          height: auto;
+          top: auto;
+          left: auto;
+          transform: none !important;
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 25px;
+          padding: 10px 0 50px 0;
+        }
+
+        .carousel-inner.auto-rotate {
+          animation: none;
+        }
+
+        .carousel-card {
+          position: relative;
+          width: 100%;
+          height: 380px;
+          transform: none !important;
+          inset: auto;
+          opacity: 1;
+          background: linear-gradient(
+            135deg,
+            rgba(var(--color-card), 0.2) 0%,
+            rgba(var(--color-card), 0.1) 100%
+          );
+          border: 1px solid rgba(var(--color-card), 0.5);
+          margin: 0;
+        }
+
+        [data-theme="light"] .carousel-card {
+          background: linear-gradient(
+            135deg,
+            rgba(var(--color-card), 0.4) 0%,
+            rgba(var(--color-card), 0.2) 100%
+          );
+        }
+
+        .carousel-card:hover {
+          transform: translateY(-10px) !important;
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+          z-index: 1;
+        }
+
+        /* Hide Controls */
+        .carousel-controls {
+          display: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .carousel-inner {
+          grid-template-columns: 1fr; /* Single column on very small screens */
+        }
+
+        .carousel-card {
+          height: 350px;
+        }
+
+        .carousel-title {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body data-theme="light">
+    <!-- القائمة الجانبية -->
+    <aside class="side-nav" id="sideNav">
+      <div class="side-nav-header">
+        <img src="image/logo1.jpeg" alt="شعار" class="nav-logo" />
+        <span class="nav-close" id="closeNav"
+          ><i class="fas fa-times"></i
+        ></span>
+      </div>
+      <nav class="side-nav-links">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="about.html"><i class="fas fa-users"></i> عن الفريق</a>
+        <a href="history.html"
+          ><i class="fas fa-clock-rotate-left"></i> تاريخ الفريق</a
+        >
+        <a href="members.html" class="active"
+          ><i class="fas fa-address-book"></i> الأعضاء</a
+        >
+        <a href="trainings.html"
+          ><i class="fas fa-chalkboard-teacher"></i> التدريبات</a
+        >
+        <a href="projects.html"><i class="fas fa-rocket"></i> المشاريع</a>
+        <a href="announcements.html"><i class="fas fa-bell"></i> الإعلانات</a>
+        <a href="events.html"
+          ><i class="fas fa-calendar-check"></i> الفعاليات</a
+        >
+        <a href="resources.html"><i class="fas fa-book"></i> الموارد</a>
+        <a href="faq.html"><i class="fas fa-question"></i> الأسئلة الشائعة</a>
+      </nav>
+      <div class="side-nav-footer">
+        <div class="side-social">
+          <a href="https://www.facebook.com/share/1ErivsfJZ6/" target="_blank"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://github.com/Digital-Fingers-Team" target="_blank"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="side-nav-copyright">
+          &copy; 2025 فريق الأنامل الرقمية | DF Team
+        </div>
+      </div>
+    </aside>
+    <div class="overlay" id="navOverlay"></div>
+
+    <!-- الترويسة -->
+    <header class="main-header">
+      <div class="header-left">
+        <img src="image/logo1.jpeg" alt="شعار" class="logo" />
+        <span class="brand-name">DF Team</span>
+      </div>
+      <div class="header-center">
+        <span class="welcome-message"
+          >مرحباً بكم أعضاء وقائد فريق الأنامل الرقمية</span
+        >
+      </div>
+      <div class="header-right">
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="header-menu-btn" id="menuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="carousel-container">
+        <h1 class="carousel-title">أعضاء فريق الأنامل الرقمية</h1>
+        <div class="carousel-wrapper">
+          <div class="carousel-inner auto-rotate" id="carouselInner">
+            <!-- Cards will be generated by JavaScript -->
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="control-btn" id="prevBtn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <button class="control-btn" id="nextBtn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="control-btn" id="autoRotateBtn">
+            <i class="fas fa-pause"></i>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- التذييل -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-col">
+            <img src="image/logo1.jpeg" alt="شعار" class="footer-logo" />
+            <h3>فريق الانامل الرقمية</h3>
+            <p>الفريق الصاعد</p>
+          </div>
+          <div class="footer-col">
+            <h4>روابط سريعة</h4>
+            <ul>
+              <li><a href="index.html">الرئيسية</a></li>
+              <li><a href="about.html">عن الفريق</a></li>
+              <li><a href="members.html">الأعضاء</a></li>
+              <li><a href="trainings.html">التدريبات</a></li>
+              <li><a href="projects.html">المشاريع</a></li>
+              <li><a href="events.html">الفعاليات</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>تواصل معنا</h4>
+            <ul>
+              <li><i class="fas fa-envelope"></i> info@DF.com</li>
+              <li><i class="fas fa-phone"></i> 01080478274</li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> بنها - القليوبية - مصر
+              </li>
+            </ul>
+            <div class="footer-social">
+              <a
+                href="https://www.facebook.com/share/1ErivsfJZ6/"
+                target="_blank"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://github.com/Digital-Fingers-Team" target="_blank"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          جميع الحقوق محفوظة © 2025 فريق الأنامل الرقمية- DF Team
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // بيانات الفريق
+      const members = [
+        {
+          id: 0,
+          name: "Ahmed AbdelRaouf Samir",
+          age: "17 years old",
+          education: "Secondary 2",
+          role: "Team Leader",
+          img: "image/nimo.jpeg",
+          experiences: [
+            "Certified Python Instructor",
+            "Holds TOT training certificates and ID",
+            "Works with Microsoft Qalyubia",
+            "Studied Data Analysis",
+          ],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 1,
+          name: "Baraa Saad",
+          age: "14 Years old",
+          education: "prep 2",
+          role: "co-leader",
+          img: "image/file_2025-08-19_12.00.12.png",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css", "JavaScript"],
+        },
+        {
+          id: 2,
+          name: "Hla sarhan",
+          age: "13 Years old",
+          education: "prep 1",
+          role: "Media team leader",
+          img: "image/hla.jpeg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 3,
+          name: "Eyad abdelraouf",
+          age: "14 Years old",
+          education: "prep 2",
+          role: "programming team member",
+          img: "image/profile.jpg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 4,
+          name: "Anas mohamed",
+          age: "14 Years old",
+          education: "prep 3",
+          role: "programming Team member",
+          img: "image/file_2025-08-19_11.53.40.png",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 5,
+          name: "Salma alaa",
+          age: "13 Years old",
+          education: "prep 1",
+          role: "programming Team leader",
+          img: "image/profile.jpg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css", "js"],
+        },
+        {
+          id: 6,
+          name: "Soha Sameh",
+          age: "15 Years old",
+          education: "Sec 1",
+          role: "programming Team Member",
+          img: "image/soha sameh.jpg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 7,
+          name: "Salma Sameh",
+          age: "16 Years old",
+          education: "Sec 2",
+          role: "Opiration Team Member",
+          img: "image/salma sameh.jpg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 8,
+          name: "hana abdelazez",
+          age: "17 Years old",
+          education: "Sec 2",
+          role: "Opiration Team Member",
+          img: "image/hana abdelazez.jpeg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 9,
+          name: "zeyad eslam",
+          age: "17 Years old",
+          education: "Sec 2",
+          role: "media Team Member",
+          img: "image/zeyad.jpeg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 10,
+          name: "malak hatem",
+          age: "17 Years old",
+          education: "Sec 2",
+          role: "operation Team leader",
+          img: "image/profile.jpg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 11,
+          name: "Malak Mamdouh",
+          age: "14 Years old",
+          education: "Sec 1",
+          role: "The Best Team Member",
+          img: "image/loka.png",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+      ];
+
+      // Color palette for cards
+      const colorPalette = [
+        "142, 249, 252",
+        "142, 252, 204",
+        "142, 252, 157",
+        "215, 252, 142",
+        "252, 252, 142",
+        "252, 208, 142",
+        "252, 142, 142",
+        "252, 142, 239",
+        "204, 142, 252",
+        "142, 202, 252",
+        "142, 252, 240",
+        "252, 182, 142",
+        "182, 142, 252",
+        "252, 142, 182",
+        "142, 182, 252",
+      ];
+
+      // Create 3D carousel cards
+      const carouselInner = document.getElementById("carouselInner");
+      carouselInner.style.setProperty("--quantity", members.length);
+
+      members.forEach((member, index) => {
+        const card = document.createElement("a");
+        card.href = `member-details.html?id=${member.id}`;
+        card.className = "carousel-card";
+        card.style.setProperty("--index", index);
+        card.style.setProperty(
+          "--colorCard",
+          colorPalette[index % colorPalette.length]
+        );
+
+        card.innerHTML = `
+        <div class="carousel-img" style="background-image: url('${
+          member.img
+        }')"></div>
+        <div class="carousel-info">
+          <h3 class="carousel-name">${member.name}</h3>
+          <span class="carousel-role">${member.role}</span>
+          ${
+            member.id === 0 ? `<div class="leader-badge">قائد الفريق</div>` : ""
+          }
+        </div>
+      `;
+
+        carouselInner.appendChild(card);
+      });
+
+      // Carousel controls
+      let currentRotation = 0;
+      const rotationIncrement = 360 / members.length;
+      let isAutoRotating = true;
+
+      document.getElementById("nextBtn").addEventListener("click", () => {
+        currentRotation -= rotationIncrement;
+        carouselInner.style.setProperty("--rotateY", `${currentRotation}deg`);
+        if (isAutoRotating) {
+          toggleAutoRotate();
+        }
+      });
+
+      document.getElementById("prevBtn").addEventListener("click", () => {
+        currentRotation += rotationIncrement;
+        carouselInner.style.setProperty("--rotateY", `${currentRotation}deg`);
+        if (isAutoRotating) {
+          toggleAutoRotate();
+        }
+      });
+
+      function toggleAutoRotate() {
+        isAutoRotating = !isAutoRotating;
+        const autoRotateBtn = document.getElementById("autoRotateBtn");
+        const icon = autoRotateBtn.querySelector("i");
+
+        if (isAutoRotating) {
+          carouselInner.classList.add("auto-rotate");
+          icon.className = "fas fa-pause";
+        } else {
+          carouselInner.classList.remove("auto-rotate");
+          icon.className = "fas fa-play";
+        }
+      }
+
+      document
+        .getElementById("autoRotateBtn")
+        .addEventListener("click", toggleAutoRotate);
+
+      // JavaScript لإدارة القائمة الجانبية وتبديل الثيمات
+      document.addEventListener("DOMContentLoaded", function () {
+        // عناصر القائمة الجانبية
+        const sideNav = document.getElementById("sideNav");
+        const closeNav = document.getElementById("closeNav");
+        const menuBtn = document.getElementById("menuBtn");
+        const navOverlay = document.getElementById("navOverlay");
+        const themeToggle = document.getElementById("themeToggle");
+        const themeIcon = themeToggle.querySelector("i");
+
+        // حالات الثيم
+        const themes = ["light", "dark", "purple"];
+        let currentThemeIndex = 0;
+
+        // تطبيق الثيم
+        function applyTheme(themeIndex) {
+          document.body.setAttribute("data-theme", themes[themeIndex]);
+
+          // تغيير الأيقونة حسب الثيم
+          if (themes[themeIndex] === "light") {
+            themeIcon.className = "fas fa-moon";
+          } else if (themes[themeIndex] === "dark") {
+            themeIcon.className = "fas fa-star";
+          } else {
+            themeIcon.className = "fas fa-sun";
+          }
+
+          // حفظ الثيم في localStorage
+          localStorage.setItem("theme", themes[themeIndex]);
+        }
+
+        // تبديل الثيم
+        themeToggle.addEventListener("click", function () {
+          currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+          applyTheme(currentThemeIndex);
+        });
+
+        // تحميل الثيم المحفوظ
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+          currentThemeIndex = themes.indexOf(savedTheme);
+          if (currentThemeIndex === -1) currentThemeIndex = 0;
+          applyTheme(currentThemeIndex);
+        }
+
+        // فتح القائمة الجانبية
+        function openSideNav() {
+          sideNav.classList.add("open");
+          navOverlay.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+
+        // إغلاق القائمة الجانبية
+        function closeSideNav() {
+          sideNav.classList.remove("open");
+          navOverlay.classList.remove("open");
+          document.body.style.overflow = "";
+        }
+
+        // إضافة مستمع الأحداث لزر الإغلاق
+        if (closeNav) {
+          closeNav.addEventListener("click", closeSideNav);
+        }
+
+        // إضافة مستمع الأحداث لزر القائمة
+        if (menuBtn) {
+          menuBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            openSideNav();
+          });
+        }
+
+        // إضافة مستمع الأحداث للخلفية المظللة
+        if (navOverlay) {
+          navOverlay.addEventListener("click", closeSideNav);
+        }
+
+        // إغلاق القائمة عند الضغط على مفتاح Escape
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            closeSideNav();
+          }
+        });
+
+        // تحديث رسالة الترحيب حسب دور المستخدم
+        function updateWelcomeMessage() {
+          const welcomeMessage = document.querySelector(".welcome-message");
+          if (!welcomeMessage) return;
+
+          let userData = null;
+          try {
+            userData =
+              JSON.parse(localStorage.getItem("userData")) ||
+              JSON.parse(sessionStorage.getItem("userData"));
+          } catch (error) {
+            console.log("لا توجد بيانات مستخدم مسجل");
+          }
+
+          if (userData && userData.loggedIn) {
+            if (userData.role === "قائد الفريق") {
+              welcomeMessage.textContent = `مرحباً بك قائد فريق الأنامل الرقمية (${userData.name})`;
+            } else {
+              welcomeMessage.textContent = `مرحباً بك عضو فريق الأنامل الرقمية ${userData.name}`;
+            }
+          } else {
+            welcomeMessage.textContent = "مرحباً بكم في فريق الأنامل الرقمية";
+          }
+        }
+
+        window.updateWelcomeMessage = updateWelcomeMessage;
+        updateWelcomeMessage();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>صفحة العضو | فريق النامل الرقمية</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="icon" type="image/x-icon" href="image/logo1.jpeg" />
+    <link rel="stylesheet" href="static/css/style.css" />
+  </head>
+
+  <body data-theme="light">
+    <!-- القائمة الجانبية -->
+    <aside class="side-nav" id="sideNav">
+      <div class="side-nav-header">
+        <img src="image/logo1.jpeg" alt="شعار" class="nav-logo" />
+        <span class="nav-close" id="closeNav"
+          ><i class="fas fa-times"></i
+        ></span>
+      </div>
+      <nav class="side-nav-links">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="about.html"><i class="fas fa-users"></i> عن الفريق</a>
+        <a href="history.html"
+          ><i class="fas fa-clock-rotate-left"></i> تاريخ الفريق</a
+        >
+        <a href="members.html" class="active"
+          ><i class="fas fa-address-book"></i> الأعضاء</a
+        >
+        <a href="trainings.html"
+          ><i class="fas fa-chalkboard-teacher"></i> التدريبات</a
+        >
+        <a href="projects.html"><i class="fas fa-rocket"></i> المشاريع</a>
+        <a href="announcements.html"><i class="fas fa-bell"></i> الإعلانات</a>
+        <a href="events.html"
+          ><i class="fas fa-calendar-check"></i> الفعاليات</a
+        >
+        <a href="resources.html"><i class="fas fa-book"></i> الموارد</a>
+        <a href="faq.html"><i class="fas fa-question"></i> الأسئلة الشائعة</a>
+      </nav>
+      <div class="side-nav-footer">
+        <div class="side-social">
+          <a href="https://www.facebook.com/share/1ErivsfJZ6/" target="_blank"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://github.com/Digital-Fingers-Team" target="_blank"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="side-nav-copyright">
+          &copy; 2025 فريق الأنامل الرقمية | DF Team
+        </div>
+      </div>
+    </aside>
+    <div class="overlay" id="navOverlay"></div>
+
+    <!-- الترويسة -->
+    <header class="main-header">
+      <div class="header-left">
+        <img src="image/logo1.jpeg" alt="شعار" class="logo" />
+        <span class="brand-name">DF Team</span>
+      </div>
+      <div class="header-center">
+        <span class="welcome-message"
+          >مرحباً بكم أعضاء وقائد فريق الأنامل الرقمية</span
+        >
+      </div>
+      <div class="header-right">
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="header-menu-btn" id="menuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section style="margin-top: 60px">
+        <h1 class="section-title">ملف عضو الفريق</h1>
+        <div id="member-profile" class="member-details-card">
+          <!-- يتم تعبئة بيانات العضو تلقائياً هنا -->
+        </div>
+        <div style="text-align: center; margin-top: 30px">
+          <a href="members.html" class="btn btn-outline btn-sm"
+            >عودة لقائمة الأعضاء</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- التذييل -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-col">
+            <img src="image/logo1.jpeg" alt="شعار" class="footer-logo" />
+            <h3>فريق الانامل الرقمية</h3>
+            <p>الفريق الصاعد</p>
+          </div>
+          <div class="footer-col">
+            <h4>روابط سريعة</h4>
+            <ul>
+              <li><a href="index.html">الرئيسية</a></li>
+              <li><a href="about.html">عن الفريق</a></li>
+              <li><a href="members.html">الأعضاء</a></li>
+              <li><a href="trainings.html">التدريبات</a></li>
+              <li><a href="projects.html">المشاريع</a></li>
+              <li><a href="events.html">الفعاليات</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>تواصل معنا</h4>
+            <ul>
+              <li><i class="fas fa-envelope"></i> info@DF.com</li>
+              <li><i class="fas fa-phone"></i> 01080478274</li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> بنها - القليوبية - مصر
+              </li>
+            </ul>
+            <div class="footer-social">
+              <a
+                href="https://www.facebook.com/share/1ErivsfJZ6/"
+                target="_blank"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="https://github.com/Digital-Fingers-Team" target="_blank"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          جميع الحقوق محفوظة © 2025 فريق الأنامل الرقمية- DF Team
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // بيانات الفريق
+      const members = [
+        {
+          id: 0,
+          name: "Ahmed AbdelRaouf Samir",
+          age: "17 years old",
+          education: "Secondary 2",
+          role: "Team Leader",
+          img: "image/nimo.jpeg",
+          experiences: [
+            "Certified Python Instructor",
+            "Holds TOT training certificates and ID",
+            "Works with Microsoft Qalyubia",
+            "Studied Data Analysis",
+          ],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 1,
+          name: "Baraa Saad",
+          age: "14 Years old",
+          education: "prep 2",
+          role: "co-leader",
+          img: "image/file_2025-08-19_12.00.12.png",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css", "JavaScript"],
+        },
+        {
+          id: 2,
+          name: "Hla sarhan",
+          age: "13 Years old",
+          education: "prep 1",
+          role: "Media team leader",
+          img: "image/hla.jpeg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 3,
+          name: "Eyad abdelraouf",
+          age: "14 Years old",
+          education: "prep 2",
+          role: "programming team member",
+          img: "image/profile.jpg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 4,
+          name: "Anas mohamed",
+          age: "14 Years old",
+          education: "prep 3",
+          role: "programming Team member",
+          img: "image/file_2025-08-19_11.53.40.png",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 5,
+          name: "Salma alaa",
+          age: "13 Years old",
+          education: "prep 1",
+          role: "programming Team leader",
+          img: "image/profile.jpg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css", "js"],
+        },
+        {
+          id: 6,
+          name: "Soha Sameh",
+          age: "15 Years old",
+          education: "Sec 1",
+          role: "programming Team Member",
+          img: "image/soha sameh.jpg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 7,
+          name: "Salma Sameh",
+          age: "16 Years old",
+          education: "Sec 2",
+          role: "Opiration Team Member",
+          img: "image/salma sameh.jpg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 8,
+          name: "hana abdelazez",
+          age: "17 Years old",
+          education: "Sec 2",
+          role: "Opiration Team Member",
+          img: "image/hana abdelazez.jpeg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 9,
+          name: "zeyad eslam",
+          age: "17 Years old",
+          education: "Sec 2",
+          role: "media Team Member",
+          img: "image/zeyad.jpeg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 10,
+          name: "malak hatem",
+          age: "17 Years old",
+          education: "Sec 2",
+          role: "operation Team leader",
+          img: "image/profile.jpg",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+        {
+          id: 11,
+          name: "Malak Mamdouh",
+          age: "14 Years old",
+          education: "Sec 1",
+          role: "The Best Team Member",
+          img: "image/loka.png",
+          experiences: ["No major past experiences"],
+          skills: ["Python", "Html", "Css"],
+        },
+      ];
+
+      function getIdFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return parseInt(params.get("id"));
+      }
+
+      function renderProfile() {
+        const id = getIdFromUrl();
+        const member = members.find((m) => m.id === id);
+        const box = document.getElementById("member-profile");
+        if (!member) {
+          box.innerHTML = `<div style="text-align:center;color:#f33">العضو غير موجود</div>`;
+          return;
+        }
+        box.innerHTML = `
+        <div class="member-header">
+          <img src="${member.img}" alt="${member.name}" class="member-img">
+          <h2 class="member-name">${member.name}</h2>
+          <span class="member-role">${member.role}</span>
+        </div>
+        <div class="member-info">
+          <div class="member-info-item">
+            <strong>العمر:</strong> ${member.age}
+          </div>
+          <div class="member-info-item">
+            <strong>التعليم:</strong> ${member.education}
+          </div>
+          ${
+            member.experiences && member.experiences.length > 0
+              ? `
+          <div class="member-experiences">
+            <strong>الخبرات:</strong>
+            <ul>
+              ${member.experiences.map((e) => `<li>${e}</li>`).join("")}
+            </ul>
+          </div>
+          `
+              : ""
+          }
+          ${
+            member.skills && member.skills.length > 0
+              ? `
+          <div class="member-info-item">
+            <strong>المهارات:</strong>
+            <div class="member-skills">
+              ${member.skills
+                .map((s) => `<span class="skill-tag">${s}</span>`)
+                .join("")}
+            </div>
+          </div>
+          `
+              : ""
+          }
+        </div>
+      `;
+      }
+
+      // JavaScript لإدارة القائمة الجانبية وتبديل الثيمات
+      document.addEventListener("DOMContentLoaded", function () {
+        // عناصر القائمة الجانبية
+        const sideNav = document.getElementById("sideNav");
+        const closeNav = document.getElementById("closeNav");
+        const menuBtn = document.getElementById("menuBtn");
+        const navOverlay = document.getElementById("navOverlay");
+        const themeToggle = document.getElementById("themeToggle");
+        const themeIcon = themeToggle.querySelector("i");
+
+        // حالات الثيم
+        const themes = ["light", "dark", "purple"];
+        let currentThemeIndex = 0;
+
+        // تطبيق الثيم
+        function applyTheme(themeIndex) {
+          document.body.setAttribute("data-theme", themes[themeIndex]);
+
+          // تغيير الأيقونة حسب الثيم
+          if (themes[themeIndex] === "light") {
+            themeIcon.className = "fas fa-moon";
+          } else if (themes[themeIndex] === "dark") {
+            themeIcon.className = "fas fa-star";
+          } else {
+            themeIcon.className = "fas fa-sun";
+          }
+
+          // حفظ الثيم في localStorage
+          localStorage.setItem("theme", themes[themeIndex]);
+        }
+
+        // تبديل الثيم
+        themeToggle.addEventListener("click", function () {
+          currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+          applyTheme(currentThemeIndex);
+        });
+
+        // تحميل الثيم المحفوظ
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+          currentThemeIndex = themes.indexOf(savedTheme);
+          if (currentThemeIndex === -1) currentThemeIndex = 0;
+          applyTheme(currentThemeIndex);
+        }
+
+        // فتح القائمة الجانبية
+        function openSideNav() {
+          sideNav.classList.add("open");
+          navOverlay.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+
+        // إغلاق القائمة الجانبية
+        function closeSideNav() {
+          sideNav.classList.remove("open");
+          navOverlay.classList.remove("open");
+          document.body.style.overflow = "";
+        }
+
+        // إضافة مستمع الأحداث لزر الإغلاق
+        if (closeNav) {
+          closeNav.addEventListener("click", closeSideNav);
+        }
+
+        // إضافة مستمع الأحداث لزر القائمة
+        if (menuBtn) {
+          menuBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            openSideNav();
+          });
+        }
+
+        // إضافة مستمع الأحداث للخلفية المظللة
+        if (navOverlay) {
+          navOverlay.addEventListener("click", closeSideNav);
+        }
+
+        // إغلاق القائمة عند الضغط على مفتاح Escape
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            closeSideNav();
+          }
+        });
+
+        // تحديث رسالة الترحيب حسب دور المستخدم
+        function updateWelcomeMessage() {
+          const welcomeMessage = document.querySelector(".welcome-message");
+          if (!welcomeMessage) return;
+
+          let userData = null;
+          try {
+            userData =
+              JSON.parse(localStorage.getItem("userData")) ||
+              JSON.parse(sessionStorage.getItem("userData"));
+          } catch (error) {
+            console.log("لا توجد بيانات مستخدم مسجل");
+          }
+
+          if (userData && userData.loggedIn) {
+            if (userData.role === "قائد الفريق") {
+              welcomeMessage.textContent = `مرحباً بك قائد فريق الأنامل الرقمية (${userData.name})`;
+            } else {
+              welcomeMessage.textContent = `مرحباً بك عضو فريق الأنامل الرقمية ${userData.name}`;
+            }
+          } else {
+            welcomeMessage.textContent = "مرحباً بكم في فريق الأنامل الرقمية";
+          }
+        }
+
+        window.updateWelcomeMessage = updateWelcomeMessage;
+        updateWelcomeMessage();
+
+        // إضافة تأثيرات ظهور عند التمرير
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-in");
+            }
+          });
+        }, observerOptions);
+
+        // مراقبة العناصر لإضافة تأثير الظهور
+        document
+          .querySelectorAll(".member-details-card")
+          .forEach(function (card) {
+            observer.observe(card);
+          });
+
+        // عرض بيانات العضو
+        renderProfile();
+      });
+    </script>
+  </body>
+</html>
