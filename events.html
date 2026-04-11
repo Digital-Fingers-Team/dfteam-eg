@@ -9,10 +9,47 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="image/logo1.jpeg">
   <link rel="stylesheet" href="static/css/style.css">
+  <style>
+    /* تنسيق إضافي للصفحة */
+    .highlight-event {
+      border-right: 5px solid #ff6b6b;
+      background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.05));
+    }
+    
+    .event-badge {
+      display: inline-block;
+      background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+    
+    .event-trainer i, .event-location i {
+      margin-left: 0.5rem;
+    }
+    
+    .event-location {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    
+    .stats-badge {
+      background: var(--primary-color);
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 15px;
+      font-size: 0.7rem;
+      margin-right: 0.5rem;
+    }
+  </style>
 </head>
 
 <body data-theme="light">
-  <!-- القائمة الجانبية (مخفية على الجوال وتظهر بالزر) -->
+  <!-- القائمة الجانبية -->
   <aside class="side-nav" id="sideNav">
     <div class="side-nav-header">
       <img src="image/logo1.jpeg" alt="شعار" class="nav-logo">
@@ -57,7 +94,6 @@
         <i class="fas fa-moon"></i>
       </button>
       <button class="header-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
-
     </div>
   </header>
 
@@ -77,56 +113,164 @@
       </div>
 
       <div class="events-grid">
-        <!-- existing cards (محتوى سابق) -->
-        <!-- START: الكروت المضافة — عدّل المحتوى بين هاتين التعليمتين -->
+        
+        <!-- ============== الأحداث الجديدة (المضافة) ============== -->
+        
+        <!-- 1. أول ظهور على التلفاز - تكريم القائد العام -->
+        <div class="event-card highlight-event">
+          <img src="image/logo1.jpeg" alt="تكريم القائد العام على التلفاز" class="event-img">
+          <div class="event-info">
+            <h3>🎬 أول ظهور رسمي لفريق الأنامل الرقمية على شاشة التلفاز <span class="event-badge">حدث تاريخي</span></h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> ** شهر **</span>
+            <p>تم تكريم القائد العام للفريق <strong>المدرب الدولي المعتمد / أحمد عبد الرؤوف سمير</strong> على شاشة التلفاز، لكونه <strong>أصغر مدرب دولي معتمد في جمهورية مصر العربية</strong> والقائد المعتمد. هذا التكريم يعكس مدى التميز والاحترافية التي وصل إليها الفريق تحت قيادته.</p>
+            <div class="event-trainer">
+              <i class="fas fa-trophy"></i>
+              <span>إنجاز: أصغر مدرب دولي معتمد في مصر</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 2. انتقال الفريق إلى مركز التطوير -->
+        <div class="event-card">
+          <img src="image/logo1.jpeg" alt="انتقال الفريق إلى مركز التطوير" class="event-img">
+          <div class="event-info">
+            <h3>🏢 انتقال الفريق إلى مركز التطوير بإدارة بنها التعليمية</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> ** شهر **</span>
+            <p>تم انتقال فريق الأنامل الرقمية رسمياً إلى <strong>مركز التطوير التكنولوجي بإدارة بنها التعليمية</strong>، ليكون مقراً دائماً للفريق. وقام <strong>الأستاذ / أحمد ذكي (مدير إدارة بنها التعليمية)</strong> بزيارة المركز للاطلاع على جودة خط سير عمل الفريق والإنجازات التي تم تحقيقها.</p>
+            <div class="event-location">
+              <i class="fas fa-map-marker-alt"></i> مركز التطوير التكنولوجي - إدارة بنها التعليمية
+            </div>
+          </div>
+        </div>
+        
+        <!-- 3. حدث توعية الشباب في مدرسة EIS -->
+        <div class="event-card">
+          <img src="image/logo1.jpeg" alt="مدرسة EIS" class="event-img">
+          <div class="event-info">
+            <h3>🌍 حدث توعية الشباب - المدرسة المصرية الدولية EIS بالشيخ زايد</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> ** شهر **</span>
+            <p>نظم الفريق حدثاً توعوياً مميزاً في <strong>المدرسة المصرية الدولية EIS بالشيخ زايد</strong>، حيث كان في الاستقبال <strong>الأستاذة إيمان رجب (مديرة مرحلة BYB)</strong>. وضع الفريق بصمة قوية في المدرسة تشهد لها المدرسة بأكملها حتى اليوم، وسط تفاعل كبير من الطلاب والمعلمين.</p>
+            <div class="event-location">
+              <i class="fas fa-map-marker-alt"></i> المدرسة المصرية الدولية EIS - الشيخ زايد
+            </div>
+          </div>
+        </div>
+        
+        <!-- 4. حملة Upgrade - المعتمدة من الوزارتين -->
+        <div class="event-card highlight-event">
+          <img src="image/logo1.jpeg" alt="حملة Upgrade" class="event-img">
+          <div class="event-info">
+            <h3>🚀 حملة Upgrade - المعتمدة رسمياً <span class="event-badge">اعتماد رسمي</span></h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> ** شهر **</span>
+            <p><strong>حملة Upgrade</strong> هي حملة رائدة <strong>معتمدة من وزارة التربية والتعليم ووزارة الشباب والرياضة</strong>، ممثلة في <strong>الدكتور ياسر محمود (مدير مديرية التربية والتعليم بالقليوبية)</strong> و<strong>الدكتور وليد الفرماوي (وكيل وزارة الشباب والرياضة بالقليوبية)</strong>. تهدف الحملة إلى تطوير مهارات الشباب وتمكينهم في مختلف المجالات.</p>
+            <div class="event-trainer">
+              <i class="fas fa-certificate"></i>
+              <span>اعتماد رسمي من وزارة التربية والتعليم ووزارة الشباب والرياضة</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 5. تنفيذ حملة Upgrade - مدرسة مصطفى كامل -->
+        <div class="event-card">
+          <img src="image/logo1.jpeg" alt="حملة Upgrade مدرسة مصطفى كامل" class="event-img">
+          <div class="event-info">
+            <h3>📚 رحلة حملة Upgrade - مدرسة مصطفى كامل الرسمية للغات</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> ** شهر **</span>
+            <p>شهدت <strong>مدرسة مصطفى كامل الرسمية للغات</strong> انطلاق المرحلة الأولى من حملة Upgrade، حيث أبرز أعضاء الفريق تفوقهم الكبير في تقديم المحتوى والتفاعل مع الطلاب. تميز الأداء باحترافية عالية جذبت انتباه الحضور.</p>
+            <div class="event-location">
+              <i class="fas fa-map-marker-alt"></i> مدرسة مصطفى كامل الرسمية للغات - بنها
+            </div>
+          </div>
+        </div>
+        
+        <!-- 6. تنفيذ حملة Upgrade - مدرسة الشبان المسلمين -->
+        <div class="event-card">
+          <img src="image/logo1.jpeg" alt="حملة Upgrade مدرسة الشبان المسلمين" class="event-img">
+          <div class="event-info">
+            <h3>🏫 رحلة حملة Upgrade - مدرسة الشبان المسلمين ببنها</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> ** شهر **</span>
+            <p>أثار فريق الأنامل الرقمية إعجاب جميع الحضور في <strong>مدرسة الشبان المسلمين ببنها</strong>، حيث أشاد كل من <strong>مدير مجمع مدارس الشباب الأستاذ عبدالله</strong> و<strong>مدير التطوير بالمديرية الأستاذ مصطفى</strong> بمستوى التنظيم والأداء المتميز لأعضاء الفريق.</p>
+            <div class="event-location">
+              <i class="fas fa-map-marker-alt"></i> مدرسة الشبان المسلمين - بنها
+            </div>
+          </div>
+        </div>
+        
+        <!-- 7. حملة Upgrade المستوى الثاني Level 2 -->
+        <div class="event-card highlight-event">
+          <img src="image/logo1.jpeg" alt="حملة Upgrade المستوى الثاني" class="event-img">
+          <div class="event-info">
+            <h3>⭐ حملة Upgrade - المستوى الثاني (Level 2)</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> ** شهر **</span>
+            <p>تم تنفيذ المستوى الثاني من حملة Upgrade في <strong>مدرسة الثانوية بنات ومدرسة أم المؤمنين الثانوية بنات</strong>. أظهر الفريق اكتمال مهاراته في التقديم والعرض، وكان يوماً مميزاً في جميع المجاميع. أثار الفريق الجدل في <strong>مدينة بنها</strong> بالكامل منذ هذا اليوم، وحطم هذا اليوم الأرقام القياسية على مواقع التواصل الاجتماعي.</p>
+            <div class="event-trainer">
+              <i class="fas fa-chart-line"></i>
+              <span>إنجاز: تحطيم الأرقام القياسية على مواقع التواصل</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 8. اجتماع الفريق في مكتبة مصر العامة -->
+        <div class="event-card">
+          <img src="image/logo1.jpeg" alt="اجتماع مكتبة مصر العامة" class="event-img">
+          <div class="event-info">
+            <h3>📖 اجتماع الفريق في مكتبة مصر العامة</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> ** شهر **</span>
+            <p>بعد انتقال الفريق من مقر الإدارة إلى <strong>مكتبة مصر العامة</strong>، قام القائد العام بعقد اجتماع موسع بعد اجتياز امتحانات الشهر فوراً. تم خلال الاجتماع مناقشة خط سير العمل في الفترة القادمة، ووضع الخطط والاستراتيجيات الجديدة لتطوير أداء الفريق.</p>
+            <div class="event-location">
+              <i class="fas fa-map-marker-alt"></i> مكتبة مصر العامة - بنها
+            </div>
+          </div>
+        </div>
+        
+        <!-- ============== الأحداث السابقة ============== -->
+        
         <div class="event-card">
           <img src="image/our evvent.jpeg" alt="إيفنت عرض إنجازات DF Team" class="event-img">
           <div class="event-info">
             <h3>إيفنت عرض إنجازات DF Team</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 17 سبتمبر 2025</span>
-            <p>إقامة إيفنت لعرض إنجازات فريق الأنامل الرقمية بعد مرور شهر و13 يوم من انطلاق النشاط الصيفي وتحولهم من
-              متدربين إلى فريق له حضور ومنافسين. شهد الإيفنت حضور قيادات الإدارة وعدد من الضيوف المميزين.</p>
+            <p>إقامة إيفنت لعرض إنجازات فريق الأنامل الرقمية بعد مرور شهر و13 يوم من انطلاق النشاط الصيفي وتحولهم من متدربين إلى فريق له حضور ومنافسين. شهد الإيفنت حضور قيادات الإدارة وعدد من الضيوف المميزين.</p>
             <div class="event-trainer">
               <i class="fas fa-user-tie"></i>
               <span>القائد: أحمد عبد الرؤوف — نائب القائد: براء سعد السيد</span>
             </div>
           </div>
         </div>
+        
         <div class="event-card">
-          <img src="image/ISEF QAL.jpeg" alt="معرض مسابقة ISEF المستوى المحلي "class="event-img">
+          <img src="image/ISEF QAL.jpeg" alt="معرض مسابقة ISEF المستوى المحلي" class="event-img">
           <div class="event-info">
             <h3>معرض مسابقة ISEF المستوى المحلي</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 10 ديسمبر 2025</span>
-            <p>تعبنا لكن حققنا انجاز عظيم ووضعنا لمسة فريق الانامل في المسابقة وحصل مشروع البراء سعد السيد و احمد
-              عبدالرؤوف سمير على المركز الاول بإدارة بنها لفئة تحت السن</p>
+            <p>تعبنا لكن حققنا إنجاز عظيم ووضعنا لمسة فريق الأنامل في المسابقة وحصل مشروع البراء سعد السيد وأحمد عبدالرؤوف سمير على المركز الأول بإدارة بنها لفئة تحت السن.</p>
           </div>
         </div>
+        
         <div class="event-card">
           <img src="image/isef ed.jpeg" alt="معرض مسابقة ISEF المستوى الإداري" class="event-img">
           <div class="event-info">
             <h3>معرض مسابقة ISEF المستوى الإداري</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 18 نوفمبر 2025</span>
-            <p>حيث قدم الاعضاءمشريع ابهرت كل لجنة الحكام و دخلنا بحوالي 4 مشاريع و ب 8 اعضاء و تأهل منهم مشروعان و اربع
-              اعضاء إلى المستوى المحلي.</p>
+            <p>حيث قدم الأعضاء مشاريع أبهَرت كل لجنة الحكام ودخلنا بحوالي 4 مشاريع و 8 أعضاء وتأهل منهم مشروعان وأربعة أعضاء إلى المستوى المحلي.</p>
           </div>
         </div>
+        
         <div class="event-card">
           <img src="image/WhatsApp Image 2025-09-09 at 1.53.42 AM.jpeg" alt="أحدث ندوة ثقافية" class="event-img">
           <div class="event-info">
             <h3>أحدث ندوة ثقافية</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> سبتمبر 2025</span>
-            <p>انعقدت الندوة الثقافية الثالثة بمدرسة الشهيد مدحت طلعت بعنوان مهارات الاتصال والتواصل الفعّال.
-              شهدت حضورًا وتفاعلًا مميزًا من أولياء الأمور والطلاب.
-              وهدفت إلى إبراز الفرق بين الاتصال والتواصل وأثرهما في بناء علاقات فعّالة</p>
+            <p>انعقدت الندوة الثقافية الثالثة بمدرسة الشهيد مدحت طلعت بعنوان مهارات الاتصال والتواصل الفعّال. شهدت حضوراً وتفاعلاً مميزاً من أولياء الأمور والطلاب. هدفت إلى إبراز الفرق بين الاتصال والتواصل وأثرهما في بناء علاقات فعّالة.</p>
           </div>
         </div>
+        
         <div class="event-card">
           <img src="image/تدريب.jpg" alt="ندوة ثقافية" class="event-img">
           <div class="event-info">
             <h3>ندوة ثقافية</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> أغسطس 2025</span>
-            <p>ندوة مميزة عن مهارات العرض والتقديم (Presentation Skills) بهدف تنمية قدرات المشاركين على التواصل الفعّال
-              وتقديم أفكارهم بثقة واحترافية.</p>
+            <p>ندوة مميزة عن مهارات العرض والتقديم (Presentation Skills) بهدف تنمية قدرات المشاركين على التواصل الفعّال وتقديم أفكارهم بثقة واحترافية.</p>
           </div>
         </div>
 
@@ -148,8 +292,7 @@
           <div class="event-info">
             <h3>ورشة برمجة Scratch</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 25 أغسطس 2025</span>
-            <p>ورشة تدريبية تفاعلية تعرّف المشاركين بأساسيات البرمجة باستخدام بيئة Scratch، حيث تعلّموا كيفية إنشاء
-              ألعاب وقصص ورسوم متحركة بطريقة ممتعة ومبسطة.</p>
+            <p>ورشة تدريبية تفاعلية تعرّف المشاركين بأساسيات البرمجة باستخدام بيئة Scratch، حيث تعلّموا كيفية إنشاء ألعاب وقصص ورسوم متحركة بطريقة ممتعة ومبسطة.</p>
             <div class="event-trainer">
               <i class="fas fa-user-tie"></i>
               <span>مدربو فريق الأنامل الرقمية</span>
@@ -157,28 +300,22 @@
           </div>
         </div>
 
-
-
         <div class="event-card">
-          <img src="image/WhatsApp Image 2025-09-09 at 1.53.42 AM.jpeg" alt="ندوة مهارات الاتصال والتواصل الفعّال"
-            class="event-img">
+          <img src="image/WhatsApp Image 2025-09-09 at 1.53.42 AM.jpeg" alt="ندوة مهارات الاتصال والتواصل الفعّال" class="event-img">
           <div class="event-info">
             <h3>ندوة مهارات الاتصال والتواصل الفعّال</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 30 أغسطس 2025</span>
-            <p>ندوة لتطوير مهارات الاتصال الفعّال وبناء علاقات عمل ناجحة، شملت تدريبات عملية وتمارين تفاعلية لرفع مستوى
-              التفاعل والتواصل بين أعضاء الفريق والطلاب.</p>
+            <p>ندوة لتطوير مهارات الاتصال الفعّال وبناء علاقات عمل ناجحة، شملت تدريبات عملية وتمارين تفاعلية لرفع مستوى التفاعل والتواصل بين أعضاء الفريق والطلاب.</p>
             <div class="event-trainer">
               <i class="fas fa-user-tie"></i>
               <span>منسق الندوة: فريق الأنامل الرقمية</span>
             </div>
           </div>
         </div>
-        <!-- END: الكروت المضافة -->
-
+        
       </div>
     </section>
   </main>
-
 
   <!-- التذييل -->
   <footer class="main-footer">
@@ -238,7 +375,6 @@
       function applyTheme(themeIndex) {
         document.body.setAttribute('data-theme', themes[themeIndex]);
 
-        // تغيير الأيقونة حسب الثيم
         if (themes[themeIndex] === 'light') {
           themeIcon.className = 'fas fa-moon';
         } else if (themes[themeIndex] === 'dark') {
@@ -247,17 +383,14 @@
           themeIcon.className = 'fas fa-sun';
         }
 
-        // حفظ الثيم في localStorage
         localStorage.setItem('theme', themes[themeIndex]);
       }
 
-      // تبديل الثيم
       themeToggle.addEventListener('click', function () {
         currentThemeIndex = (currentThemeIndex + 1) % themes.length;
         applyTheme(currentThemeIndex);
       });
 
-      // تحميل الثيم المحفوظ
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme) {
         currentThemeIndex = themes.indexOf(savedTheme);
@@ -265,46 +398,26 @@
         applyTheme(currentThemeIndex);
       }
 
-      // فتح القائمة الجانبية
       function openSideNav() {
         sideNav.classList.add('open');
         navOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
       }
 
-      // إغلاق القائمة الجانبية
       function closeSideNav() {
         sideNav.classList.remove('open');
         navOverlay.classList.remove('open');
         document.body.style.overflow = '';
       }
 
-      // إضافة مستمع الأحداث لزر الإغلاق
-      if (closeNav) {
-        closeNav.addEventListener('click', closeSideNav);
-      }
+      if (closeNav) closeNav.addEventListener('click', closeSideNav);
+      if (menuBtn) menuBtn.addEventListener('click', function (e) { e.preventDefault(); openSideNav(); });
+      if (navOverlay) navOverlay.addEventListener('click', closeSideNav);
 
-      // إضافة مستمع الأحداث لزر القائمة
-      if (menuBtn) {
-        menuBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          openSideNav();
-        });
-      }
-
-      // إضافة مستمع الأحداث للخلفية المظللة
-      if (navOverlay) {
-        navOverlay.addEventListener('click', closeSideNav);
-      }
-
-      // إغلاق القائمة عند الضغط على مفتاح Escape
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-          closeSideNav();
-        }
+        if (e.key === 'Escape') closeSideNav();
       });
 
-      // تحديث رسالة الترحيب حسب دور المستخدم
       function updateWelcomeMessage() {
         const welcomeMessage = document.querySelector('.welcome-message');
         if (!welcomeMessage) return;
@@ -331,21 +444,13 @@
       window.updateWelcomeMessage = updateWelcomeMessage;
       updateWelcomeMessage();
 
-      // إضافة تأثيرات ظهور عند التمرير
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-
+      const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
       const observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-          }
+          if (entry.isIntersecting) entry.target.classList.add('animate-in');
         });
       }, observerOptions);
 
-      // مراقبة العناصر لإضافة تأثير الظهور
       document.querySelectorAll('.event-card').forEach(function (card) {
         observer.observe(card);
       });
