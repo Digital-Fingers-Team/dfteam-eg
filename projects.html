@@ -136,12 +136,20 @@
       position: absolute;
       top: 10px;
       left: 10px;
-      background-color: #4CAF50;
-      color: white;
       padding: 0.3rem 0.8rem;
       border-radius: 15px;
       font-size: 0.8rem;
       font-weight: 500;
+    }
+    
+    .project-status.completed {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    .project-status.in-progress {
+      background-color: #FF9800;
+      color: white;
     }
     
     .projects-empty {
@@ -272,7 +280,8 @@
         <button class="filter-btn" data-filter="web">برمجة الويب</button>
         <button class="filter-btn" data-filter="ai">الذكاء الاصطناعي</button>
         <button class="filter-btn" data-filter="mobile">تطبيقات الجوال</button>
-        <button class="filter-btn" data-filter="design">التصميم</button>
+        <button class="filter-btn" data-filter="sustainability">الاستدامة</button>
+        <button class="filter-btn" data-filter="tourism">السياحة</button>
       </div>
       
       <div class="projects-grid" id="projectsContainer">
@@ -280,7 +289,7 @@
         <div class="project-card" data-category="web">
           <div class="project-img-container">
             <img src="image/logo1.jpeg" alt="موقع فريق الأنامل الرقمية" class="project-img">
-            <span class="project-status">مكتمل</span>
+            <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>موقع فريق الأنامل الرقمية</h3>
@@ -300,7 +309,7 @@
         <div class="project-card" data-category="web">
           <div class="project-img-container">
             <img src="image/dt logo.png" alt="منصة DTES العالمية المعتمدة" class="project-img">
-            <span class="project-status">مكتمل</span>
+            <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>منصة DTES العالمية المعتمدة</h3>
@@ -320,7 +329,7 @@
         <div class="project-card" data-category="web">
           <div class="project-img-container">
             <img src="image/profile.jpg" alt="منصة KID-EDU" class="project-img">
-            <span class="project-status">مكتمل</span>
+            <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>منصة KID-EDU</h3>
@@ -340,7 +349,7 @@
         <div class="project-card" data-category="web ai">
           <div class="project-img-container">
             <img src="image/IDOS.jpeg" alt="منصة IDOS" class="project-img">
-            <span class="project-status">مكتمل</span>
+            <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>منصة IDOS</h3>
@@ -360,7 +369,7 @@
         <div class="project-card" data-category="web ai">
           <div class="project-img-container">
             <img src="image/3MOHOM.jpeg" alt="منصة AI-SLI" class="project-img">
-            <span class="project-status">مكتمل</span>
+            <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>منصة AI-SLI</h3>
@@ -376,21 +385,116 @@
           </div>
         </div>
         
-        <!-- مشروع إضافي كمثال -->
-        <div class="project-card" data-category="mobile">
+        <!-- مشروع TaskFlow (مكتمل) -->
+        <div class="project-card" data-category="mobile web">
           <div class="project-img-container">
-            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="تطبيق إدارة المهام" class="project-img">
-            <span class="project-status">قيد التطوير</span>
+            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="تطبيق TaskFlow" class="project-img">
+            <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
-            <h3>تطبيق إدارة المهام</h3>
-            <span class="project-category"><i class="fas fa-mobile-alt"></i> تطبيقات الجوال</span>
-            <p>تطبيق متكامل لإدارة المهام اليومية والمشاريع، يساعد أعضاء الفريق على تنظيم أعمالهم ومتابعة تقدمها، مع ميزات المزامنة عبر الأجهزة.</p>
+            <h3>TaskFlow</h3>
+            <span class="project-category"><i class="fas fa-mobile-alt"></i> تطبيقات الجوال | <i class="fas fa-code"></i> برمجة الويب</span>
+            <p>تطبيق متكامل لإدارة المهام اليومية والمشاريع، يساعد أعضاء الفريق على تنظيم أعمالهم ومتابعة تقدمها، مع ميزات المزامنة عبر الأجهزة وتنبيهات ذكية وتقارير أداء متقدمة.</p>
             <div class="project-members">
               <i class="fas fa-users"></i> فريق تطوير التطبيقات
             </div>
             <div class="project-links">
               <a href="#" class="btn-project">عرض المشروع</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- مشروع URSA الجديد -->
+        <div class="project-card" data-category="web ai">
+          <div class="project-img-container">
+            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="منصة URSA" class="project-img">
+            <span class="project-status completed">مكتمل</span>
+          </div>
+          <div class="project-info">
+            <h3>URSA</h3>
+            <span class="project-category"><i class="fas fa-code"></i> برمجة الويب | <i class="fas fa-robot"></i> الذكاء الاصطناعي</span>
+            <p>منصة رقمية ذكية تهدف إلى تسهيل البلاغات المجتمعية المقدمة عبر مواقع التواصل الاجتماعي، حيث يقوم المستخدم بتصوير البلاغ أو الشكوى، ويعمل نظام الذكاء الاصطناعي على تصنيف الشكاوى وتحديد أولوياتها بناءً على تكرارها، مما يتيح للجهات المختصة التعامل مع القضايا الأكثر أهمية أولًا، ويقلل من انتشار البلاغات على مواقع التواصل، ويحافظ على صورة مصر أمام العالم ويعزز السياحة ويطمئن الزوار.</p>
+            <div class="project-members">
+              <i class="fas fa-users"></i> فريق تطوير URSA
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn-project">عرض المشروع</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- مشروع Bekya الجديد -->
+        <div class="project-card" data-category="web sustainability">
+          <div class="project-img-container">
+            <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="منصة Bekya" class="project-img">
+            <span class="project-status completed">مكتمل</span>
+          </div>
+          <div class="project-info">
+            <h3>Bekya</h3>
+            <span class="project-category"><i class="fas fa-recycle"></i> الاستدامة | <i class="fas fa-code"></i> برمجة الويب</span>
+            <p>منصة مبتكرة لتحويل المواد القابلة للتدوير إلى نقاط يمكن استخدامها لدى الشركاء المحليين. نساعد في إغلاق الحلقة البيئية من خلال ربط البائعين بمنافذ إعادة التدوير. انضم إلى شبكة متنامية من الأفراد والشركات المهتمة بالبيئة. عملية بسيطة، تأثير حقيقي، مع إمكانية تتبع مساهماتك ومكافآتك.</p>
+            <div class="project-members">
+              <i class="fas fa-users"></i> فريق الاستدامة
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn-project">عرض المشروع</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- مشروع VQ لمكتب الشكاوي بالقليوبية -->
+        <div class="project-card" data-category="web ai">
+          <div class="project-img-container">
+            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="منصة VQ" class="project-img">
+            <span class="project-status completed">مكتمل</span>
+          </div>
+          <div class="project-info">
+            <h3>VQ - منصة الشكاوى الذكية</h3>
+            <span class="project-category"><i class="fas fa-code"></i> برمجة الويب | <i class="fas fa-robot"></i> الذكاء الاصطناعي</span>
+            <p>مشروع متخصص لمكتب الشكاوى بمحافظة القليوبية، يهدف إلى أرشفة وتحليل الشكاوى الواردة من المواطنين، وتصنيفها آلياً باستخدام تقنيات الذكاء الاصطناعي، وتوجيهها إلى الجهات المختصة، مع متابعة حالة كل شكوى حتى يتم حلها.</p>
+            <div class="project-members">
+              <i class="fas fa-users"></i> فريق تطوير VQ
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn-project">عرض المشروع</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- مشروع الوظائف الطلابية (قيد التطوير) -->
+        <div class="project-card" data-category="web">
+          <div class="project-img-container">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="الوظائف الطلابية" class="project-img">
+            <span class="project-status in-progress">قيد التطوير</span>
+          </div>
+          <div class="project-info">
+            <h3>الوظائف الطلابية - تمكين الخريجين</h3>
+            <span class="project-category"><i class="fas fa-code"></i> برمجة الويب</span>
+            <p>منصة متخصصة لتمكين الخريجين والطلاب الجامعيين من إيجاد فرص عمل مناسبة، وتوفير تدريبات مهنية، وربطهم بسوق العمل المحلي والدولي. تشمل المنصة ملفات تعريفية للباحثين عن عمل، وإعلانات وظيفية، وورش تدريبية مجانية لتطوير المهارات.</p>
+            <div class="project-members">
+              <i class="fas fa-users"></i> فريق تمكين الخريجين
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn-project">قريباً</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- مشروع تحسين السياحة في مصر (قيد التطوير) -->
+        <div class="project-card" data-category="web tourism ai">
+          <div class="project-img-container">
+            <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="تحسين السياحة في مصر" class="project-img">
+            <span class="project-status in-progress">قيد التطوير</span>
+          </div>
+          <div class="project-info">
+            <h3>Egypt Tourism Enhancement</h3>
+            <span class="project-category"><i class="fas fa-map-marked-alt"></i> السياحة | <i class="fas fa-robot"></i> الذكاء الاصطناعي</span>
+            <p>منصة شاملة لتحسين السياحة في مصر، تهدف إلى مساعدة وزارة السياحة والجهات المعنية، وكذلك السياح والمواطنين. تقدم المنصة معلومات دقيقة عن المعالم السياحية، خدمات حجز متكاملة، نظام تقييم للفنادق والمطاعم، دليل سياحي ذكي يعتمد على الذكاء الاصطناعي، ونظام للبلاغات والشكاوى لضمان جودة الخدمات السياحية.</p>
+            <div class="project-members">
+              <i class="fas fa-users"></i> فريق تطوير السياحة
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn-project">قريباً</a>
             </div>
           </div>
         </div>
