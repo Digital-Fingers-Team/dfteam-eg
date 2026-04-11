@@ -164,8 +164,24 @@
       line-height: 1.5;
     }
 
+    /* تنسيق عداد الأعلام */
+    .flag-counter {
+      text-align: center;
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.03);
+      border-radius: 10px;
+      direction: ltr;
+    }
+
+    .flag-counter img {
+      max-width: 100%;
+      height: auto;
+    }
+
     /* استجابة للشاشات الصغيرة */
     @media (max-width: 768px) {
+
       .leaders-grid,
       .senior-grid {
         grid-template-columns: 1fr;
@@ -259,17 +275,17 @@
     <div class="stats-section">
       <div class="stat-card">
         <i class="fas fa-users"></i>
-        <h3>15</h3>
+        <h3>16</h3>
         <p>عضو بالفريق</p>
       </div>
       <div class="stat-card">
         <i class="fas fa-laptop-code"></i>
-        <h3>6+</h3>
+        <h3>11+</h3>
         <p>مشروع تقني</p>
       </div>
       <div class="stat-card">
         <i class="fas fa-chalkboard-teacher"></i>
-        <h3>19+</h3>
+        <h3>27+</h3>
         <p>ورشة تدريبية</p>
       </div>
       <div class="stat-card">
@@ -461,6 +477,14 @@
           </div>
         </div>
       </div>
+      
+      <!-- عداد الأعلام - تمت إضافته هنا -->
+      <div class="flag-counter">
+        <a href="https://info.flagcounter.com/E81I">
+          <img src="https://s01.flagcounter.com/count2/E81I/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0">
+        </a>
+      </div>
+      
       <div class="footer-bottom">
         جميع الحقوق محفوظة © 2025 فريق الأنامل الرقمية- DF Team
       </div>
