@@ -92,9 +92,18 @@
         font-size: 1.1rem;
         font-weight: 700;
         color: var(--text-color);
-        margin: 0 0 0.5rem 0;
+        margin: 0 0 0.25rem 0;
         line-height: 1.3;
         font-family: "Tajawal", sans-serif;
+      }
+      
+      .member-name-arabic {
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: rgba(var(--text-color-rgb), 0.6);
+        margin-bottom: 0.5rem;
+        font-family: "Tajawal", sans-serif;
+        letter-spacing: -0.3px;
       }
 
       .member-role {
@@ -110,11 +119,22 @@
         color: white;
         padding: 0.3rem 0.8rem;
         border-radius: 20px;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         font-weight: 700;
-        margin-top: 0.5rem;
+        margin-top: 0.3rem;
         display: inline-block;
         animation: glow 2s ease-in-out infinite alternate;
+      }
+      
+      .supervisor-badge {
+        background: linear-gradient(45deg, #6b9fff, #8eb8ff);
+        color: white;
+        padding: 0.2rem 0.6rem;
+        border-radius: 20px;
+        font-size: 0.65rem;
+        font-weight: 600;
+        margin-top: 0.2rem;
+        display: inline-block;
       }
 
       @keyframes glow {
@@ -298,14 +318,16 @@
     </footer>
 
     <script>
-      // بيانات الفريق
+      // بيانات الفريق محدثة حسب الطلب
       const members = [
         {
           id: 0,
           name: "Ahmed AbdelRaouf Samir",
+          nameAr: "أحمد عبد الرؤوف سمير",
           age: "17 years old",
           education: "Secondary 2",
-          role: "Team Leader",
+          role: "General Leader",
+          roleAr: "القائد العام",
           img: "image/nimo.jpeg",
           experiences: [
             "Certified Python Instructor (TOT certified)",
@@ -320,97 +342,12 @@
         },
         {
           id: 1,
-          name: "Haytham Osama",
-          age: "17 Years old",
-          education: "Sec 2",
-          role: "co-leader",
-          img: "image/haytham.jpeg",
-          experiences:  [
-            "Built and deployed web applications using modern hosting platforms",
-            "Developed front-end interfaces with HTML, CSS, and JavaScript",
-            "Created backend logic and scripts using Python",
-            "Assisted in managing and operating team projects"
-          ],
-          skills: ["Hosting", "Html", "Css", "JavaScript" , "Operating" , "Python"],
-        },
-        {
-          id: 2,
-          name: "Hla sarhan",
-          age: "14 Years old",
-          education: "prep 1",
-          role: "Media team leader",
-          img: "image/hla.jpeg",
-          experiences: [
-            "Designed promotional graphics and social media content using Photoshop",
-            "Created simple web pages using HTML",
-            "Wrote basic Python scripts for task automation",
-            "Led the media team in creating visual content for the group"
-          ],
-          skills: ["Python", "Html", "Photoshop" , "Designer"],
-        },
-        {
-          id: 3,
-          name: "Eyad abdelraouf",
-          age: "14 Years old",
-          education: "prep 2",
-          role: "programming team member",
-          img: "image/alpha.jpeg",
-          experiences: [
-            "Built interactive web pages using HTML, CSS, and JavaScript",
-            "Developed console-based applications and games in Python",
-            "Participated in team coding sessions and project development"
-          ],
-          skills: ["Python", "Html", "Css" , "js"],
-        },
-        {
-          id: 4,
-          name: "Anas mohamed",
-          age: "14 Years old",
-          education: "prep 3",
-          role: "programming Team member",
-          img: "image/file_2025-08-19_11.53.40.png",
-          experiences:  [
-            "Created static websites using HTML and CSS",
-            "Practiced JavaScript to add interactivity to web pages",
-            "Worked on Python programming exercises and small projects"
-          ],
-          skills: ["Python", "Html", "Css" , "js"],
-        },
-        {
-          id: 5,
-          name: "Salma alaa",
-          age: "14 Years old",
-          education: "prep 1",
-          role: "programming Team leader",
-          img: "image/salma alaa.jpeg",
-          experiences: [
-            "Led a small programming team to develop web projects",
-            "Managed code versions and collaboration using Git and GitHub",
-            "Built responsive web pages using HTML, CSS, and JavaScript",
-            "Implemented logic and algorithms using Python"
-          ],
-          skills: ["Python", "Html", "Css", "js" , "githup"],
-        },
-        {
-          id: 6,
-          name: "Soha Sameh",
-          age: "15 Years old",
-          education: "Sec 1",
-          role: "programming Team Member",
-          img: "image/soha sameh.jpg",
-          experiences: [
-            "Contributed to team projects using Git and GitHub",
-            "Developed web pages with HTML, CSS, and JavaScript",
-            "Built Python programs to solve basic programming challenges"
-          ],
-          skills: ["Python", "Html", "Css" , "js" , "githup"],
-        },
-        {
-          id: 7,
           name: "Salma Sameh",
+          nameAr: "سلمى سامح",
           age: "16 Years old",
           education: "Sec 2",
-          role: "Operation Team Leader",
+          role: "Co-Leader",
+          roleAr: "مساعد القائد",
           img: "image/salma sameh.jpg",
           experiences: [
             "Managed project operations and workflow using FileMaker",
@@ -421,53 +358,80 @@
           skills: ["Python", "Html", "Css" , "file maker" , "Operating"],
         },
         {
-          id: 8,
-          name: "hana abdelazez",
-          age: "17 Years old",
-          education: "Sec 2",
-          role: "Opiration Team Member",
-          img: "image/hana abdelazez.jpeg",
+          id: 2,
+          name: "Salma Alaa",
+          nameAr: "سلمى علاء",
+          age: "14 Years old",
+          education: "prep 1",
+          role: "Executive Leader",
+          roleAr: "القائد المنفذ",
+          img: "image/salma alaa.jpeg",
           experiences: [
-            "Assisted in daily operations and task management for the team",
-            "Created basic web pages using HTML",
-            "Supported team coordination during project development"
+            "Led a small programming team to develop web projects",
+            "Managed code versions and collaboration using Git and GitHub",
+            "Built responsive web pages using HTML, CSS, and JavaScript",
+            "Implemented logic and algorithms using Python"
           ],
-          skills: ["Html", "operating"],
+          skills: ["Python", "Html", "Css", "js" , "githup"],
         },
         {
-          id: 9,
-          name: "Hla Magdi",
-          age: "17 Years old",
-          education: "Sec 2",
-          role: "Programing Member",
-          img: "image/hla m.jpeg",
-          experiences: [ 
-            "Styled web pages using HTML and CSS",
-            "Used Git and GitHub to manage and share code with the team",
-            "Created visual content and helped with media tasks"
-          ],
-          skills: ["Html", "Css" , "githup"],
-        },
-        {
-          id: 10,
-          name: "Youssef Mostafa Galal",
-          age: "17 Years old",
-          education: "Sec 2",
-          role: "Operation Member",
-          img: "image/jo.jpeg",
+          id: 3,
+          name: "Eyad Abdelraouf",
+          nameAr: "إياد عبد الرؤوف",
+          age: "14 Years old",
+          education: "prep 2",
+          role: "Executive Leader",
+          roleAr: "القائد المنفذ",
+          img: "image/alpha.jpeg",
           experiences: [
-            "Built web applications using vibe-coding techniques and AI tools",
-            "Designed user interfaces using HTML and CSS",
-            "Explored new tools to speed up web development"
+            "Built interactive web pages using HTML, CSS, and JavaScript",
+            "Developed console-based applications and games in Python",
+            "Participated in team coding sessions and project development"
           ],
-          skills: ["Html", "Css" , "vibe-coding","Communication skills"],
+          skills: ["Python", "Html", "Css" , "js"],
         },
         {
-          id: 11,
+          id: 4,
+          name: "Baraa Saad Elsayed",
+          nameAr: "براء سعد السيد",
+          age: "17 Years old",
+          education: "Sec 2",
+          role: "Programming Leader",
+          roleAr: "قائد البرمجة",
+          img: "image/nimo.jpeg",
+          experiences: [
+            "Built and deployed web applications using modern hosting platforms",
+            "Developed front-end interfaces with HTML, CSS, and JavaScript",
+            "Created backend logic and scripts using Python",
+            "Assisted in managing and operating team projects"
+          ],
+          skills: ["Hosting", "Html", "Css", "JavaScript" , "Operating" , "Python"],
+        },
+        {
+          id: 5,
+          name: "Hla Sarhan",
+          nameAr: "حلا سرحان",
+          age: "14 Years old",
+          education: "prep 1",
+          role: "Media Team Leader & Supervisor",
+          roleAr: "قائدة الفريق الإعلامي ومشرف",
+          img: "image/hla.jpeg",
+          experiences: [
+            "Designed promotional graphics and social media content using Photoshop",
+            "Created simple web pages using HTML",
+            "Wrote basic Python scripts for task automation",
+            "Led the media team in creating visual content for the group"
+          ],
+          skills: ["Python", "Html", "Photoshop" , "Designer"],
+        },
+        {
+          id: 6,
           name: "Ahmed Hesham",
+          nameAr: "أحمد هشام",
           age: "17 Years old",
           education: "Sec 2",
-          role: "Programing Team Leader",
+          role: "Programming Member",
+          roleAr: "عضو برمجة",
           img: "image/Ahmed Hesham.jpeg",
           experiences: [ 
             "Led a programming team to build full-stack web applications",
@@ -478,38 +442,45 @@
           skills: ["Python", "Html", "Css" , "js" , "node.js"],
         },
         {
-          id: 12,
-          name: "Eyad Ahmed",
-          age: "17 Years old",
-          education: "Sec 2",
-          role: "Media Member",
-          img: "image/eyad ahmed.jpeg",
-          experiences: [
-            "Created and edited video content (montage) for team presentations",
-            "Designed simple websites using HTML and CSS",
-            "Supported the media team with visual and multimedia content"
-          ],
-          skills: ["Html", "Css" , "Video Editing (Montage)"],
-        },
-        {
-          id: 13,
-          name: "Retaj Hamdy",
-          age: "16 Years old",
+          id: 7,
+          name: "Soha Sameh",
+          nameAr: "سهى سامح",
+          age: "15 Years old",
           education: "Sec 1",
-          role: "Programing Member",
-          img: "image/retaj.jpeg",
+          role: "Programming Member",
+          roleAr: "عضو برمجة",
+          img: "image/soha sameh.jpg",
           experiences: [
-            "Rapidly prototyped web projects using vibe-coding and AI tools",
-            "Styled and structured web pages using HTML and CSS",
-            "Explored innovative ways to speed up front-end development"],
-          skills: [ "Html", "Css" , "vibe-coding"],
+            "Contributed to team projects using Git and GitHub",
+            "Developed web pages with HTML, CSS, and JavaScript",
+            "Built Python programs to solve basic programming challenges"
+          ],
+          skills: ["Python", "Html", "Css" , "js" , "githup"],
         },
         {
-          id: 14,
-          name: "Maryam Elgohary",
+          id: 8,
+          name: "Hla Magdi",
+          nameAr: "حلا مجدي",
           age: "17 Years old",
           education: "Sec 2",
-          role: "Programing Member",
+          role: "Programming Member",
+          roleAr: "عضو برمجة",
+          img: "image/hla m.jpeg",
+          experiences: [ 
+            "Styled web pages using HTML and CSS",
+            "Used Git and GitHub to manage and share code with the team",
+            "Created visual content and helped with media tasks"
+          ],
+          skills: ["Html", "Css" , "githup"],
+        },
+        {
+          id: 9,
+          name: "Maryam Elgohary",
+          nameAr: "مريم الجوهري",
+          age: "17 Years old",
+          education: "Sec 2",
+          role: "Programming Member",
+          roleAr: "عضو برمجة",
           img: "image/maryam.jpeg",
           experiences: [
             "Managed code versions and collaborated via Git and GitHub",
@@ -519,11 +490,60 @@
           skills: ["Python", "Html", "Css" , "githup"],
         },
         {
-          id: 15,
+          id: 10,
+          name: "Retaj Hamdy",
+          nameAr: "رجاء حمدي",
+          age: "16 Years old",
+          education: "Sec 1",
+          role: "Programming Member",
+          roleAr: "عضو برمجة",
+          img: "image/retaj.jpeg",
+          experiences: [
+            "Rapidly prototyped web projects using vibe-coding and AI tools",
+            "Styled and structured web pages using HTML and CSS",
+            "Explored innovative ways to speed up front-end development"],
+          skills: [ "Html", "Css" , "vibe-coding"],
+        },
+        {
+          id: 11,
+          name: "hana abdelazez",
+          nameAr: "هناء عبد العزيز",
+          age: "17 Years old",
+          education: "Sec 2",
+          role: "Operation Member",
+          roleAr: "عضو تشغيل",
+          img: "image/hana abdelazez.jpeg",
+          experiences: [
+            "Assisted in daily operations and task management for the team",
+            "Created basic web pages using HTML",
+            "Supported team coordination during project development"
+          ],
+          skills: ["Html", "operating"],
+        },
+        {
+          id: 12,
+          name: "Anas mohamed",
+          nameAr: "أنس محمد",
+          age: "14 Years old",
+          education: "prep 3",
+          role: "Programming Member",
+          roleAr: "عضو برمجة",
+          img: "image/file_2025-08-19_11.53.40.png",
+          experiences:  [
+            "Created static websites using HTML and CSS",
+            "Practiced JavaScript to add interactivity to web pages",
+            "Worked on Python programming exercises and small projects"
+          ],
+          skills: ["Python", "Html", "Css" , "js"],
+        },
+        {
+          id: 13,
           name: "Malak Mamdouh",
+          nameAr: "ملك ممدوح",
           age: "14 Years old",
           education: "Sec 1",
-          role: "The Best Team Member",
+          role: "Team Member",
+          roleAr: "عضو متميز",
           img: "image/loka.png",
           experiences: ["No major past experiences"],
           skills: ["Python", "Html", "Css"],
@@ -549,7 +569,7 @@
         "142, 182, 252",
       ];
 
-      // Create member cards in a simple grid (بدون دوران)
+      // Create member cards in a simple grid
       const membersGrid = document.getElementById("membersGrid");
 
       members.forEach((member, index) => {
@@ -561,16 +581,31 @@
           colorPalette[index % colorPalette.length]
         );
 
-        // استخدام الصورة مباشرة مع تصحيح المسار
         const imgSrc = member.img || "image/profile.jpg";
+        
+        // تحديد الشارة المناسبة
+        let badgeHtml = '';
+        if (member.role === "General Leader") {
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+        } else if (member.role === "Co-Leader") {
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+        } else if (member.role === "Executive Leader") {
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+        } else if (member.role === "Programming Leader") {
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+        } else if (member.role === "Media Team Leader & Supervisor") {
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div><div class="supervisor-badge" style="margin-top:5px;">مشرف عام على الإعلام</div>`;
+        } else {
+          badgeHtml = '';
+        }
         
         card.innerHTML = `
           <div class="member-img" style="background-image: url('${imgSrc}'); background-size: cover; background-position: center;"></div>
           <div class="member-info">
             <h3 class="member-name">${member.name}</h3>
+            <div class="member-name-arabic">${member.nameAr}</div>
             <span class="member-role">${member.role}</span>
-            ${member.id === 0 ? `<div class="leader-badge">قائد الفريق</div>` : ""}
-            ${member.id === 1 ? `<div class="leader-badge">مساعد القائد</div>` : ""}
+            ${badgeHtml}
           </div>
         `;
 
