@@ -146,6 +146,76 @@
         }
       }
 
+      /* join card special styles */
+      .join-card {
+        background: linear-gradient(135deg, rgba(100, 200, 255, 0.2) 0%, rgba(80, 160, 255, 0.1) 100%);
+        border: 2px dashed rgba(100, 180, 255, 0.7);
+        cursor: pointer;
+      }
+      .join-card:hover {
+        border: 2px solid rgba(100, 180, 255, 1);
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(100, 180, 255, 0.3);
+      }
+      .join-icon {
+        font-size: 3.5rem;
+        color: #5fa7ff;
+        margin-bottom: 1rem;
+      }
+      .join-title {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--text-color);
+        margin-bottom: 0.7rem;
+      }
+      .join-sub {
+        font-size: 0.9rem;
+        color: rgba(var(--text-color-rgb), 0.8);
+        margin-bottom: 0.8rem;
+        line-height: 1.5;
+      }
+      .roles-needed {
+        background: rgba(100, 180, 255, 0.2);
+        border-radius: 40px;
+        padding: 0.5rem 0.8rem;
+        margin: 0.8rem auto;
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        max-width: 90%;
+      }
+      .role-tag {
+        background: #3a86ff;
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 0.2rem 0.7rem;
+        border-radius: 30px;
+        font-family: 'Tajawal', sans-serif;
+      }
+      .join-cta {
+        background: linear-gradient(45deg, #3a86ff, #8338ec);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        margin-top: 0.8rem;
+        display: inline-block;
+        transition: 0.2s;
+        font-family: 'Tajawal', sans-serif;
+        cursor: pointer;
+      }
+      .join-cta:hover {
+        transform: scale(1.02);
+        background: linear-gradient(45deg, #2666df, #6b2bc9);
+      }
+      .member-card.join-card {
+        text-align: center;
+      }
+
       /* Responsive Design */
       @media (max-width: 768px) {
         .members-container {
@@ -611,6 +681,80 @@
 
         membersGrid.appendChild(card);
       });
+
+      // ----- إضافة الكارت الفارغ للإنضمام -----
+      const joinCard = document.createElement("div");
+      joinCard.className = "member-card join-card";
+      // نعطي لون مميز لكارد الانضمام
+      joinCard.style.setProperty("--color-card", "100, 180, 255");
+      
+      // المجالات المطلوبة حسب الطلب
+      const requiredRoles = [
+        "⚙️ 2 هارد وير",
+        "🎬 4 ميديا ",
+        "📋 4 اوبريشن",
+        "📱 1 مبرمج تطبيقات",
+        "💻 1 مطور مواقع"
+      ];
+      
+      const roleTagsHtml = requiredRoles.map(role => `<span class="role-tag">${role}</span>`).join('');
+      
+      joinCard.innerHTML = `
+        <div class="member-info" style="padding: 1.5rem 1rem;">
+          <div class="join-icon">
+            <i class="fas fa-hand-peace"></i>
+          </div>
+          <div class="join-title">مكانك معانا!</div>
+          <div class="join-sub">نحن نبحث عن أعضاء جدد لاستكمال المسيرة</div>
+          <div class="roles-needed">
+            ${roleTagsHtml}
+          </div>
+          <div class="join-sub" style="font-size:0.85rem;">🔹 انضم إلى فريق الأنامل الرقمية وكن جزءاً من النجاح 🔹</div>
+          <div class="join-cta" id="openJoinModalBtn">
+            <i class="fas fa-arrow-left"></i> قدّم طلب انضمام الآن
+          </div>
+          <div style="margin-top: 0.8rem; font-size: 0.7rem; color: rgba(var(--text-color-rgb),0.6);">
+            ننتظرك لتكون العضو رقم 11 أو 12 أو أكثر 💫
+          </div>
+        </div>
+      `;
+      
+      // منع السلوك الافتراضي للرابط لأن هذا ليس رابط تفاصيل
+      joinCard.addEventListener("click", (e) => {
+        // نتأكد إنه مش الضغط على الزر نفسه عشان ما يتضاعف
+        if(e.target.closest('#openJoinModalBtn')) return;
+        e.preventDefault();
+        // فتح رابط او رسالة عند الضغط على الكارد (اختياري)
+        alert("📢 شكراً لاهتمامك! اضغط على زر 'قدّم طلب انضمام الآن' للتقديم على المجالات المطلوبة. فريق الأنامل الرقمية يرحب بمواهبك!");
+      });
+      
+      // إضافة الحدث لزر الانضمام
+      const joinButtonHandler = () => {
+        let joinMsg = "✨ مرحباً بك في فريق الأنامل الرقمية ✨\n\n"
+        joinMsg += "نحن بحاجة للأعضاء في المجالات التالية:\n";
+        joinMsg += "• 2 هارد وير\n";
+        joinMsg += "• 4 ميديا (بنات و ولاد بالنص)\n";
+        joinMsg += "• 4 اوبريشن\n";
+        joinMsg += "• 1 مبرمج تطبيقات\n";
+        joinMsg += "• 1 مطور مواقع\n\n";
+        joinMsg += "للانضمام: يُرجى التواصل مع إدارة الفريق عبر البريد الإلكتروني: info@dfteam-eg.com أو عبر صفحات التواصل الاجتماعي. \n\nنتمنى انضمامك قريباً! 🚀";
+        alert(joinMsg);
+      };
+      
+      membersGrid.appendChild(joinCard);
+      
+      // بعد إضافة العنصر نربط الزر
+      setTimeout(() => {
+        const openBtn = document.getElementById("openJoinModalBtn");
+        if (openBtn) {
+          openBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            joinButtonHandler();
+          });
+        }
+      }, 0);
+      
+      // End of join card logic
 
       // JavaScript لإدارة القائمة الجانبية وتبديل الثيمات
       document.addEventListener("DOMContentLoaded", function () {
