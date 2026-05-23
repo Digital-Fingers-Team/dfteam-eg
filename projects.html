@@ -2,246 +2,251 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>مشاريع الفريق | فريق الأنامل الرقمية</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="image/logo1.jpeg">
   <link rel="stylesheet" href="static/css/style.css">
   <style>
-    /* تحسينات متقدمة خاصة بصفحة المشاريع - تصميم عصري مع الحفاظ على الألوان الأساسية */
+    /* === تحسين شامل لجميع الأجهزة (responsive) مع الحفاظ على الألوان والمحتوى === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     .projects-section {
-      padding: 2rem 0 3rem;
-      position: relative;
+      padding: 2rem 1rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
     }
     
-    /* هيدر القسم بتصميم محسن */
     .projects-header {
       text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
+      margin-bottom: 2.5rem;
+      padding: 0 0.5rem;
     }
     
     .projects-header .section-title {
-      font-size: 2.5rem;
+      font-size: clamp(1.8rem, 6vw, 2.8rem);
       font-weight: 800;
       background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
       display: inline-block;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
     
     .projects-header .section-description {
-      max-width: 700px;
+      max-width: 750px;
       margin: 0 auto;
-      font-size: 1.1rem;
+      font-size: clamp(0.9rem, 4vw, 1.1rem);
       color: var(--text-secondary);
       line-height: 1.6;
+      padding: 0 1rem;
     }
     
-    /* تصميم جديد للفلتر - أنيق وسهل الاستخدام */
+    /* فلتر متجاوب بالكامل */
     .projects-filter {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 0.6rem;
       margin-bottom: 2.5rem;
-      position: relative;
+      padding: 0.25rem 0.5rem;
     }
     
     .filter-btn {
       background-color: var(--card-bg);
-      border: none;
-      padding: 0.6rem 1.4rem;
-      border-radius: 40px;
+      border: 1px solid var(--border-color);
+      padding: 0.55rem 1.3rem;
+      border-radius: 60px;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transition: all 0.25s ease;
       font-family: 'Tajawal', sans-serif;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 3.5vw, 0.95rem);
       color: var(--text-color);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      backdrop-filter: blur(4px);
-      border: 1px solid var(--border-color);
+      white-space: nowrap;
     }
     
-    .filter-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+    /* للشاشات الصغيرة: الفلتر قابل للتمرير الأفقي ولكن مع تجربة لمس سلسة */
+    @media (max-width: 680px) {
+      .projects-filter {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 0.75rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        gap: 0.5rem;
+      }
+      .filter-btn {
+        flex-shrink: 0;
+        padding: 0.5rem 1.1rem;
+      }
+      .projects-filter::-webkit-scrollbar {
+        height: 4px;
+      }
     }
     
     .filter-btn.active {
       background-color: var(--primary-color);
       color: white;
       border-color: var(--primary-color);
-      box-shadow: 0 4px 12px rgba(var(--primary-rgb, 0, 102, 204), 0.3);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     
-    /* شبكة المشاريع بتصميم جذاب */
+    /* شبكة المشاريع - مرنة على كل الأجهزة */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.8rem;
       margin-top: 1rem;
     }
     
-    /* بطاقات المشاريع بتأثيرات جديدة */
+    /* تحسين للشاشات الكبيرة */
+    @media (min-width: 1200px) {
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .projects-grid {
+        gap: 1.5rem;
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* بطاقات متجاوبة بالكامل */
     .project-card {
       background-color: var(--card-bg);
       border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
-      transition: all 0.35s ease;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
       border: 1px solid var(--border-color);
-      height: 100%;
       display: flex;
       flex-direction: column;
-      position: relative;
+      height: 100%;
       backdrop-filter: blur(2px);
     }
     
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .project-card:hover::before {
-      opacity: 1;
-    }
-    
     .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.2);
     }
     
-    /* حاوية الصورة بتصميم محسن */
     .project-img-container {
-      height: 210px;
+      height: 200px;
       overflow: hidden;
       position: relative;
-      background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+      background: #f5f5f5;
+    }
+    
+    @media (max-width: 480px) {
+      .project-img-container {
+        height: 170px;
+      }
     }
     
     .project-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.4s ease;
     }
     
     .project-card:hover .project-img {
-      transform: scale(1.08);
+      transform: scale(1.05);
     }
     
-    /* شارة الحالة بتصميم عصري */
     .project-status {
       position: absolute;
-      top: 15px;
-      left: 15px;
-      padding: 0.35rem 1rem;
-      border-radius: 40px;
-      font-size: 0.75rem;
+      top: 12px;
+      left: 12px;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
       font-weight: 700;
-      backdrop-filter: blur(8px);
-      background-color: rgba(0,0,0,0.65);
+      backdrop-filter: blur(6px);
+      background-color: rgba(0,0,0,0.7);
       color: white;
-      letter-spacing: 0.3px;
       z-index: 2;
     }
     
     .project-status.completed {
       background-color: rgba(76, 175, 80, 0.9);
-      backdrop-filter: blur(4px);
     }
     
     .project-status.in-progress {
       background-color: rgba(255, 152, 0, 0.9);
-      backdrop-filter: blur(4px);
     }
     
-    /* محتوى البطاقة */
     .project-info {
-      padding: 1.5rem;
-      flex-grow: 1;
+      padding: 1.3rem;
+      flex: 1;
       display: flex;
       flex-direction: column;
     }
     
     .project-info h3 {
+      font-size: clamp(1.2rem, 5vw, 1.5rem);
       margin-bottom: 0.5rem;
       color: var(--primary-color);
-      font-size: 1.45rem;
       font-weight: 800;
       line-height: 1.3;
     }
     
-    /* التصنيف بتصميم جميل */
     .project-category {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background-color: var(--accent-light, rgba(var(--accent-rgb, 0, 150, 136), 0.12));
+      background-color: rgba(var(--accent-rgb, 100, 150, 200), 0.12);
       color: var(--accent-color);
-      padding: 0.25rem 0.9rem;
-      border-radius: 30px;
-      font-size: 0.8rem;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
       font-weight: 600;
       margin-bottom: 1rem;
       width: fit-content;
-      backdrop-filter: blur(2px);
-    }
-    
-    .project-category i {
-      font-size: 0.8rem;
     }
     
     .project-info p {
       color: var(--text-color);
       line-height: 1.65;
-      margin-bottom: 1.25rem;
-      flex-grow: 1;
-      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
+      flex: 1;
     }
     
-    /* أعضاء المشروع */
     .project-members {
       margin-top: auto;
-      padding-top: 1rem;
+      padding-top: 0.9rem;
       border-top: 1px dashed var(--border-color);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-secondary);
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.4rem;
+      align-items: center;
     }
     
     .project-members i {
-      margin-left: 0.4rem;
+      margin-left: 0.3rem;
       color: var(--primary-color);
-      font-size: 0.85rem;
     }
     
-    .member-name {
-      background-color: var(--card-bg);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-    
-    /* أزرار المشروع */
     .project-links {
       display: flex;
-      gap: 0.75rem;
-      margin-top: 1.25rem;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
     }
     
     .btn-project {
@@ -251,24 +256,18 @@
       gap: 8px;
       background-color: var(--primary-color);
       color: white;
-      padding: 0.6rem 0.9rem;
+      padding: 0.55rem 0.8rem;
       border-radius: 50px;
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      transition: all 0.25s ease;
-      text-align: center;
+      transition: all 0.2s;
       flex: 1;
+      text-align: center;
     }
     
     .btn-project i {
-      font-size: 0.9rem;
-    }
-    
-    .btn-project:hover {
-      background-color: var(--primary-dark);
-      transform: translateY(-2px);
-      filter: brightness(1.05);
+      font-size: 0.85rem;
     }
     
     .btn-project.secondary {
@@ -277,80 +276,66 @@
       color: var(--primary-color);
     }
     
-    .btn-project.secondary:hover {
-      background-color: var(--primary-color);
-      color: white;
+    .btn-project:hover {
       transform: translateY(-2px);
+      filter: brightness(1.03);
     }
     
-    /* رسالة عدم وجود مشاريع */
     .projects-empty {
       text-align: center;
-      padding: 3rem 2rem;
+      padding: 3rem 1rem;
       background-color: var(--card-bg);
       border-radius: 32px;
       margin: 2rem 0;
       border: 1px solid var(--border-color);
     }
     
-    .projects-empty i {
-      font-size: 3.2rem;
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-      opacity: 0.6;
+    /* تنسيق التذييل والهيدر ليكونوا متناغمين مع الشاشات */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
     }
     
-    .projects-empty h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 0.8rem;
+      }
+      .project-info {
+        padding: 1rem;
+      }
     }
     
-    /* تحسينات الشاشات الصغيرة واللمس */
+    /* تحسينات اللمس للأزرار على الجوال */
     @media (max-width: 768px) {
-      .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+      .btn-project, .filter-btn {
+        cursor: pointer;
+        touch-action: manipulation;
       }
-      
-      .projects-filter {
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding-bottom: 0.75rem;
-        flex-wrap: nowrap;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-      }
-      
       .filter-btn {
-        flex-shrink: 0;
-        padding: 0.5rem 1.2rem;
-      }
-      
-      .project-img-container {
-        height: 180px;
-      }
-      
-      .project-info h3 {
-        font-size: 1.25rem;
-      }
-      
-      .projects-header .section-title {
-        font-size: 1.9rem;
+        padding: 0.45rem 1rem;
       }
     }
     
-    /* تحسين للوحة التحكم (الماركرات) */
-    @media (min-width: 1400px) {
+    /* تحسين للشبكة في حالة عرض منخفض جداً */
+    @media (max-width: 380px) {
       .projects-grid {
-        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+      .project-links {
+        flex-direction: column;
+      }
+      .btn-project {
+        width: 100%;
       }
     }
     
-    /* تأثيرات دخول للبطاقات */
-    @keyframes fadeSlideUp {
+    /* أنيميشن خفيفة */
+    @keyframes fadeUp {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -359,22 +344,7 @@
     }
     
     .project-card {
-      animation: fadeSlideUp 0.5s ease forwards;
-    }
-    
-    /* شريط التمرير للفلتر بشكل جميل */
-    .projects-filter::-webkit-scrollbar {
-      height: 4px;
-    }
-    
-    .projects-filter::-webkit-scrollbar-track {
-      background: var(--border-color);
-      border-radius: 10px;
-    }
-    
-    .projects-filter::-webkit-scrollbar-thumb {
-      background: var(--primary-color);
-      border-radius: 10px;
+      animation: fadeUp 0.4s ease forwards;
     }
   </style>
 </head>
@@ -446,7 +416,7 @@
       </div>
       
       <div class="projects-grid" id="projectsContainer">
-        <!-- مشروع موقع الفريق (يتم عرضه أولاً) -->
+        <!-- مشروع موقع الفريق -->
         <div class="project-card" data-category="web">
           <div class="project-img-container">
             <img src="image/logo1.jpeg" alt="موقع فريق الأنامل الرقمية" class="project-img">
@@ -455,7 +425,7 @@
           <div class="project-info">
             <h3>موقع فريق الأنامل الرقمية</h3>
             <span class="project-category"><i class="fas fa-code"></i> برمجة الويب</span>
-            <p>الموقع الذي تتصفحه حالياً، تم تصميمه وتطويره بالكامل من قبل أعضاء الفريق باستخدام HTML, CSS, وJavaScript. يحتوي الموقع على جميع معلومات الفريق وأنشطته وإنجازاته، مع واجهة مستخدم تفاعلية وتصميم عصري متجاوب مع جميع الأجهزة.</p>
+            <p>الموقع الذي تتصفحه حالياً، تم تصميمه وتطويره بالكامل من قبل أعضاء الفريق باستخدام HTML, CSS, وJavaScript. يحتوي الموقع على جميع معلومات الفريق وأنشطته وإنجازاته.</p>
             <div class="project-members">
               <i class="fas fa-users"></i> فريق التطوير
             </div>
@@ -466,179 +436,142 @@
           </div>
         </div>
         
-        <!-- مشروع منصة DTES العالمية المعتمدة -->
+        <!-- منصة DTES -->
         <div class="project-card" data-category="web">
           <div class="project-img-container">
-            <img src="image/dt logo.png" alt="منصة DTES العالمية المعتمدة" class="project-img">
+            <img src="image/dt logo.png" alt="منصة DTES" class="project-img">
             <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>منصة DTES العالمية المعتمدة</h3>
             <span class="project-category"><i class="fas fa-code"></i> برمجة الويب</span>
-            <p>منصة معتمدة من مديرية التربية والتعليم بالقليوبية، تهدف إلى تطوير العملية التعليمية عبر تقديم أدوات وموارد تعليمية متقدمة للمعلمين والطلاب، وتشمل نظام إدارة التعلم المتكامل وتقييمات تفاعلية.</p>
-            <div class="project-members">
-              <i class="fas fa-user"></i> أحمد عبد الرؤوف سمير &nbsp;|&nbsp; <i class="fas fa-user"></i> البراء سعد السيد
-            </div>
-            <div class="project-links">
-              <a href="#" class="btn-project"><i class="fas fa-link"></i> عرض المشروع</a>
-            </div>
+            <p>منصة معتمدة من مديرية التربية والتعليم بالقليوبية، تهدف إلى تطوير العملية التعليمية عبر تقديم أدوات وموارد تعليمية متقدمة للمعلمين والطلاب.</p>
+            <div class="project-members"><i class="fas fa-user"></i> أحمد عبد الرؤوف سمير &nbsp;|&nbsp; <i class="fas fa-user"></i> البراء سعد السيد</div>
+            <div class="project-links"><a href="#" class="btn-project"><i class="fas fa-link"></i> عرض المشروع</a></div>
           </div>
         </div>
         
-        <!-- مشروع منصة KID-EDU -->
+        <!-- KID-EDU -->
         <div class="project-card" data-category="web">
           <div class="project-img-container">
-            <img src="image/kidedu.png" alt="منصة KID-EDU" class="project-img">
+            <img src="image/kidedu.png" alt="KID-EDU" class="project-img">
             <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>منصة KID-EDU</h3>
-            <span class="project-category"><i class="fas fa-code"></i> برمجة الويب</span>
-            <p>منصة تعليمية تفاعلية تساعد أطفال مرحلة رياض الأطفال على استيعاب المناهج التعليمية بطريقة ممتعة وتفاعلية، مما يمكنهم من اجتياز مرحلة KG بنجاح من خلال ألعاب تعليمية ووسائط متعددة جذابة.</p>
-            <div class="project-members">
-              <i class="fas fa-user"></i> سلمى علاء محمد &nbsp;|&nbsp; <i class="fas fa-user"></i> حلا محمد سرحان
-            </div>
-            <div class="project-links">
-              <a href="#" class="btn-project"><i class="fas fa-child"></i> عرض المشروع</a>
-            </div>
+            <span class="project-category"><i class="fas fa-child"></i> برمجة الويب</span>
+            <p>منصة تعليمية تفاعلية تساعد أطفال رياض الأطفال على استيعاب المناهج بطريقة ممتعة وتفاعلية.</p>
+            <div class="project-members"><i class="fas fa-user"></i> سلمى علاء محمد &nbsp;|&nbsp; <i class="fas fa-user"></i> حلا محمد سرحان</div>
+            <div class="project-links"><a href="#" class="btn-project"><i class="fas fa-graduation-cap"></i> عرض المشروع</a></div>
           </div>
         </div>
         
-        <!-- مشروع منصة IDOS -->
+        <!-- IDOS -->
         <div class="project-card" data-category="web ai">
           <div class="project-img-container">
-            <img src="image/idos.png" alt="منصة IDOS" class="project-img">
+            <img src="image/idos.png" alt="IDOS" class="project-img">
             <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>منصة IDOS</h3>
-            <span class="project-category"><i class="fas fa-microscope"></i> الذكاء الاصطناعي | برمجة الويب</span>
-            <p>منصة طبية تعتمد على الذكاء الاصطناعي لمساعدة المرضى في الحصول على تشخيص أولي. بعد إدخال الأعراض، يقدم النظام تشخيصاً مقارباً للتشخيص الطبي الدقيق، مع توصيات بالزيارة الطبية عند الحاجة.</p>
-            <div class="project-members">
-              <i class="fas fa-user"></i> سهى سامح بدر &nbsp;|&nbsp; <i class="fas fa-user"></i> سلمى سامح بدر
-            </div>
-            <div class="project-links">
-              <a href="#" class="btn-project"><i class="fas fa-stethoscope"></i> عرض المشروع</a>
-            </div>
+            <span class="project-category"><i class="fas fa-robot"></i> الذكاء الاصطناعي | ويب</span>
+            <p>منصة طبية تعتمد على الذكاء الاصطناعي لمساعدة المرضى في الحصول على تشخيص أولي بناءً على الأعراض المدخلة.</p>
+            <div class="project-members"><i class="fas fa-user"></i> سهى سامح بدر &nbsp;|&nbsp; <i class="fas fa-user"></i> سلمى سامح بدر</div>
+            <div class="project-links"><a href="#" class="btn-project"><i class="fas fa-stethoscope"></i> عرض المشروع</a></div>
           </div>
         </div>
         
-        <!-- مشروع منصة AI-SLI -->
+        <!-- AI-SLI -->
         <div class="project-card" data-category="web ai">
           <div class="project-img-container">
-            <img src="image/sly.png" alt="منصة AI-SLI" class="project-img">
+            <img src="image/sly.png" alt="AI-SLI" class="project-img">
             <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>منصة AI-SLI</h3>
-            <span class="project-category"><i class="fas fa-hands"></i> الذكاء الاصطناعي | برمجة الويب</span>
-            <p>منصة مبتكرة تهدف لتحسين التواصل بين الأشخاص وذوي الهمم باستخدام تقنيات الذكاء الاصطناعي، مما يسهل التفاهم المتبادل بين كلا الطرفين من خلال ترجمة لغة الإشارة وتحويل النص إلى كلام.</p>
-            <div class="project-members">
-              <i class="fas fa-user"></i> أنس محمد مختار &nbsp;|&nbsp; <i class="fas fa-user"></i> إياد عبد الرؤوف سمير
-            </div>
-            <div class="project-links">
-              <a href="#" class="btn-project"><i class="fas fa-universal-access"></i> عرض المشروع</a>
-            </div>
+            <span class="project-category"><i class="fas fa-hands"></i> الذكاء الاصطناعي | ويب</span>
+            <p>منصة مبتكرة لتحسين التواصل بين الأشخاص وذوي الهمم باستخدام تقنيات الذكاء الاصطناعي وترجمة لغة الإشارة.</p>
+            <div class="project-members"><i class="fas fa-user"></i> أنس محمد مختار &nbsp;|&nbsp; <i class="fas fa-user"></i> إياد عبد الرؤوف سمير</div>
+            <div class="project-links"><a href="#" class="btn-project"><i class="fas fa-universal-access"></i> عرض المشروع</a></div>
           </div>
         </div>
         
-        <!-- مشروع QYS (منصة القليوبية للشباب والرياضة) -->
+        <!-- QYS -->
         <div class="project-card" data-category="web youth">
           <div class="project-img-container">
-            <img src="image/qys.png" alt="منصة qys" class="project-img">
+            <img src="image/qys.png" alt="منصة QYS" class="project-img">
             <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>QYS | منصة القليوبية للشباب والرياضة</h3>
-            <span class="project-category"><i class="fas fa-futbol"></i> الشباب والرياضة | ويب</span>
-            <p>منصة متطورة لمديرية الشباب والرياضة بالقليوبية، تهدف إلى تنظيم وإدارة الأنشطة الشبابية والرياضية إلكترونياً. تشمل المنصة نظاماً لحجز الملاعب، وإدارة البطولات، وتنظيم الفعاليات الرياضية، بالإضافة إلى متابعة إنجازات الشباب وتقديم خدمات تدريبية متخصصة. تم تطويرها بالكامل بواسطة فريق الأنامل الرقمية لتقديم تجربة متكاملة للشباب والرياضيين بالمحافظة.</p>
-            <div class="project-members">
-              <i class="fas fa-user"></i> حلا مجدي &nbsp;|&nbsp; <i class="fas fa-user"></i> مريم الجوهري
-            </div>
-            <div class="project-links">
-              <a href="#" class="btn-project"><i class="fas fa-trophy"></i> عرض المشروع</a>
-              <a href="#" class="btn-project secondary"><i class="fas fa-play-circle"></i> تجربة المنصة</a>
-            </div>
+            <span class="project-category"><i class="fas fa-futbol"></i> الشباب والرياضة</span>
+            <p>منصة متطورة لمديرية الشباب والرياضة بالقليوبية، تنظيم الأنشطة، حجز الملاعب، وإدارة البطولات الإلكترونية. تطوير كامل من فريق الأنامل الرقمية.</p>
+            <div class="project-members"><i class="fas fa-user"></i> حلا مجدي &nbsp;|&nbsp; <i class="fas fa-user"></i> مريم الجوهري</div>
+            <div class="project-links"><a href="#" class="btn-project"><i class="fas fa-trophy"></i> عرض المشروع</a><a href="#" class="btn-project secondary"><i class="fas fa-play-circle"></i> تجربة المنصة</a></div>
           </div>
         </div>
         
-        <!-- مشروع TaskFlow (مكتمل) -->
+        <!-- TaskFlow -->
         <div class="project-card" data-category="mobile web">
           <div class="project-img-container">
-            <img src="image/tsakf.jpeg" alt="تطبيق TaskFlow" class="project-img">
+            <img src="image/tsakf.jpeg" alt="TaskFlow" class="project-img">
             <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>TaskFlow</h3>
             <span class="project-category"><i class="fas fa-mobile-alt"></i> تطبيقات الجوال | ويب</span>
-            <p>تطبيق متكامل لإدارة المهام اليومية والمشاريع، يساعد أعضاء الفريق على تنظيم أعمالهم ومتابعة تقدمها، مع ميزات المزامنة عبر الأجهزة وتنبيهات ذكية وتقارير أداء متقدمة لوحة تحكم تفاعلية.</p>
-            <div class="project-members">
-              <i class="fas fa-user"></i> سلمى علاء
-            </div>
-            <div class="project-links">
-              <a href="#" class="btn-project"><i class="fas fa-tasks"></i> عرض المشروع</a>
-            </div>
+            <p>تطبيق لإدارة المهام والمشاريع مع مزامنة وتنبيهات ذكية وتقارير أداء متقدمة.</p>
+            <div class="project-members"><i class="fas fa-user"></i> سلمى علاء</div>
+            <div class="project-links"><a href="#" class="btn-project"><i class="fas fa-tasks"></i> عرض المشروع</a></div>
           </div>
         </div>
         
-        <!-- مشروع URSA -->
+        <!-- URSA -->
         <div class="project-card" data-category="web ai">
           <div class="project-img-container">
-            <img src="image/ursa.png" alt="منصة URSA" class="project-img">
+            <img src="image/ursa.png" alt="URSA" class="project-img">
             <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>URSA</h3>
-            <span class="project-category"><i class="fas fa-chart-line"></i> الذكاء الاصطناعي | ويب</span>
-            <p>منصة رقمية ذكية تهدف إلى تسهيل البلاغات المجتمعية المقدمة عبر مواقع التواصل الاجتماعي، حيث يقوم المستخدم بتصوير البلاغ أو الشكوى، ويعمل نظام الذكاء الاصطناعي على تصنيف الشكاوى وتحديد أولوياتها بناءً على تكرارها، مما يتيح للجهات المختصة التعامل مع القضايا الأكثر أهمية أولًا، ويحافظ على صورة مصر أمام العالم ويعزز السياحة ويطمئن الزوار.</p>
-            <div class="project-members">
-              <i class="fas fa-user"></i> ريتاج محمد حمدي
-            </div>
-            <div class="project-links">
-              <a href="#" class="btn-project"><i class="fas fa-bullhorn"></i> عرض المشروع</a>
-            </div>
+            <span class="project-category"><i class="fas fa-chart-line"></i> الذكاء الاصطناعي</span>
+            <p>منصة رقمية ذكية لتصنيف البلاغات المجتمعية عبر الذكاء الاصطناعي، تحديد الأولويات للحفاظ على صورة مصر وتعزيز السياحة.</p>
+            <div class="project-members"><i class="fas fa-user"></i> ريتاج محمد حمدي</div>
+            <div class="project-links"><a href="#" class="btn-project"><i class="fas fa-bullhorn"></i> عرض المشروع</a></div>
           </div>
         </div>
         
-        <!-- مشروع Bekya -->
+        <!-- Bekya -->
         <div class="project-card" data-category="web sustainability">
           <div class="project-img-container">
-            <img src="image/bekya.png" alt="منصة Bekya" class="project-img">
+            <img src="image/bekya.png" alt="Bekya" class="project-img">
             <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>Bekya</h3>
-            <span class="project-category"><i class="fas fa-recycle"></i> الاستدامة | ويب</span>
-            <p>منصة مبتكرة لتحويل المواد القابلة للتدوير إلى نقاط يمكن استخدامها لدى الشركاء المحليين. نساعد في إغلاق الحلقة البيئية من خلال ربط البائعين بمنافذ إعادة التدوير. انضم إلى شبكة متنامية من الأفراد والشركات المهتمة بالبيئة.</p>
-            <div class="project-members">
-              <i class="fas fa-user"></i> احمد هشام جمال
-            </div>
-            <div class="project-links">
-              <a href="#" class="btn-project"><i class="fas fa-leaf"></i> عرض المشروع</a>
-            </div>
+            <span class="project-category"><i class="fas fa-recycle"></i> الاستدامة</span>
+            <p>منصة لتحويل المواد القابلة للتدوير إلى نقاط واستخدامها لدى الشركاء، إغلاق الحلقة البيئية.</p>
+            <div class="project-members"><i class="fas fa-user"></i> احمد هشام جمال</div>
+            <div class="project-links"><a href="#" class="btn-project"><i class="fas fa-leaf"></i> عرض المشروع</a></div>
           </div>
         </div>
         
-        <!-- مشروع VQ لمكتب الشكاوي بالقليوبية -->
+        <!-- VQ القليوبية -->
         <div class="project-card" data-category="web ai">
           <div class="project-img-container">
-            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="منصة VQ" class="project-img">
+            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="VQ" class="project-img">
             <span class="project-status completed">مكتمل</span>
           </div>
           <div class="project-info">
             <h3>VQ - منصة شكاوى القليوبية</h3>
-            <span class="project-category"><i class="fas fa-file-alt"></i> الذكاء الاصطناعي | ويب</span>
-            <p>مشروع متخصص لمكتب الشكاوى بمحافظة القليوبية، يهدف إلى أرشفة وتحليل الشكاوى الواردة من المواطنين، وتصنيفها آلياً باستخدام تقنيات الذكاء الاصطناعي، وتوجيهها إلى الجهات المختصة، مع متابعة حالة كل شكوى حتى يتم حلها.</p>
-            <div class="project-members">
-              <i class="fas fa-user"></i> إياد عبد الرؤوف سمير
-            </div>
-            <div class="project-links">
-              <a href="#" class="btn-project"><i class="fas fa-inbox"></i> عرض المشروع</a>
-            </div>
+            <span class="project-category"><i class="fas fa-file-alt"></i> الذكاء الاصطناعي</span>
+            <p>أرشفة وتحليل الشكاوى، تصنيف آلي وتوجيهها للجهات المختصة ومتابعة الحل.</p>
+            <div class="project-members"><i class="fas fa-user"></i> إياد عبد الرؤوف سمير</div>
+            <div class="project-links"><a href="#" class="btn-project"><i class="fas fa-inbox"></i> عرض المشروع</a></div>
           </div>
         </div>
-
-        <!-- مشروع الوظائف الطلابية (قيد التطوير) -->
+        
+        <!-- الوظائف الطلابية (قيد التطوير) -->
         <div class="project-card" data-category="web">
           <div class="project-img-container">
             <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="الوظائف الطلابية" class="project-img">
@@ -647,32 +580,24 @@
           <div class="project-info">
             <h3>الوظائف الطلابية - تمكين الخريجين</h3>
             <span class="project-category"><i class="fas fa-briefcase"></i> برمجة الويب</span>
-            <p>منصة متخصصة لتمكين الخريجين والطلاب الجامعيين من إيجاد فرص عمل مناسبة، وتوفير تدريبات مهنية، وربطهم بسوق العمل المحلي والدولي. تشمل المنصة ملفات تعريفية للباحثين عن عمل، وإعلانات وظيفية، وورش تدريبية مجانية لتطوير المهارات.</p>
-            <div class="project-members">
-              <i class="fas fa-users"></i> فريق تمكين الخريجين
-            </div>
-            <div class="project-links">
-              <a href="#" class="btn-project secondary"><i class="fas fa-clock"></i> قريباً</a>
-            </div>
+            <p>منصة لتمكين الخريجين والطلاب من إيجاد فرص عمل وتدريبات مهنية وربطهم بسوق العمل.</p>
+            <div class="project-members"><i class="fas fa-users"></i> فريق تمكين الخريجين</div>
+            <div class="project-links"><a href="#" class="btn-project secondary"><i class="fas fa-clock"></i> قريباً</a></div>
           </div>
         </div>
-
-        <!-- مشروع تحسين السياحة في مصر (قيد التطوير) -->
+        
+        <!-- Egypt Tourism Enhancement -->
         <div class="project-card" data-category="web tourism ai">
           <div class="project-img-container">
-            <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="تحسين السياحة في مصر" class="project-img">
+            <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="السياحة" class="project-img">
             <span class="project-status in-progress">قيد التطوير</span>
           </div>
           <div class="project-info">
             <h3>Egypt Tourism Enhancement</h3>
             <span class="project-category"><i class="fas fa-map-marked-alt"></i> السياحة | ذكاء اصطناعي</span>
-            <p>منصة شاملة لتحسين السياحة في مصر، تهدف إلى مساعدة وزارة السياحة والجهات المعنية، وكذلك السياح والمواطنين. تقدم المنصة معلومات دقيقة عن المعالم السياحية، خدمات حجز متكاملة، نظام تقييم للفنادق والمطاعم، دليل سياحي ذكي يعتمد على الذكاء الاصطناعي.</p>
-            <div class="project-members">
-              <i class="fas fa-users"></i> حلا مجدي و مريم الجوهري
-            </div>
-            <div class="project-links">
-              <a href="#" class="btn-project secondary"><i class="fas fa-spinner"></i> قريباً</a>
-            </div>
+            <p>منصة شاملة لتحسين السياحة في مصر، دليل سياحي ذكي، نظام حجز وتقييمات.</p>
+            <div class="project-members"><i class="fas fa-users"></i> حلا مجدي و مريم الجوهري</div>
+            <div class="project-links"><a href="#" class="btn-project secondary"><i class="fas fa-spinner"></i> قريباً</a></div>
           </div>
         </div>
       </div>
@@ -697,12 +622,9 @@
         <div class="footer-col">
           <h4>روابط سريعة</h4>
           <ul>
-            <li><a href="index.html">الرئيسية</a></li>
-            <li><a href="about.html">عن الفريق</a></li>
-            <li><a href="members.html">الأعضاء</a></li>
-            <li><a href="trainings.html">التدريبات</a></li>
-            <li><a href="projects.html">المشاريع</a></li>
-            <li><a href="events.html">الفعاليات</a></li>
+            <li><a href="index.html">الرئيسية</a></li><li><a href="about.html">عن الفريق</a></li>
+            <li><a href="members.html">الأعضاء</a></li><li><a href="trainings.html">التدريبات</a></li>
+            <li><a href="projects.html">المشاريع</a></li><li><a href="events.html">الفعاليات</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -719,84 +641,27 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        جميع الحقوق محفوظة © 2025 فريق الأنامل الرقمية - DF Team
-      </div>
+      <div class="footer-bottom">جميع الحقوق محفوظة © 2025 فريق الأنامل الرقمية - DF Team</div>
     </div>
   </footer>
 
   <script>
-    // نفس الـ js السابق مع الحفاظ على الوظائف الأساسية، لم نغير أي محتوى أو بيانات.
     document.addEventListener('DOMContentLoaded', function() {
-      const sideNav = document.getElementById('sideNav');
-      const closeNav = document.getElementById('closeNav');
-      const menuBtn = document.getElementById('menuBtn');
-      const navOverlay = document.getElementById('navOverlay');
-      const themeToggle = document.getElementById('themeToggle');
-      const themeIcon = themeToggle.querySelector('i');
-      const themes = ['light', 'dark', 'purple'];
-      let currentThemeIndex = 0;
-      
-      function applyTheme(themeIndex) {
-        document.body.setAttribute('data-theme', themes[themeIndex]);
-        if (themes[themeIndex] === 'light') themeIcon.className = 'fas fa-moon';
-        else if (themes[themeIndex] === 'dark') themeIcon.className = 'fas fa-star';
-        else themeIcon.className = 'fas fa-sun';
-        localStorage.setItem('theme', themes[themeIndex]);
-      }
-      
-      themeToggle.addEventListener('click', function() {
-        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-        applyTheme(currentThemeIndex);
-      });
-      
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        currentThemeIndex = themes.indexOf(savedTheme);
-        if (currentThemeIndex === -1) currentThemeIndex = 0;
-        applyTheme(currentThemeIndex);
-      }
-      
-      function openSideNav() { sideNav.classList.add('open'); navOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
-      function closeSideNav() { sideNav.classList.remove('open'); navOverlay.classList.remove('open'); document.body.style.overflow = ''; }
-      if (closeNav) closeNav.addEventListener('click', closeSideNav);
-      if (menuBtn) menuBtn.addEventListener('click', (e) => { e.preventDefault(); openSideNav(); });
-      if (navOverlay) navOverlay.addEventListener('click', closeSideNav);
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSideNav(); });
-      
-      function updateWelcomeMessage() {
-        const welcomeMessage = document.querySelector('.welcome-message');
-        if (!welcomeMessage) return;
-        let userData = null;
-        try { userData = JSON.parse(localStorage.getItem('userData')) || JSON.parse(sessionStorage.getItem('userData')); } catch(e) {}
-        if (userData && userData.loggedIn) {
-          welcomeMessage.textContent = userData.role === 'قائد الفريق' ? `مرحباً بك قائد فريق الأنامل الرقمية (${userData.name})` : `مرحباً بك عضو فريق الأنامل الرقمية ${userData.name}`;
-        } else { welcomeMessage.textContent = 'مرحباً بكم في فريق الأنامل الرقمية'; }
-      }
-      updateWelcomeMessage();
-      
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      const cards = document.querySelectorAll('.project-card');
-      const noProjectsMsg = document.getElementById('noProjects');
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-          const filterVal = this.dataset.filter;
-          let visible = 0;
-          cards.forEach(card => {
-            if (filterVal === 'all') { card.style.display = 'flex'; visible++; }
-            else {
-              const cats = card.dataset.category.split(' ');
-              if (cats.includes(filterVal)) { card.style.display = 'flex'; visible++; }
-              else { card.style.display = 'none'; }
-            }
-          });
-          noProjectsMsg.style.display = visible === 0 ? 'block' : 'none';
-        });
-      });
-      // تأثير ظهور متحرك تم بالـ CSS بالفعل، فقط نضمن ظهور العناصر
-      cards.forEach((card, idx) => { card.style.animationDelay = `${idx * 0.05}s`; });
+      const sideNav = document.getElementById('sideNav'), closeNav = document.getElementById('closeNav'), menuBtn = document.getElementById('menuBtn'), navOverlay = document.getElementById('navOverlay');
+      const themeToggle = document.getElementById('themeToggle'), themeIcon = themeToggle.querySelector('i');
+      const themes = ['light', 'dark', 'purple']; let currentThemeIndex = 0;
+      function applyTheme(idx) { document.body.setAttribute('data-theme', themes[idx]); if(themes[idx]==='light') themeIcon.className='fas fa-moon'; else if(themes[idx]==='dark') themeIcon.className='fas fa-star'; else themeIcon.className='fas fa-sun'; localStorage.setItem('theme', themes[idx]); }
+      themeToggle.addEventListener('click', () => { currentThemeIndex = (currentThemeIndex+1)%themes.length; applyTheme(currentThemeIndex); });
+      const saved = localStorage.getItem('theme'); if(saved){ let idx = themes.indexOf(saved); if(idx!==-1) currentThemeIndex=idx; applyTheme(currentThemeIndex);}
+      function openNav(){ sideNav.classList.add('open'); navOverlay.classList.add('open'); document.body.style.overflow='hidden'; }
+      function closeNavFn(){ sideNav.classList.remove('open'); navOverlay.classList.remove('open'); document.body.style.overflow=''; }
+      if(closeNav) closeNav.addEventListener('click', closeNavFn); if(menuBtn) menuBtn.addEventListener('click', (e)=>{ e.preventDefault(); openNav(); }); if(navOverlay) navOverlay.addEventListener('click', closeNavFn);
+      document.addEventListener('keydown', (e)=> { if(e.key==='Escape') closeNavFn(); });
+      function updateWelcome(){ let msg=document.querySelector('.welcome-message'); if(!msg) return; let ud=null; try{ ud=JSON.parse(localStorage.getItem('userData'))||JSON.parse(sessionStorage.getItem('userData')); }catch(e){} if(ud&&ud.loggedIn){ msg.textContent=ud.role==='قائد الفريق'?`مرحباً بك قائد فريق الأنامل الرقمية (${ud.name})`:`مرحباً بك عضو فريق الأنامل الرقمية ${ud.name}`; }else{ msg.textContent='مرحباً بكم في فريق الأنامل الرقمية'; } }
+      updateWelcome();
+      const filterBtns = document.querySelectorAll('.filter-btn'), cards = document.querySelectorAll('.project-card'), noMsg = document.getElementById('noProjects');
+      filterBtns.forEach(btn=>{ btn.addEventListener('click', function(){ filterBtns.forEach(b=>b.classList.remove('active')); this.classList.add('active'); let val=this.dataset.filter; let visible=0; cards.forEach(c=>{ if(val==='all'){ c.style.display='flex'; visible++; } else{ let cats=c.dataset.category.split(' '); if(cats.includes(val)){ c.style.display='flex'; visible++; }else{ c.style.display='none'; } } }); noMsg.style.display = visible===0?'block':'none'; }); });
+      cards.forEach((c,i)=>{ c.style.animationDelay = `${i*0.05}s`; });
     });
   </script>
 </body>
