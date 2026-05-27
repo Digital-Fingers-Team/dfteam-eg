@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الندوات - مدير المركز | منصة الشباب والرياضة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="overlay" id="overlay"></div>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="logo.png" alt="المنصة">
+                </div>
+                <h3>مدير مركز الشباب</h3>
+                <p id="centerNameDisplay">جاري التحميل...</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="nav-item">
+                    <a href="manager-dashboard.html" class="nav-link">
+                        <i class="fas fa-chart-pie"></i>
+                        <span data-i18n="dashboard">الإحصائيات العامة</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manager-monthly-report.html" class="nav-link">
+                        <i class="fas fa-file-alt"></i>
+                        <span data-i18n="monthly_reports">التقارير الشهرية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manager-seminars.html" class="nav-link active">
+                        <i class="fas fa-microphone"></i>
+                        <span data-i18n="seminars">إدارة الندوات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manager-ideas.html" class="nav-link">
+                        <i class="fas fa-lightbulb"></i>
+                        <span data-i18n="center_ideas">أفكار المركز</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manager-challenges.html" class="nav-link">
+                        <i class="fas fa-trophy"></i>
+                        <span data-i18n="center_challenges">تحديات المركز</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span data-i18n="settings">الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="btn btn-outline" id="menuToggle" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" data-i18n="search" placeholder="بحث في النظام...">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile-header" onclick="window.logout()">
+                        <div class="user-avatar" id="userAvatar">M</div>
+                        <div class="user-info-text">
+                            <h4 id="userName">المدير</h4>
+                            <span style="color: var(--error);" data-i18n="logout">تسجيل الخروج</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header fade-in" style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h1>إدارة الندوات والمؤتمرات 🎙️</h1>
+                        <p style="color: var(--text-muted);">سجل الندوات التي تمت في المركز وتابع عدد المشاركين.</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="showAddSeminarModal()">
+                        <i class="fas fa-plus"></i> إضافة ندوة جديدة
+                    </button>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="table-responsive">
+                        <table id="seminarsTable">
+                            <thead>
+                                <tr>
+                                    <th>اسم الندوة</th>
+                                    <th>المحاضر</th>
+                                    <th>التاريخ</th>
+                                    <th>عدد المشاركين</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Adding Seminar -->
+    <div id="seminarModal" class="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+        <div class="card" style="width:500px; max-width:90%; padding:30px;">
+            <h2 id="modalTitle" style="margin-bottom:20px;">إضافة ندوة جديدة</h2>
+            <form id="seminarForm">
+                <input type="hidden" id="seminarId">
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label>عنوان الندوة</label>
+                    <input type="text" id="seminarTitle" class="form-control" required>
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label>المحاضر</label>
+                    <input type="text" id="seminarSpeaker" class="form-control" required>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:15px;">
+                    <div class="form-group">
+                        <label>التاريخ</label>
+                        <input type="date" id="seminarDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>عدد المشاركين</label>
+                        <input type="number" id="seminarParticipants" class="form-control" value="0">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label>الحالة</label>
+                    <select id="seminarStatus" class="form-control">
+                        <option value="نشط">نشط</option>
+                        <option value="مكتمل">مكتمل</option>
+                        <option value="ملغى">ملغى</option>
+                    </select>
+                </div>
+                <div style="display:flex; justify-content:flex-end; gap:10px;">
+                    <button type="button" class="btn btn-outline" onclick="closeModal()">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">حفظ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+    <script>
+        let currentCenterId = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const user = await window.getLoggedInUser();
+            if (user && user.role === 'manager') {
+                currentCenterId = user.centerId;
+                const center = await db.centers.get(user.centerId);
+                if (center) {
+                    document.getElementById('centerNameDisplay').textContent = center.name;
+                }
+                loadSeminars();
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+
+        async function loadSeminars() {
+            const seminars = await db.seminars.where('centerId').equals(currentCenterId).toArray();
+            const tableBody = document.querySelector('#seminarsTable tbody');
+            
+            if (seminars.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">لا توجد ندوات مسجلة</td></tr>';
+            } else {
+                tableBody.innerHTML = seminars.map(s => `
+                    <tr>
+                        <td>${s.title}</td>
+                        <td>${s.speaker}</td>
+                        <td>${new Date(s.date).toLocaleDateString('ar-EG')}</td>
+                        <td>${s.participants}</td>
+                        <td><span class="badge badge-${s.status === 'مكتمل' ? 'success' : 'primary'}">${s.status}</span></td>
+                        <td>
+                            <button class="btn btn-outline btn-sm" onclick="editSeminar(${s.id})"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-outline btn-sm" style="color:var(--error);" onclick="deleteSeminar(${s.id})"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function showAddSeminarModal() {
+            document.getElementById('modalTitle').textContent = 'إضافة ندوة جديدة';
+            document.getElementById('seminarId').value = '';
+            document.getElementById('seminarForm').reset();
+            document.getElementById('seminarModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('seminarModal').style.display = 'none';
+        }
+
+        document.getElementById('seminarForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('seminarId').value;
+            const data = {
+                centerId: currentCenterId,
+                title: document.getElementById('seminarTitle').value,
+                speaker: document.getElementById('seminarSpeaker').value,
+                date: document.getElementById('seminarDate').value,
+                participants: parseInt(document.getElementById('seminarParticipants').value),
+                status: document.getElementById('seminarStatus').value
+            };
+
+            if (id) {
+                await db.seminars.update(parseInt(id), data);
+                window.showToast('تم تحديث الندوة بنجاح', 'success');
+            } else {
+                await db.seminars.add(data);
+                window.showToast('تم إضافة الندوة بنجاح', 'success');
+            }
+            closeModal();
+            loadSeminars();
+        });
+
+        async function editSeminar(id) {
+            const seminar = await db.seminars.get(id);
+            if (seminar) {
+                document.getElementById('modalTitle').textContent = 'تعديل ندوة';
+                document.getElementById('seminarId').value = seminar.id;
+                document.getElementById('seminarTitle').value = seminar.title;
+                document.getElementById('seminarSpeaker').value = seminar.speaker;
+                document.getElementById('seminarDate').value = seminar.date;
+                document.getElementById('seminarParticipants').value = seminar.participants;
+                document.getElementById('seminarStatus').value = seminar.status;
+                document.getElementById('seminarModal').style.display = 'flex';
+            }
+        }
+
+        async function deleteSeminar(id) {
+            if (confirm('هل أنت متأكد من حذف هذه الندوة؟')) {
+                await db.seminars.delete(id);
+                window.showToast('تم حذف الندوة بنجاح', 'success');
+                loadSeminars();
+            }
+        }
+    </script>
+</body>
+</html>

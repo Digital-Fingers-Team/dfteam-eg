@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التقرير الشهري - مدير المركز | منصة الشباب والرياضة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="overlay" id="overlay"></div>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="logo.png" alt="المنصة">
+                </div>
+                <h3>مدير مركز الشباب</h3>
+                <p id="centerNameDisplay">جاري التحميل...</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="nav-item">
+                    <a href="manager-dashboard.html" class="nav-link">
+                        <i class="fas fa-chart-pie"></i>
+                        <span data-i18n="dashboard">الإحصائيات العامة</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manager-monthly-report.html" class="nav-link active">
+                        <i class="fas fa-file-alt"></i>
+                        <span data-i18n="monthly_reports">التقارير الشهرية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manager-seminars.html" class="nav-link">
+                        <i class="fas fa-microphone"></i>
+                        <span data-i18n="seminars">إدارة الندوات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manager-ideas.html" class="nav-link">
+                        <i class="fas fa-lightbulb"></i>
+                        <span data-i18n="center_ideas">أفكار المركز</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manager-challenges.html" class="nav-link">
+                        <i class="fas fa-trophy"></i>
+                        <span data-i18n="center_challenges">تحديات المركز</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span data-i18n="settings">الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="btn btn-outline" id="menuToggle" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" data-i18n="search" placeholder="بحث في النظام...">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile-header" onclick="window.logout()">
+                        <div class="user-avatar" id="userAvatar">M</div>
+                        <div class="user-info-text">
+                            <h4 id="userName">المدير</h4>
+                            <span style="color: var(--error);" data-i18n="logout">تسجيل الخروج</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header fade-in" style="margin-bottom: 30px;">
+                    <h1>تقديم التقرير الشهري 📝</h1>
+                    <p style="color: var(--text-muted);">يرجى إدخال كافة البيانات والإحصائيات الخاصة بالمركز لهذا الشهر بدقة.</p>
+                </div>
+
+                <div class="card fade-in">
+                    <form id="monthlyReportForm">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+                            <div class="form-group">
+                                <label>الشهر</label>
+                                <select id="reportMonth" class="form-control" required>
+                                    <option value="1">يناير</option>
+                                    <option value="2">فبراير</option>
+                                    <option value="3">مارس</option>
+                                    <option value="4">أبريل</option>
+                                    <option value="5">مايو</option>
+                                    <option value="6">يونيو</option>
+                                    <option value="7">يوليو</option>
+                                    <option value="8">أغسطس</option>
+                                    <option value="9">سبتمبر</option>
+                                    <option value="10">أكتوبر</option>
+                                    <option value="11">نوفمبر</option>
+                                    <option value="12">ديسمبر</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>السنة</label>
+                                <select id="reportYear" class="form-control" required>
+                                    <option value="2026">2026</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                            <div class="form-group">
+                                <label>عدد الندوات</label>
+                                <input type="number" id="seminarsCount" class="form-control" placeholder="0" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>عدد المشاركين</label>
+                                <input type="number" id="participantsCount" class="form-control" placeholder="0" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>الإيرادات (ج.م)</label>
+                                <input type="number" id="revenues" class="form-control" placeholder="0.00" min="0" step="0.01">
+                            </div>
+                            <div class="form-group">
+                                <label>المصروفات (ج.م)</label>
+                                <input type="number" id="expenses" class="form-control" placeholder="0.00" min="0" step="0.01">
+                            </div>
+                            <div class="form-group">
+                                <label>عدد البطولات</label>
+                                <input type="number" id="tournaments" class="form-control" placeholder="0" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label>الأنشطة المنفذة</label>
+                            <textarea id="activities" class="form-control" rows="3" placeholder="اذكر الأنشطة التي تمت خلال الشهر..."></textarea>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label>المشكلات التي واجهت المركز</label>
+                            <textarea id="problems" class="form-control" rows="3" placeholder="أي مشكلات أو معوقات..."></textarea>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 30px;">
+                            <label>الاحتياجات والمتطلبات</label>
+                            <textarea id="needs" class="form-control" rows="3" placeholder="ما يحتاجه المركز للتطوير..."></textarea>
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-end; gap: 15px;">
+                            <button type="button" class="btn btn-outline" id="saveDraftBtn">حفظ كمسودة</button>
+                            <button type="submit" class="btn btn-primary">إرسال التقرير النهائي</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card fade-in" style="margin-top: 30px;">
+                    <h3>تاريخ التقارير</h3>
+                    <div class="table-responsive">
+                        <table id="reportsHistoryTable">
+                            <thead>
+                                <tr>
+                                    <th>الشهر/السنة</th>
+                                    <th>تاريخ الإرسال</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+    <script>
+        let currentCenterId = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const user = await window.getLoggedInUser();
+            if (user && user.role === 'manager') {
+                currentCenterId = user.centerId;
+                const center = await db.centers.get(user.centerId);
+                if (center) {
+                    document.getElementById('centerNameDisplay').textContent = center.name;
+                }
+                loadReportsHistory();
+                
+                // Set default month/year to current
+                const now = new Date();
+                document.getElementById('reportMonth').value = now.getMonth() + 1;
+                document.getElementById('reportYear').value = now.getFullYear();
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+
+        async function loadReportsHistory() {
+            const reports = await db.monthlyReports.where('centerId').equals(currentCenterId).toArray();
+            const tableBody = document.querySelector('#reportsHistoryTable tbody');
+            
+            if (reports.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">لا توجد تقارير سابقة</td></tr>';
+            } else {
+                tableBody.innerHTML = reports.sort((a, b) => new Date(b.submissionDate) - new Date(a.submissionDate)).map(r => `
+                    <tr>
+                        <td>${r.month} / ${r.year}</td>
+                        <td>${new Date(r.submissionDate).toLocaleDateString('ar-EG')}</td>
+                        <td><span class="badge badge-${r.status === 'completed' ? 'success' : 'warning'}">${r.status === 'completed' ? 'مكتمل' : 'ناقص استكمال'}</span></td>
+                        <td>
+                            <button class="btn btn-outline btn-sm" onclick="editReport(${r.id})">تعديل</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        document.getElementById('monthlyReportForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await saveReport('completed');
+        });
+
+        document.getElementById('saveDraftBtn').addEventListener('click', async () => {
+            await saveReport('incomplete');
+        });
+
+        async function saveReport(status) {
+            const reportData = {
+                centerId: parseInt(currentCenterId),
+                month: parseInt(document.getElementById('reportMonth').value),
+                year: parseInt(document.getElementById('reportYear').value),
+                seminarsCount: parseInt(document.getElementById('seminarsCount').value || 0),
+                participantsCount: parseInt(document.getElementById('participantsCount').value || 0),
+                revenues: parseFloat(document.getElementById('revenues').value || 0),
+                expenses: parseFloat(document.getElementById('expenses').value || 0),
+                tournaments: parseInt(document.getElementById('tournaments').value || 0),
+                activities: document.getElementById('activities').value,
+                problems: document.getElementById('problems').value,
+                needs: document.getElementById('needs').value,
+                status: status,
+                submissionDate: new Date()
+            };
+
+            try {
+                // Check if report for this month/year already exists using compound index
+                const existing = await db.monthlyReports
+                    .where('[centerId+month+year]')
+                    .equals([reportData.centerId, reportData.month, reportData.year])
+                    .first();
+
+                if (existing) {
+                    await db.monthlyReports.update(existing.id, reportData);
+                } else {
+                    await db.monthlyReports.add(reportData);
+                }
+
+                window.showToast(status === 'completed' ? 'تم إرسال التقرير بنجاح' : 'تم حفظ المسودة', 'success');
+                
+                if (status === 'completed') {
+                    setTimeout(() => {
+                        window.location.reload(); // Refresh to show updated history and clear form
+                    }, 1500);
+                } else {
+                    loadReportsHistory();
+                }
+            } catch (error) {
+                console.error("Error saving report:", error);
+                window.showToast('حدث خطأ أثناء حفظ التقرير', 'error');
+            }
+        }
+
+        async function editReport(id) {
+            const report = await db.monthlyReports.get(id);
+            if (report) {
+                document.getElementById('reportMonth').value = report.month;
+                document.getElementById('reportYear').value = report.year;
+                document.getElementById('seminarsCount').value = report.seminarsCount;
+                document.getElementById('participantsCount').value = report.participantsCount;
+                document.getElementById('revenues').value = report.revenues;
+                document.getElementById('expenses').value = report.expenses;
+                document.getElementById('tournaments').value = report.tournaments;
+                document.getElementById('activities').value = report.activities;
+                document.getElementById('problems').value = report.problems;
+                document.getElementById('needs').value = report.needs;
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

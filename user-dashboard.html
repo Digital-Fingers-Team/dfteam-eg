@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | منصة الشباب والرياضة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <div class="overlay" id="overlay"></div>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="logo.png" alt="المنصة">
+                </div>
+                <h3 data-i18n="user_title">مديرية الشباب والرياضة</h3>
+                <p data-i18n="user_subtitle">القليوبية | منصتك الذكية</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="nav-item">
+                    <a href="user-dashboard.html" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span data-i18n="home">الرئيسية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="user-centers.html" class="nav-link">
+                        <i class="fas fa-building"></i>
+                        <span data-i18n="centers">المراكز الشبابية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="user-ideas.html" class="nav-link">
+                        <i class="fas fa-lightbulb"></i>
+                        <span data-i18n="ideas">بنك الأفكار</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="user-challenges.html" class="nav-link">
+                        <i class="fas fa-trophy"></i>
+                        <span data-i18n="challenges">التحديات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="user-complaints.html" class="nav-link">
+                        <i class="fas fa-comment-dots"></i>
+                        <span data-i18n="complaints">الشكاوى</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span data-i18n="settings">الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="btn btn-outline" id="menuToggle" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" data-i18n="search" placeholder="بحث سريع...">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="points-badge">
+                        <i class="fas fa-star"></i>
+                        <span id="userPoints">0</span>
+                        <span style="font-size: 0.8rem; margin-right: 5px;" data-i18n="points">نقطة</span>
+                    </div>
+                    <div class="user-profile-header" onclick="window.logout()">
+                        <div class="user-avatar" id="userAvatar">م</div>
+                        <div class="user-info-text">
+                            <h4 id="userName" data-i18n="loading">جاري التحميل...</h4>
+                            <span style="color: var(--error);" data-i18n="logout">تسجيل الخروج</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="welcome-section fade-in" style="margin-bottom: 30px;">
+                    <h1 style="font-size: 2rem; color: var(--text-main);" data-i18n="welcome_user">أهلاً بك في منصتك الرياضية 👋</h1>
+                    <p style="color: var(--text-muted);" data-i18n="welcome_user_desc">تابع نشاطك، شارك أفكارك، واكتشف تحديات جديدة اليوم.</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid fade-in">
+                    <div class="card stat-card">
+                        <div class="stat-icon" style="background: rgba(37, 99, 235, 0.1); color: var(--primary);">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="myIdeasCount">0</h3>
+                            <p data-i18n="proposed_ideas">أفكار مقترحة</p>
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--secondary);">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="joinedChallengesCount">0</h3>
+                            <p data-i18n="joined_challenges">تحديات منضم لها</p>
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>5</h3>
+                            <p data-i18n="streak_days">أيام متتالية</p>
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-icon" style="background: rgba(239, 68, 68, 0.1); color: var(--error);">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalVotesCount">0</h3>
+                            <p data-i18n="total_votes">إجمالي التصويتات</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts & Recent Activity -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 30px;" class="fade-in recent-activity-grid">
+                    <div class="card">
+                        <h3 style="margin-bottom: 20px;"><i class="fas fa-chart-line" style="color: var(--primary); margin-left: 10px;"></i><span data-i18n="weekly_activity">نشاطك خلال الأسبوع</span></h3>
+                        <div class="chart-container">
+                            <canvas id="activityChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 style="margin-bottom: 20px;"><i class="fas fa-bolt" style="color: var(--warning); margin-left: 10px;"></i><span data-i18n="suggested_challenges">تحديات مقترحة</span></h3>
+                        <div id="suggestedChallenges" style="display: flex; flex-direction: column; gap: 15px;">
+                            <!-- Challenges will be loaded here -->
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%; margin-top: 20px;" onclick="location.href='user-challenges.html'" data-i18n="view_all_challenges">عرض كل التحديات</button>
+                    </div>
+                </div>
+
+                <!-- Recent Ideas -->
+                <div class="card fade-in">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3><i class="fas fa-lightbulb" style="color: var(--accent); margin-left: 10px;"></i><span data-i18n="recent_ideas">آخر الأفكار المضافة</span></h3>
+                        <a href="user-ideas.html" style="color: var(--primary); font-weight: 600; font-size: 0.9rem;" data-i18n="view_ideas_bank">عرض بنك الأفكار</a>
+                    </div>
+                    <div id="recentIdeas" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <!-- Ideas will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="overlay" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 950; display: none;"></div>
+
+    <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const user = await window.getLoggedInUser();
+            if (user) {
+                loadDashboardData(user);
+            }
+        });
+
+        async function loadDashboardData(user) {
+            // 1. Fetch real counts
+            const ideas = await db.ideas.where('userId').equals(user.id).toArray();
+            const challenges = await db.userChallenges.where('userId').equals(user.id).toArray();
+            
+            document.getElementById('myIdeasCount').textContent = ideas.length;
+            document.getElementById('joinedChallengesCount').textContent = challenges.length;
+            
+            const totalVotes = ideas.reduce((sum, idea) => sum + (idea.votes || 0), 0);
+            document.getElementById('totalVotesCount').textContent = totalVotes;
+
+            // 2. Load Suggested Challenges
+            const allChallenges = await db.challenges.limit(3).toArray();
+            const challengeList = document.getElementById('suggestedChallenges');
+            challengeList.innerHTML = allChallenges.map(c => `
+                <div style="padding: 15px; background: var(--bg-body); border-radius: 12px; border-right: 4px solid var(--primary);">
+                    <h4 style="font-size: 0.95rem; margin-bottom: 5px;">${c.title}</h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fas fa-star" style="color: var(--warning);"></i> ${c.reward} نقطة</span>
+                        <a href="user-challenges.html" style="font-size: 0.8rem; color: var(--primary); font-weight: 700;">انضم الآن</a>
+                    </div>
+                </div>
+            `).join('');
+
+            // 3. Load Recent Ideas
+            const recentIdeas = await db.ideas.orderBy('createdAt').reverse().limit(3).toArray();
+            const ideasGrid = document.getElementById('recentIdeas');
+            ideasGrid.innerHTML = recentIdeas.map(idea => `
+                <div style="padding: 20px; border: 1px solid var(--border-color); border-radius: 15px;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <span class="badge badge-info">${idea.status}</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">${new Date(idea.createdAt).toLocaleDateString('ar-EG')}</span>
+                    </div>
+                    <h4 style="margin-bottom: 10px;">${idea.title}</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">${idea.description.substring(0, 100)}...</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 600;"><i class="fas fa-thumbs-up" style="color: var(--primary);"></i> ${idea.votes || 0}</span>
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">بواسطة: ${idea.userName}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // 4. Initialize Chart
+            initChart();
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('activityChart').getContext('2d');
+            const lang = localStorage.getItem('lang') || 'ar';
+            const labels = lang === 'ar' 
+                ? ['السبت', 'الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة']
+                : ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+            const datasetLabel = lang === 'ar' ? 'النقاط المكتسبة' : 'Points Earned';
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: datasetLabel,
+                        data: [12, 19, 3, 5, 2, 3, 10],
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { display: false } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

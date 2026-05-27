@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المراكز الشبابية | منصة الشباب والرياضة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="overlay" id="overlay"></div>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo"><img src="logo.png" alt="المنصة"></div>
+                <h3>مديرية الشباب والرياضة</h3>
+                <p>القليوبية | منصتك الذكية</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="nav-item"><a href="user-dashboard.html" class="nav-link"><i class="fas fa-home"></i><span>الرئيسية</span></a></li>
+                <li class="nav-item"><a href="user-centers.html" class="nav-link active"><i class="fas fa-building"></i><span>المراكز الشبابية</span></a></li>
+                <li class="nav-item"><a href="user-ideas.html" class="nav-link"><i class="fas fa-lightbulb"></i><span>بنك الأفكار</span></a></li>
+                <li class="nav-item"><a href="user-challenges.html" class="nav-link"><i class="fas fa-trophy"></i><span>التحديات</span></a></li>
+                <li class="nav-item"><a href="user-complaints.html" class="nav-link"><i class="fas fa-comment-dots"></i><span>الشكاوى والمقترحات</span></a></li>
+                <li class="nav-item"><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i><span>الإعدادات</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="btn btn-outline" id="menuToggle" style="display: none;"><i class="fas fa-bars"></i></button>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="centerSearch" placeholder="بحث عن مركز أو مدينة...">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="points-badge"><i class="fas fa-star"></i><span id="userPoints">0</span></div>
+                    <div class="user-profile-header" onclick="window.logout()">
+                        <div class="user-avatar" id="userAvatar">م</div>
+                        <div class="user-info-text">
+                            <h4 id="userName">جاري التحميل...</h4>
+                            <span style="color: var(--error);" data-i18n="logout">تسجيل الخروج</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header fade-in">
+                    <div>
+                        <h1 data-i18n="centers_title">المراكز الشبابية والرياضية 🏢</h1>
+                        <p data-i18n="centers_desc" style="color: var(--text-muted);">اكتشف أقرب المراكز إليك والخدمات التي تقدمها.</p>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <select class="form-control" id="typeFilter" style="width: 150px;">
+                            <option value="all" data-i18n="all_types">كل الأنواع</option>
+                            <option value="مركز شباب" data-i18n="youth_center">مركز شباب</option>
+                            <option value="نادي رياضي" data-i18n="sports_club">نادي رياضي</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="centersGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px;" class="fade-in">
+                    <!-- Centers will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Center Details Modal -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content card" style="max-width: 700px; padding: 0; overflow: hidden;">
+            <button class="btn btn-outline" onclick="closeDetailsModal()" style="position: absolute; top: 15px; right: 15px; z-index: 10; width: 40px; height: 40px; border-radius: 50%; padding: 0; background: white;">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div id="modalImageContainer" style="height: 300px; width: 100%;">
+                <img id="modalImage" src="" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            
+            <div style="padding: 30px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                    <div>
+                        <h2 id="modalName" style="margin-bottom: 5px; font-size: 1.8rem; font-weight: 800;"></h2>
+                        <p id="modalLocation" style="color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span></span>
+                        </p>
+                    </div>
+                    <div id="modalRating" style="background: var(--warning-light); color: var(--warning); padding: 8px 15px; border-radius: 12px; font-weight: 800; font-size: 1.2rem;">
+                        <i class="fas fa-star"></i> <span></span>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <h4 style="margin-bottom: 10px; color: var(--text-main);"><i class="fas fa-info-circle" style="margin-left: 8px;"></i>عن المركز</h4>
+                    <p id="modalDescription" style="line-height: 1.8; color: var(--text-muted); font-size: 1.05rem;"></p>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <h4 style="margin-bottom: 12px; color: var(--text-main);"><i class="fas fa-running" style="margin-left: 8px;"></i>الأنشطة المتاحة</h4>
+                    <div id="modalActivities" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <!-- Activities will be injected here -->
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px;">
+                    <button class="btn btn-primary" style="flex: 2; padding: 15px; font-size: 1.1rem; border-radius: 12px;" onclick="window.showToast('سيتم فتح الحجز قريباً', 'info')">
+                        <i class="fas fa-calendar-check" style="margin-left: 8px;"></i>حجز نشاط الآن
+                    </button>
+                    <button class="btn btn-outline" style="flex: 1; padding: 15px; font-size: 1.1rem; border-radius: 12px;" onclick="closeDetailsModal()">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            loadCenters();
+            
+            document.getElementById('centerSearch').addEventListener('input', loadCenters);
+            document.getElementById('typeFilter').addEventListener('change', loadCenters);
+        });
+
+        async function loadCenters() {
+            const searchTerm = document.getElementById('centerSearch').value.toLowerCase();
+            const typeFilter = document.getElementById('typeFilter').value;
+            const lang = localStorage.getItem('lang') || 'ar';
+            const t = translations[lang];
+            
+            let centers = await db.centers.toArray();
+
+            // Apply Filters
+            if (searchTerm) {
+                centers = centers.filter(c => 
+                    c.name.toLowerCase().includes(searchTerm) || 
+                    c.location.toLowerCase().includes(searchTerm)
+                );
+            }
+            if (typeFilter !== 'all') {
+                centers = centers.filter(c => c.type === typeFilter);
+            }
+
+            const grid = document.getElementById('centersGrid');
+            if (centers.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 50px;"><h3>${lang === 'ar' ? 'لا توجد مراكز تطابق بحثك' : 'No centers match your search'}</h3></div>`;
+                return;
+            }
+
+            grid.innerHTML = centers.map(c => `
+                <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                    <div style="height: 180px; position: relative;">
+                        <img src="${c.image}" alt="${c.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.9); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: var(--primary);">
+                            ${c.type === 'مركز شباب' ? t.youth_center : t.sports_club}
+                        </div>
+                    </div>
+                    <div style="padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                        <h3 style="margin: 0; font-size: 1.25rem; font-weight: 800; color: var(--text-main); line-height: 1.3;">${c.name}</h3>
+                        <div style="color: var(--primary); font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 6px; background: var(--bg-body); padding: 8px 12px; border-radius: 8px; border: 1px dashed var(--border-color);">
+                            <i class="fas fa-map-marker-alt" style="color: var(--error);"></i>
+                            <span>${t.location}: ${c.location}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                            <div style="color: var(--warning); font-weight: 800; display: flex; align-items: center; gap: 5px; font-size: 1.1rem;">
+                                <i class="fas fa-star"></i> ${c.rating}
+                            </div>
+                            <button class="btn btn-primary" style="padding: 8px 20px; border-radius: 10px; font-weight: 600;" onclick="showCenterDetails(${c.id})">
+                                <i class="fas fa-info-circle"></i> ${t.more}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function showCenterDetails(id) {
+            const center = await db.centers.get(id);
+            if (!center) return;
+            const lang = localStorage.getItem('lang') || 'ar';
+            const t = translations[lang];
+
+            document.getElementById('modalImage').src = center.image || 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800';
+            document.getElementById('modalName').textContent = center.name;
+            document.getElementById('modalLocation').querySelector('span').textContent = `${t.location}: ${center.location}`;
+            document.getElementById('modalRating').querySelector('span').textContent = center.rating || '4.5';
+            document.getElementById('modalDescription').textContent = center.description || (lang === 'ar' ? 'لا يوجد وصف متاح حالياً لهذا المركز.' : 'No description available for this center yet.');
+            
+            // Update Modal Headers
+            document.querySelectorAll('#detailsModal h4').forEach((h4, index) => {
+                if (index === 0) h4.innerHTML = `<i class="fas fa-info-circle" style="margin-left: 8px;"></i>${lang === 'ar' ? 'عن المركز' : 'About Center'}`;
+                if (index === 1) h4.innerHTML = `<i class="fas fa-running" style="margin-left: 8px;"></i>${lang === 'ar' ? 'الأنشطة المتاحة' : 'Available Activities'}`;
+            });
+
+            // Update Modal Buttons
+            const modalButtons = document.querySelectorAll('#detailsModal .btn');
+            if (modalButtons.length >= 2) {
+                modalButtons[1].innerHTML = `<i class="fas fa-calendar-check" style="margin-left: 8px;"></i>${lang === 'ar' ? 'حجز نشاط الآن' : 'Book Activity Now'}`;
+                modalButtons[2].textContent = t.cancel;
+            }
+
+            const activitiesContainer = document.getElementById('modalActivities');
+            if (center.activities && center.activities.length > 0) {
+                activitiesContainer.innerHTML = center.activities.map(a => `
+                    <span class="badge badge-primary" style="padding: 8px 15px; font-size: 0.9rem; border-radius: 8px;">
+                        <i class="fas fa-check-circle" style="margin-left: 5px;"></i>${a}
+                    </span>
+                `).join('');
+            } else {
+                activitiesContainer.innerHTML = `<p style="color: var(--text-muted);">${lang === 'ar' ? 'لا توجد أنشطة مسجلة حالياً.' : 'No activities registered yet.'}</p>`;
+            }
+
+            document.getElementById('detailsModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('detailsModal');
+            if (event.target == modal) {
+                closeDetailsModal();
+            }
+        }
+    </script>
+</body>
+</html>

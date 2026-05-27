@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة مراكز الشباب | منصة الشباب والرياضة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="overlay" id="overlay"></div>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="logo.png" alt="المنصة">
+                </div>
+                <h3>مديرية الشباب والرياضة</h3>
+                <p>لوحة تحكم المسؤول</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="nav-item">
+                    <a href="admin-dashboard.html" class="nav-link">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>الإحصائيات العامة</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-users.html" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>إدارة المستخدمين</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-centers.html" class="nav-link active">
+                        <i class="fas fa-building"></i>
+                        <span>إدارة المراكز</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-ideas.html" class="nav-link">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>إدارة الأفكار</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-challenges.html" class="nav-link">
+                        <i class="fas fa-trophy"></i>
+                        <span>إدارة التحديات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-complaints.html" class="nav-link">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>الشكاوى والتقارير</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-reports.html" class="nav-link">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>التقارير التحليلية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span>الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="btn btn-outline" id="menuToggle" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="centerSearch" placeholder="بحث عن مركز..." onkeyup="filterCenters()">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile-header" onclick="window.logout()">
+                        <div class="user-avatar" style="background: var(--error);">أ</div>
+                        <div class="user-info-text">
+                            <h4 id="userName">المسؤول</h4>
+                            <span style="color: var(--error);">تسجيل الخروج</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header fade-in">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 15px;">
+                        <div>
+                            <h1 data-i18n="centers">إدارة مراكز الشباب 🏛️</h1>
+                            <p data-i18n="centers_admin_desc" style="color: var(--text-muted);">إضافة وتعديل بيانات مراكز الشباب والأنشطة المتاحة.</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="showAddCenterModal()">
+                            <i class="fas fa-plus"></i> <span data-i18n="add">إضافة مركز جديد</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-i18n="center_name_loc">اسم المركز والمنطقة</th>
+                                    <th>بيانات الدخول (المدير)</th>
+                                    <th data-i18n="type">النوع</th>
+                                    <th data-i18n="activities_label">الأنشطة</th>
+                                    <th data-i18n="actions">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="centersTableBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Center Modal -->
+    <div id="centerModal" class="modal">
+        <div class="modal-content card" style="max-width: 600px; padding: 30px;">
+            <h2 id="modalTitle" style="margin-bottom: 20px;">إضافة مركز جديد</h2>
+            <form id="centerForm">
+                <input type="hidden" id="editCenterId">
+                <div class="form-group">
+                    <label>اسم المركز</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>الموقع (العنوان)</label>
+                    <input type="text" id="location" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>الأنشطة (افصل بينها بفاصلة)</label>
+                    <input type="text" id="activities" class="form-control" placeholder="مثال: كرة قدم، سباحة، كاراتيه">
+                </div>
+                <div class="form-group">
+                    <label>وصف المركز</label>
+                    <textarea id="description" class="form-control" rows="4" placeholder="اكتب وصفاً تفصيلياً للمركز والخدمات المتاحة..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>صورة المركز</label>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <input type="file" id="imageFile" class="form-control" accept="image/*" onchange="previewImage(this)">
+                        <input type="hidden" id="imageData">
+                        <div id="imagePreviewContainer" style="display: none; width: 100%; height: 200px; border-radius: 12px; overflow: hidden; border: 2px dashed var(--border-color);">
+                            <img id="imagePreview" src="" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>التقييم</label>
+                    <input type="number" id="rating" class="form-control" min="1" max="5" step="0.1" value="4.5">
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">حفظ</button>
+                    <button type="button" class="btn btn-outline" onclick="closeCenterModal()" style="flex: 1;">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+    <script>
+        let allCenters = [];
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const user = await window.getLoggedInUser();
+            if (user && user.role === 'admin') {
+                loadCenters();
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+
+        async function loadCenters() {
+            allCenters = await db.centers.toArray();
+            renderCenters(allCenters);
+        }
+
+        function renderCenters(centers) {
+            const tbody = document.getElementById('centersTableBody');
+            const lang = localStorage.getItem('lang') || 'ar';
+            const t = translations[lang];
+
+            tbody.innerHTML = centers.map(center => `
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <img src="${center.image || 'https://via.placeholder.com/40'}" style="width: 45px; height: 45px; border-radius: 10px; object-fit: cover; border: 2px solid var(--border-color);">
+                            <div style="display: flex; flex-direction: column; gap: 2px;">
+                                <span style="font-weight: 700; color: var(--text-main); font-size: 1rem;">${center.name}</span>
+                                <span style="font-size: 0.8rem; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-map-marker-alt" style="font-size: 0.7rem;"></i>
+                                    ${center.location}
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="font-size: 0.85rem; background: var(--bg-main); padding: 8px; border-radius: 8px; border: 1px solid var(--border-color);">
+                            <div style="color: var(--text-muted); font-size: 11px; margin-bottom: 3px;">البريد:</div>
+                            <code style="color: var(--primary); font-weight: 600;">manager_${center.id}@platform.com</code>
+                            <div style="color: var(--text-muted); font-size: 11px; margin-top: 5px; margin-bottom: 3px;">كلمة المرور:</div>
+                            <code style="color: var(--secondary);">center123</code>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="badge badge-outline" style="font-size: 0.75rem; border-color: var(--primary); color: var(--primary);">
+                            <i class="fas fa-building" style="margin-left: 5px;"></i> ${center.type === 'مركز شباب' ? t.youth_center : (center.type === 'نادي رياضي' ? t.sports_club : center.type)}
+                        </span>
+                    </td>
+                    <td>
+                        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                            ${(center.activities || []).slice(0, 3).map(a => `<span class="badge badge-primary" style="font-size: 10px;">${a}</span>`).join('')}
+                            ${(center.activities || []).length > 3 ? '<span class="badge badge-outline" style="font-size: 10px;">...</span>' : ''}
+                        </div>
+                    </td>
+                    <td>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn btn-outline" style="padding: 6px 12px; border-radius: 8px;" onclick="editCenter(${center.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-outline" style="padding: 6px 12px; border-radius: 8px; color: var(--error); border-color: var(--error);" onclick="deleteCenter(${center.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterCenters() {
+            const searchTerm = document.getElementById('centerSearch').value.toLowerCase();
+            const filtered = allCenters.filter(c => 
+                c.name.toLowerCase().includes(searchTerm) || 
+                c.location.toLowerCase().includes(searchTerm)
+            );
+            renderCenters(filtered);
+        }
+
+        function showAddCenterModal() {
+            document.getElementById('modalTitle').textContent = 'إضافة مركز جديد';
+            document.getElementById('editCenterId').value = '';
+            document.getElementById('centerForm').reset();
+            document.getElementById('imageData').value = '';
+            document.getElementById('imagePreviewContainer').style.display = 'none';
+            document.getElementById('centerModal').style.display = 'flex';
+        }
+
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imagePreview').src = e.target.result;
+                    document.getElementById('imageData').value = e.target.result;
+                    document.getElementById('imagePreviewContainer').style.display = 'block';
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function closeCenterModal() {
+            document.getElementById('centerModal').style.display = 'none';
+        }
+
+        async function editCenter(id) {
+            const center = await db.centers.get(id);
+            if (center) {
+                document.getElementById('modalTitle').textContent = 'تعديل بيانات المركز';
+                document.getElementById('editCenterId').value = center.id;
+                document.getElementById('name').value = center.name;
+                document.getElementById('location').value = center.location;
+                document.getElementById('activities').value = (center.activities || []).join('، ');
+                document.getElementById('description').value = center.description || '';
+                document.getElementById('imageData').value = center.image || '';
+                
+                if (center.image) {
+                    document.getElementById('imagePreview').src = center.image;
+                    document.getElementById('imagePreviewContainer').style.display = 'block';
+                } else {
+                    document.getElementById('imagePreviewContainer').style.display = 'none';
+                }
+                
+                document.getElementById('centerModal').style.display = 'flex';
+            }
+        }
+
+        async function deleteCenter(id) {
+            if (confirm('هل أنت متأكد من حذف هذا المركز؟')) {
+                await db.centers.delete(id);
+                window.showToast('تم حذف المركز بنجاح', 'success');
+                loadCenters();
+            }
+        }
+
+        document.getElementById('centerForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('editCenterId').value;
+            const centerData = {
+                name: document.getElementById('name').value,
+                location: document.getElementById('location').value,
+                activities: document.getElementById('activities').value.split(/[،,]/).map(a => a.trim()).filter(a => a),
+                description: document.getElementById('description').value,
+                image: document.getElementById('imageData').value || 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800',
+                rating: parseFloat(document.getElementById('rating').value),
+                type: 'مركز شباب' // Default type
+            };
+
+            if (id) {
+                await db.centers.update(parseInt(id), centerData);
+                window.showToast('تم تحديث بيانات المركز', 'success');
+            } else {
+                await db.centers.add(centerData);
+                window.showToast('تم إضافة المركز بنجاح', 'success');
+            }
+
+            closeCenterModal();
+            loadCenters();
+        };
+    </script>
+</body>
+</html>

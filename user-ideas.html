@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأفكار | منصة الشباب والرياضة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="overlay" id="overlay"></div>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo"><img src="logo.png" alt="المنصة"></div>
+                <h3 data-i18n="user_title">مديرية الشباب والرياضة</h3>
+                <p data-i18n="user_subtitle">القليوبية | منصتك الذكية</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="nav-item"><a href="user-dashboard.html" class="nav-link"><i class="fas fa-home"></i><span data-i18n="home">الرئيسية</span></a></li>
+                <li class="nav-item"><a href="user-centers.html" class="nav-link"><i class="fas fa-building"></i><span data-i18n="centers">المراكز الشبابية</span></a></li>
+                <li class="nav-item"><a href="user-ideas.html" class="nav-link active"><i class="fas fa-lightbulb"></i><span data-i18n="ideas">بنك الأفكار</span></a></li>
+                <li class="nav-item"><a href="user-challenges.html" class="nav-link"><i class="fas fa-trophy"></i><span data-i18n="challenges">التحديات</span></a></li>
+                <li class="nav-item"><a href="user-complaints.html" class="nav-link"><i class="fas fa-comment-dots"></i><span data-i18n="complaints">الشكاوى</span></a></li>
+            <li class="nav-item"><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i><span data-i18n="settings">الإعدادات</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="btn btn-outline" id="menuToggle" style="display: none;"><i class="fas fa-bars"></i></button>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="ideaSearch" data-i18n="search" placeholder="بحث عن فكرة...">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="points-badge"><i class="fas fa-star"></i><span id="userPoints">0</span> <span data-i18n="points">نقطة</span></div>
+                    <div class="user-profile-header" onclick="window.logout()">
+                        <div class="user-avatar" id="userAvatar">م</div>
+                        <div class="user-info-text">
+                            <h4 id="userName" data-i18n="loading">جاري التحميل...</h4>
+                            <span style="color: var(--error);" data-i18n="logout">تسجيل الخروج</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header fade-in">
+                    <div>
+                        <h1 data-i18n="ideas_bank_title">بنك الأفكار التطويرية 💡</h1>
+                        <p style="color: var(--text-muted);" data-i18n="ideas_bank_desc">شاركنا أفكارك لتطوير مراكز الشباب والرياضة في محافظتك.</p>
+                    </div>
+                    <button class="btn btn-primary" id="openAddIdeaModal">
+                        <i class="fas fa-plus"></i> <span data-i18n="propose_new_idea">اقترح فكرة جديدة</span>
+                    </button>
+                </div>
+
+                <div class="stats-grid fade-in">
+                    <div class="card stat-card">
+                        <div class="stat-icon" style="background: rgba(37, 99, 235, 0.1); color: var(--primary);">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalIdeasCount">0</h3>
+                            <p data-i18n="total_ideas">إجمالي الأفكار</p>
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--secondary);">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="approvedIdeasCount">0</h3>
+                            <p data-i18n="approved_ideas">أفكار مقبولة</p>
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);">
+                            <i class="fas fa-thumbs-up"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalGlobalVotesCount">0</h3>
+                            <p data-i18n="total_votes">إجمالي التصويتات</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ideasGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px;" class="fade-in">
+                    <!-- Ideas will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Idea Modal -->
+    <div id="ideaModal" class="modal">
+        <div class="modal-content card" style="max-width: 500px;">
+            <h3 style="margin-bottom: 20px;" data-i18n="propose_new_idea">اقترح فكرة جديدة</h3>
+            <form id="ideaForm">
+                <div class="form-group">
+                    <label data-i18n="idea_title_label">عنوان الفكرة</label>
+                    <input type="text" id="ideaTitle" class="form-control" data-i18n="idea_title_placeholder" placeholder="مثلاً: تطوير ملعب التنس" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="idea_desc_label">وصف الفكرة بالتفصيل</label>
+                    <textarea id="ideaDesc" class="form-control" rows="4" data-i18n="idea_desc_placeholder" placeholder="اشرح فكرتك وكيف ستفيد الشباب..." required></textarea>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;" data-i18n="publish_idea">نشر الفكرة</button>
+                    <button type="button" class="btn btn-outline" id="closeIdeaModal" style="flex: 1;" data-i18n="cancel">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            loadIdeas();
+
+            document.getElementById('ideaSearch').addEventListener('input', loadIdeas);
+
+            // Modal Logic
+            const modal = document.getElementById('ideaModal');
+            document.getElementById('openAddIdeaModal').addEventListener('click', () => modal.style.display = 'flex');
+            document.getElementById('closeIdeaModal').addEventListener('click', () => modal.style.display = 'none');
+
+            document.getElementById('ideaForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const user = await window.getLoggedInUser();
+                if (!user) return;
+
+                const title = document.getElementById('ideaTitle').value;
+                const description = document.getElementById('ideaDesc').value;
+
+                await db.ideas.add({
+                    userId: user.id,
+                    userName: user.name,
+                    title: title,
+                    description: description,
+                    status: 'تحت الدراسة',
+                    votes: 0,
+                    createdAt: new Date()
+                });
+
+                showToast('تم إرسال فكرتك بنجاح! ستتم مراجعتها قريباً', 'success');
+                modal.style.display = 'none';
+                document.getElementById('ideaForm').reset();
+                loadIdeas();
+            });
+        });
+
+        async function loadIdeas() {
+            const searchTerm = document.getElementById('ideaSearch').value.toLowerCase();
+            let ideas = await db.ideas.orderBy('createdAt').reverse().toArray();
+
+            if (searchTerm) {
+                ideas = ideas.filter(i => 
+                    i.title.toLowerCase().includes(searchTerm) || 
+                    i.description.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            // Update Stats
+            document.getElementById('totalIdeasCount').textContent = ideas.length;
+            document.getElementById('approvedIdeasCount').textContent = ideas.filter(i => i.status === 'مقبولة').length;
+            document.getElementById('totalGlobalVotesCount').textContent = ideas.reduce((sum, i) => sum + (i.votes || 0), 0);
+
+            const grid = document.getElementById('ideasGrid');
+            if (ideas.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px;"><h3>لا توجد أفكار تطابق بحثك</h3></div>';
+                return;
+            }
+
+            grid.innerHTML = ideas.map(i => `
+                <div class="card" style="display: flex; flex-direction: column; border-right: 4px solid ${getStatusColor(i.status)};">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <span class="badge" style="background: ${getStatusColor(i.status)}15; color: ${getStatusColor(i.status)};">
+                            ${i.status}
+                        </span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">${new Date(i.createdAt).toLocaleDateString('ar-EG')}</span>
+                    </div>
+                    <h3 style="margin-bottom: 10px; font-size: 1.1rem;">${i.title}</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; flex: 1;">${i.description}</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 25px; height: 25px; background: var(--primary-light); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.7rem;">
+                                ${i.userName.charAt(0)}
+                            </div>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">${i.userName}</span>
+                        </div>
+                        <button class="btn btn-outline" style="padding: 5px 15px; font-size: 0.85rem;" onclick="voteIdea(${i.id})">
+                            <i class="fas fa-thumbs-up" style="color: var(--primary);"></i> ${i.votes || 0}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getStatusColor(status) {
+            switch(status) {
+                case 'مقبولة': return '#10b981';
+                case 'تحت الدراسة': return '#3b82f6';
+                case 'مرفوضة': return '#ef4444';
+                default: return '#64748b';
+            }
+        }
+
+        async function voteIdea(id) {
+            const idea = await db.ideas.get(id);
+            if (idea) {
+                await db.ideas.update(id, { votes: (idea.votes || 0) + 1 });
+                showToast('شكراً لتصويتك!', 'success');
+                loadIdeas();
+            }
+        }
+    </script>
+</body>
+</html>

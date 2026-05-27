@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الشكاوى | منصة الشباب والرياضة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="overlay" id="overlay"></div>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="logo.png" alt="المنصة">
+                </div>
+                <h3 data-i18n="admin_title">مديرية الشباب والرياضة</h3>
+                <p data-i18n="admin_subtitle">لوحة تحكم المسؤول</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="nav-item">
+                    <a href="admin-dashboard.html" class="nav-link">
+                        <i class="fas fa-chart-pie"></i>
+                        <span data-i18n="dashboard">الإحصائيات العامة</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-users.html" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span data-i18n="users">إدارة المستخدمين</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-centers.html" class="nav-link">
+                        <i class="fas fa-building"></i>
+                        <span data-i18n="centers">إدارة المراكز</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-ideas.html" class="nav-link">
+                        <i class="fas fa-lightbulb"></i>
+                        <span data-i18n="ideas">إدارة الأفكار</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-challenges.html" class="nav-link">
+                        <i class="fas fa-trophy"></i>
+                        <span data-i18n="challenges">إدارة التحديات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-complaints.html" class="nav-link active">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span data-i18n="complaints">الشكاوى والتقارير</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-reports.html" class="nav-link">
+                        <i class="fas fa-file-invoice"></i>
+                        <span data-i18n="reports">التقارير التحليلية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span data-i18n="settings">الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="btn btn-outline" id="menuToggle" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="complaintSearch" data-i18n="search" placeholder="بحث في الشكاوى..." onkeyup="filterComplaints()">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile-header" onclick="window.logout()">
+                        <div class="user-avatar" style="background: var(--error);">أ</div>
+                        <div class="user-info-text">
+                            <h4 id="userName" data-i18n="admin">المسؤول</h4>
+                            <span style="color: var(--error);" data-i18n="logout">تسجيل الخروج</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header fade-in">
+                    <h1 data-i18n="admin_complaints_title">إدارة الشكاوى والبلاغات 📢</h1>
+                    <p style="color: var(--text-muted);" data-i18n="admin_complaints_desc">متابعة شكاوى المستخدمين والرد عليها وتحسين جودة الخدمة.</p>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-i18n="subject_col">الموضوع</th>
+                                    <th data-i18n="submitted_by_col">المقدم</th>
+                                    <th data-i18n="category_col">النوع</th>
+                                    <th data-i18n="date_col">التاريخ</th>
+                                    <th data-i18n="status">الحالة</th>
+                                    <th data-i18n="actions">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="complaintsTableBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Complaint Detail Modal -->
+    <div id="complaintModal" class="modal">
+        <div class="modal-content card" style="max-width: 600px; padding: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                <h2 id="modalComplaintTitle" data-i18n="complaint_details">تفاصيل الشكوى</h2>
+                <button class="btn btn-outline" onclick="closeComplaintModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="modalComplaintContent" style="margin-bottom: 30px; line-height: 1.6;">
+                <!-- Complaint content will be here -->
+            </div>
+            <div class="form-group">
+                <label data-i18n="update_status_label">تحديث الحالة</label>
+                <select id="updateStatus" class="form-control" style="margin-bottom: 15px;">
+                    <option value="قيد المعالجة" data-i18n="in_progress">قيد المعالجة</option>
+                    <option value="تم الحل" data-i18n="resolved">تم الحل</option>
+                    <option value="مرفوضة" data-i18n="rejected">مرفوضة</option>
+                </select>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-primary" id="saveStatusBtn" style="flex: 1;" data-i18n="save">حفظ التغييرات</button>
+                <button class="btn btn-outline" onclick="closeComplaintModal()" style="flex: 1;" data-i18n="cancel">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+    <script>
+        let allComplaints = [];
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const user = await window.getLoggedInUser();
+            if (user && user.role === 'admin') {
+                loadComplaints();
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+
+        async function loadComplaints() {
+            allComplaints = await db.complaints.toArray();
+            renderComplaints(allComplaints);
+        }
+
+        function renderComplaints(complaints) {
+            const tbody = document.getElementById('complaintsTableBody');
+            tbody.innerHTML = complaints.map(c => `
+                <tr>
+                    <td><div style="font-weight: 600;">${c.title}</div></td>
+                    <td>${c.userName || 'مستخدم'}</td>
+                    <td><span class="badge badge-outline">${c.type || 'عام'}</span></td>
+                    <td>${new Date(c.createdAt).toLocaleDateString('ar-EG')}</td>
+                    <td>
+                        <span class="badge ${getStatusClass(c.status)}">
+                            ${c.status}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline" style="padding: 5px 10px;" onclick="viewComplaint(${c.id})">
+                            <i class="fas fa-eye"></i> مراجعة
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getStatusClass(status) {
+            switch(status) {
+                case 'تم الحل': return 'badge-success';
+                case 'مرفوضة': return 'badge-error';
+                case 'قيد المعالجة': return 'badge-warning';
+                default: return 'badge-primary';
+            }
+        }
+
+        function filterComplaints() {
+            const searchTerm = document.getElementById('complaintSearch').value.toLowerCase();
+            const filtered = allComplaints.filter(c => 
+                c.title.toLowerCase().includes(searchTerm) || 
+                c.description.toLowerCase().includes(searchTerm) ||
+                c.userName.toLowerCase().includes(searchTerm)
+            );
+            renderComplaints(filtered);
+        }
+
+        async function viewComplaint(id) {
+            const c = await db.complaints.get(id);
+            if (c) {
+                document.getElementById('modalComplaintTitle').textContent = c.title;
+                document.getElementById('modalComplaintContent').innerHTML = `
+                    <div style="margin-bottom: 15px;"><strong>بواسطة:</strong> ${c.userName} | <strong>النوع:</strong> ${c.type || 'عام'}</div>
+                    <p style="background: var(--gray-50); padding: 15px; border-radius: 10px;">${c.description}</p>
+                    <div style="margin-top: 15px; font-size: 14px; color: var(--text-muted);">تاريخ البلاغ: ${new Date(c.createdAt).toLocaleString('ar-EG')}</div>
+                `;
+                
+                document.getElementById('updateStatus').value = c.status;
+                document.getElementById('saveStatusBtn').onclick = () => updateStatus(id);
+                document.getElementById('complaintModal').style.display = 'flex';
+            }
+        }
+
+        async function updateStatus(id) {
+            const status = document.getElementById('updateStatus').value;
+            await db.complaints.update(id, { status });
+            window.showToast('تم تحديث حالة الشكوى', 'success');
+            closeComplaintModal();
+            loadComplaints();
+        }
+
+        function closeComplaintModal() {
+            document.getElementById('complaintModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

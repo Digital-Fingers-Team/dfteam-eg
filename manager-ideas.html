@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أفكار المركز | منصة الشباب والرياضة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="overlay" id="overlay"></div>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="logo.png" alt="المنصة">
+                </div>
+                <h3>مدير مركز الشباب</h3>
+                <p id="centerNameDisplay">جاري التحميل...</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="nav-item">
+                    <a href="manager-dashboard.html" class="nav-link">
+                        <i class="fas fa-chart-pie"></i>
+                        <span data-i18n="dashboard">الإحصائيات العامة</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manager-monthly-report.html" class="nav-link">
+                        <i class="fas fa-file-alt"></i>
+                        <span data-i18n="monthly_reports">التقارير الشهرية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manager-seminars.html" class="nav-link">
+                        <i class="fas fa-microphone"></i>
+                        <span data-i18n="seminars">إدارة الندوات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manager-ideas.html" class="nav-link active">
+                        <i class="fas fa-lightbulb"></i>
+                        <span data-i18n="center_ideas">أفكار المركز</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manager-challenges.html" class="nav-link">
+                        <i class="fas fa-trophy"></i>
+                        <span data-i18n="center_challenges">تحديات المركز</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span data-i18n="settings">الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="btn btn-outline" id="menuToggle" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="ideaSearch" data-i18n="search" placeholder="بحث في الأفكار..." onkeyup="filterIdeas()">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile-header" onclick="window.logout()">
+                        <div class="user-avatar" id="userAvatar">M</div>
+                        <div class="user-info-text">
+                            <h4 id="userName">المدير</h4>
+                            <span style="color: var(--error);" data-i18n="logout">تسجيل الخروج</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header fade-in">
+                    <h1 data-i18n="center_ideas">أفكار المركز 💡</h1>
+                    <p style="color: var(--text-muted);">مراجعة الأفكار والمقترحات المقدمة من الشباب لتطوير المركز.</p>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-i18n="idea_col">الفكرة</th>
+                                    <th data-i18n="author_col">صاحب الفكرة</th>
+                                    <th data-i18n="status">الحالة</th>
+                                    <th data-i18n="votes_col">التصويت</th>
+                                    <th data-i18n="actions">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ideasTableBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Idea Detail Modal -->
+    <div id="ideaModal" class="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+        <div class="card" style="max-width: 600px; width:90%; padding: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                <h2 id="modalIdeaTitle">تفاصيل الفكرة</h2>
+                <button class="btn btn-outline" onclick="closeIdeaModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="modalIdeaContent" style="margin-bottom: 30px; line-height: 1.6;">
+                <!-- Idea content will be here -->
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-primary" id="approveBtn" style="flex: 1;">موافقة</button>
+                <button class="btn btn-error" id="rejectBtn" style="flex: 1;">رفض</button>
+                <button class="btn btn-outline" id="underStudyBtn" style="flex: 1;">تحت الدراسة</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+    <script>
+        let allIdeas = [];
+        let currentCenterId = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const user = await window.getLoggedInUser();
+            if (user && user.role === 'manager') {
+                currentCenterId = user.centerId;
+                const center = await db.centers.get(user.centerId);
+                if (center) {
+                    document.getElementById('centerNameDisplay').textContent = center.name;
+                }
+                loadIdeas();
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+
+        async function loadIdeas() {
+            allIdeas = await db.ideas.where('centerId').equals(currentCenterId).toArray();
+            renderIdeas(allIdeas);
+        }
+
+        function renderIdeas(ideas) {
+            const tbody = document.getElementById('ideasTableBody');
+            if (ideas.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">لا توجد أفكار مقدمة للمركز حالياً</td></tr>';
+                return;
+            }
+            tbody.innerHTML = ideas.map(idea => `
+                <tr>
+                    <td>
+                        <div style="font-weight: 600;">${idea.title}</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">${idea.description.substring(0, 50)}...</div>
+                    </td>
+                    <td>${idea.userName || 'مستخدم'}</td>
+                    <td>
+                        <span class="badge ${getStatusClass(idea.status)}">
+                            ${idea.status}
+                        </span>
+                    </td>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 5px; color: var(--primary);">
+                            <i class="fas fa-thumbs-up"></i> ${idea.votes || 0}
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline btn-sm" onclick="viewIdea(${idea.id})">
+                            <i class="fas fa-eye"></i> مراجعة
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getStatusClass(status) {
+            switch(status) {
+                case 'مقبولة': return 'badge-success';
+                case 'مرفوضة': return 'badge-error';
+                case 'تحت الدراسة': return 'badge-warning';
+                default: return 'badge-primary';
+            }
+        }
+
+        function filterIdeas() {
+            const searchTerm = document.getElementById('ideaSearch').value.toLowerCase();
+            const filtered = allIdeas.filter(i => 
+                i.title.toLowerCase().includes(searchTerm) || 
+                i.description.toLowerCase().includes(searchTerm)
+            );
+            renderIdeas(filtered);
+        }
+
+        async function viewIdea(id) {
+            const idea = await db.ideas.get(id);
+            if (idea) {
+                document.getElementById('modalIdeaTitle').textContent = idea.title;
+                document.getElementById('modalIdeaContent').innerHTML = `
+                    <div style="margin-bottom: 15px;"><strong>بواسطة:</strong> ${idea.userName}</div>
+                    <p>${idea.description}</p>
+                    <div style="margin-top: 20px; font-size: 14px; color: var(--text-muted);">تاريخ التقديم: ${new Date(idea.createdAt).toLocaleDateString('ar-EG')}</div>
+                `;
+                
+                document.getElementById('approveBtn').onclick = () => updateIdeaStatus(id, 'مقبولة');
+                document.getElementById('rejectBtn').onclick = () => updateIdeaStatus(id, 'مرفوضة');
+                document.getElementById('underStudyBtn').onclick = () => updateIdeaStatus(id, 'تحت الدراسة');
+                
+                document.getElementById('ideaModal').style.display = 'flex';
+            }
+        }
+
+        async function updateIdeaStatus(id, status) {
+            await db.ideas.update(id, { status });
+            window.showToast(`تم تحديث حالة الفكرة إلى ${status}`, 'success');
+            closeIdeaModal();
+            loadIdeas();
+        }
+
+        function closeIdeaModal() {
+            document.getElementById('ideaModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

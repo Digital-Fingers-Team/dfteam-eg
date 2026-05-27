@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المستخدمين | منصة الشباب والرياضة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="overlay" id="overlay"></div>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="logo.png" alt="المنصة">
+                </div>
+                <h3>مديرية الشباب والرياضة</h3>
+                <p>لوحة تحكم المسؤول</p>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="nav-item">
+                    <a href="admin-dashboard.html" class="nav-link">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>الإحصائيات العامة</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-users.html" class="nav-link active">
+                        <i class="fas fa-users"></i>
+                        <span>إدارة المستخدمين</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-centers.html" class="nav-link">
+                        <i class="fas fa-building"></i>
+                        <span>إدارة المراكز</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-ideas.html" class="nav-link">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>إدارة الأفكار</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-challenges.html" class="nav-link">
+                        <i class="fas fa-trophy"></i>
+                        <span>إدارة التحديات</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-complaints.html" class="nav-link">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>الشكاوى والتقارير</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-reports.html" class="nav-link">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>التقارير التحليلية</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span>الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="btn btn-outline" id="menuToggle" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="userSearch" data-i18n="search_user_placeholder" placeholder="بحث عن مستخدم بالاسم أو البريد..." onkeyup="filterUsers()">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile-header" onclick="window.logout()">
+                        <div class="user-avatar" style="background: var(--error);">أ</div>
+                        <div class="user-info-text">
+                            <h4 id="userName" data-i18n="admin">المسؤول</h4>
+                            <span style="color: var(--error);" data-i18n="logout">تسجيل الخروج</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header fade-in">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 15px;">
+                        <div>
+                            <h1 data-i18n="users">إدارة المستخدمين 👥</h1>
+                            <p style="color: var(--text-muted);" data-i18n="users_admin_desc">عرض وتعديل صلاحيات المستخدمين والتحكم في الحسابات.</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="showAddUserModal()">
+                            <i class="fas fa-plus"></i> <span data-i18n="add_user">إضافة مستخدم جديد</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-i18n="activity_user">المستخدم</th>
+                                    <th data-i18n="email">البريد الإلكتروني</th>
+                                    <th data-i18n="role">الدور</th>
+                                    <th data-i18n="date_joined">تاريخ التسجيل</th>
+                                    <th data-i18n="status">الحالة</th>
+                                    <th data-i18n="actions">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- User Modal -->
+    <div id="userModal" class="modal">
+        <div class="modal-content card" style="max-width: 500px; padding: 30px;">
+            <h2 id="modalTitle" style="margin-bottom: 20px;">إضافة مستخدم جديد</h2>
+            <form id="userForm">
+                <input type="hidden" id="editUserId">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="fullName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group" id="passwordGroup">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>الدور</label>
+                    <select id="role" class="form-control">
+                        <option value="user">مستخدم (شاب)</option>
+                        <option value="admin">مسؤول (Admin)</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">حفظ</button>
+                    <button type="button" class="btn btn-outline" onclick="closeUserModal()" style="flex: 1;">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+    <script>
+        let allUsers = [];
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const user = await window.getLoggedInUser();
+            if (user && user.role === 'admin') {
+                loadUsers();
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+
+        async function loadUsers() {
+            allUsers = await db.users.toArray();
+            renderUsers(allUsers);
+        }
+
+        function renderUsers(users) {
+            const tbody = document.getElementById('usersTableBody');
+            tbody.innerHTML = users.map(user => `
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div class="user-avatar" style="width: 35px; height: 35px; font-size: 14px; background: var(--primary-light); color: var(--primary);">
+                                ${user.name.charAt(0)}
+                            </div>
+                            <span>${user.name}</span>
+                        </div>
+                    </td>
+                    <td>${user.email}</td>
+                    <td>
+                        <span class="badge ${user.role === 'admin' ? 'badge-error' : 'badge-primary'}">
+                            ${user.role === 'admin' ? 'مسؤول' : 'مستخدم'}
+                        </span>
+                    </td>
+                    <td>${new Date(user.createdAt || Date.now()).toLocaleDateString('ar-EG')}</td>
+                    <td>
+                        <span class="status-indicator status-active"></span> نشط
+                    </td>
+                    <td>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn btn-outline" style="padding: 5px 10px;" onclick="editUser(${user.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-outline" style="padding: 5px 10px; color: var(--error); border-color: var(--error);" onclick="deleteUser(${user.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterUsers() {
+            const searchTerm = document.getElementById('userSearch').value.toLowerCase();
+            const filtered = allUsers.filter(u => 
+                u.name.toLowerCase().includes(searchTerm) || 
+                u.email.toLowerCase().includes(searchTerm)
+            );
+            renderUsers(filtered);
+        }
+
+        function showAddUserModal() {
+            document.getElementById('modalTitle').textContent = 'إضافة مستخدم جديد';
+            document.getElementById('editUserId').value = '';
+            document.getElementById('userForm').reset();
+            document.getElementById('passwordGroup').style.display = 'block';
+            document.getElementById('password').required = true;
+            document.getElementById('userModal').style.display = 'flex';
+        }
+
+        function closeUserModal() {
+            document.getElementById('userModal').style.display = 'none';
+        }
+
+        async function editUser(id) {
+            const user = await db.users.get(id);
+            if (user) {
+                document.getElementById('modalTitle').textContent = 'تعديل بيانات المستخدم';
+                document.getElementById('editUserId').value = user.id;
+                document.getElementById('fullName').value = user.name;
+                document.getElementById('email').value = user.email;
+                document.getElementById('role').value = user.role;
+                document.getElementById('passwordGroup').style.display = 'none';
+                document.getElementById('password').required = false;
+                document.getElementById('userModal').style.display = 'flex';
+            }
+        }
+
+        async function deleteUser(id) {
+            if (confirm('هل أنت متأكد من حذف هذا المستخدم؟')) {
+                await db.users.delete(id);
+                window.showToast('تم حذف المستخدم بنجاح', 'success');
+                loadUsers();
+            }
+        }
+
+        document.getElementById('userForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('editUserId').value;
+            const userData = {
+                name: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                role: document.getElementById('role').value,
+                updatedAt: new Date().toISOString()
+            };
+
+            if (id) {
+                // Update
+                await db.users.update(parseInt(id), userData);
+                window.showToast('تم تحديث بيانات المستخدم', 'success');
+            } else {
+                // Add
+                userData.password = document.getElementById('password').value;
+                userData.createdAt = new Date().toISOString();
+                await db.users.add(userData);
+                window.showToast('تم إضافة المستخدم بنجاح', 'success');
+            }
+
+            closeUserModal();
+            loadUsers();
+        };
+    </script>
+</body>
+</html>

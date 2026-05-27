@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب | منصة الشباب والرياضة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .signup-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .signup-logo {
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 50%;
+            margin: -80px auto 20px;
+            padding: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 4px solid #fff;
+        }
+
+        .signup-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .signup-header h2 {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .signup-header p {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .input-wrapper input, .input-wrapper select {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: #fff;
+        }
+
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+        .btn-signup {
+            width: 100%;
+            padding: 14px;
+            background: #10b981;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-signup:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(16, 185, 129, 0.2);
+        }
+
+        .login-link {
+            margin-top: 25px;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .login-link a {
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-card">
+        <div class="signup-logo">
+            <img src="logo.png" alt="مديرية الشباب والرياضة">
+        </div>
+        <div class="signup-header">
+            <h2 data-i18n="signup_title">إنشاء حساب جديد</h2>
+            <p data-i18n="join_us">انضم إلينا وابدأ رحلتك الرياضية اليوم</p>
+        </div>
+
+        <form id="signupForm">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label data-i18n="full_name">الاسم بالكامل</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" data-i18n="full_name_placeholder" placeholder="أدخل اسمك الثلاثي" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="email">البريد الإلكتروني</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" data-i18n="email" placeholder="name@example.com" required>
+                    </div>
+                </div>
+                <div class="form-group" style="display: none;">
+                    <label data-i18n="account_type">نوع الحساب</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user-tag"></i>
+                        <select id="role" required>
+                            <option value="user" selected data-i18n="user_member">مستخدم (شاب/فتاة)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="password">كلمة المرور</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" data-i18n="password" placeholder="••••••••" required minlength="6">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn-signup" data-i18n="signup_btn">إنشاء الحساب</button>
+        </form>
+
+        <div class="login-link">
+            <span data-i18n="already_have_account">لديك حساب بالفعل؟</span> <a href="index.html" data-i18n="login_here">سجل دخولك هنا</a>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const role = document.getElementById('role').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                // Check if user already exists
+                const existingUser = await db.users.where('email').equals(email).first();
+                if (existingUser) {
+                    showToast('هذا البريد الإلكتروني مسجل مسبقاً', 'error');
+                    return;
+                }
+
+                // Add new user
+                const userId = await db.users.add({
+                    name,
+                    email,
+                    role,
+                    password,
+                    points: 0,
+                    createdAt: new Date(),
+                    status: 'active'
+                });
+
+                // Auto Login
+                const sessionData = {
+                    userId: userId,
+                    loggedIn: true,
+                    role: role,
+                    expiresAt: new Date().getTime() + (24 * 60 * 60 * 1000)
+                };
+                
+                // Try saving with fallback
+                try {
+                    localStorage.setItem('session', JSON.stringify(sessionData));
+                } catch (e) {
+                    console.warn("LocalStorage quota exceeded");
+                }
+                
+                try {
+                    sessionStorage.setItem('session', JSON.stringify(sessionData));
+                } catch (e) {
+                    console.error("SessionStorage quota exceeded");
+                }
+
+                showToast('تم إنشاء الحساب بنجاح! جاري التوجيه...', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
+                }, 1000);
+
+            } catch (err) {
+                console.error(err);
+                showToast('حدث خطأ أثناء إنشاء الحساب', 'error');
+            }
+        });
+    </script>
+</body>
+</html>

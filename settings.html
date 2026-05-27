@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإعدادات | منصة الشباب والرياضة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="overlay" id="overlay"></div>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="logo.png" alt="المنصة">
+                </div>
+                <h3 id="platformTitle" data-i18n="admin_title">مديرية الشباب والرياضة</h3>
+                <p id="platformSubtitle" data-i18n="admin_subtitle">لوحة تحكم المسؤول</p>
+            </div>
+            <ul class="sidebar-nav" id="sidebarNav">
+                <!-- Links will be injected by JS based on role -->
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="btn btn-outline" id="menuToggle" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="بحث في النظام...">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile-header" onclick="window.logout()">
+                        <div class="user-avatar" id="headerAvatar">أ</div>
+                        <div class="user-info-text">
+                            <h4 id="userName">المستخدم</h4>
+                            <span style="color: var(--error);">تسجيل الخروج</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header fade-in">
+                    <h1 data-i18n="settings">الإعدادات ⚙️</h1>
+                    <p data-i18n="settings_desc" style="color: var(--text-muted);">تخصيص تجربتك على المنصة وإدارة حسابك.</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;" class="fade-in">
+                    <!-- Profile Settings -->
+                    <div class="card">
+                        <h3 style="margin-bottom: 20px;"><i class="fas fa-user-circle" style="color: var(--primary); margin-left: 10px;"></i><span data-i18n="profile_settings">تعديل الملف الشخصي</span></h3>
+                        <form id="profileForm">
+                            <div style="text-align: center; margin-bottom: 25px;">
+                                <div class="user-avatar" id="profileAvatarPreview" style="width: 100px; height: 100px; font-size: 2rem; margin: 0 auto 15px;">أ</div>
+                                <label class="btn btn-outline" style="cursor: pointer;">
+                                    <i class="fas fa-camera"></i> <span data-i18n="change_photo">تغيير الصورة</span>
+                                    <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="full_name">الاسم الكامل</label>
+                                <input type="text" id="editName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="email">البريد الإلكتروني</label>
+                                <input type="email" id="editEmail" class="form-control" readonly style="background: var(--bg-body);">
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="save">حفظ التغييرات</button>
+                        </form>
+                    </div>
+
+                    <!-- Appearance & Language -->
+                    <div class="card">
+                        <h3 style="margin-bottom: 20px;"><i class="fas fa-magic" style="color: var(--secondary); margin-left: 10px;"></i><span data-i18n="appearance_lang">المظهر واللغة</span></h3>
+                        
+                        <div class="form-group">
+                            <label data-i18n="language">اللغة (Language)</label>
+                            <select id="langSelect" class="form-control">
+                                <option value="ar">العربية (Arabic)</option>
+                                <option value="en">English (الإنجليزية)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label data-i18n="theme">المظهر (Theme)</label>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn btn-outline theme-btn" id="lightThemeBtn" style="flex: 1;" data-i18n="light">
+                                    <i class="fas fa-sun"></i> فاتح (Light)
+                                </button>
+                                <button class="btn btn-outline theme-btn" id="darkThemeBtn" style="flex: 1;" data-i18n="dark">
+                                    <i class="fas fa-moon"></i> داكن (Dark)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                            <button class="btn btn-error" onclick="window.logout()" style="width: 100%;" data-i18n="logout">
+                                <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+    <script>
+        let currentUser = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            currentUser = await window.getLoggedInUser();
+            if (currentUser) {
+                initSettingsPage();
+            }
+        });
+
+        function initSettingsPage() {
+            // Fill Form
+            document.getElementById('editName').value = currentUser.name;
+            document.getElementById('editEmail').value = currentUser.email;
+            document.getElementById('langSelect').value = currentUser.language || 'ar';
+            
+            updateAvatarPreview(currentUser.avatar, currentUser.name);
+            
+            // Sidebar Logic
+            renderSidebar(currentUser.role);
+
+            // Update Header Text based on role
+            const title = document.getElementById('platformTitle');
+            const subtitle = document.getElementById('platformSubtitle');
+            if (currentUser.role === 'admin') {
+                title.setAttribute('data-i18n', 'admin_title');
+                subtitle.setAttribute('data-i18n', 'admin_subtitle');
+            } else {
+                title.setAttribute('data-i18n', 'user_title');
+                subtitle.setAttribute('data-i18n', 'user_subtitle');
+            }
+
+            // Re-run translation to apply correct text
+            translatePage(currentUser.language || localStorage.getItem('lang') || 'ar');
+
+            // Theme Buttons UI
+            updateThemeButtons(currentUser.theme || 'light');
+        }
+
+        function renderSidebar(role) {
+            const nav = document.getElementById('sidebarNav');
+            const lang = localStorage.getItem('lang') || 'ar';
+            const t = translations[lang];
+
+            if (role === 'admin') {
+                nav.innerHTML = `
+                    <li class="nav-item"><a href="admin-dashboard.html" class="nav-link"><i class="fas fa-chart-pie"></i><span data-i18n="dashboard">${t.dashboard}</span></a></li>
+                    <li class="nav-item"><a href="admin-users.html" class="nav-link"><i class="fas fa-users"></i><span data-i18n="users">${t.users}</span></a></li>
+                    <li class="nav-item"><a href="admin-centers.html" class="nav-link"><i class="fas fa-building"></i><span data-i18n="centers">${t.centers}</span></a></li>
+                    <li class="nav-item"><a href="admin-ideas.html" class="nav-link"><i class="fas fa-lightbulb"></i><span data-i18n="ideas">${t.ideas}</span></a></li>
+                    <li class="nav-item"><a href="admin-challenges.html" class="nav-link"><i class="fas fa-trophy"></i><span data-i18n="challenges">${t.challenges}</span></a></li>
+                    <li class="nav-item"><a href="admin-complaints.html" class="nav-link"><i class="fas fa-exclamation-circle"></i><span data-i18n="complaints">${t.complaints}</span></a></li>
+                    <li class="nav-item"><a href="admin-reports.html" class="nav-link"><i class="fas fa-file-invoice"></i><span data-i18n="reports">${t.reports}</span></a></li>
+                    <li class="nav-item"><a href="settings.html" class="nav-link active"><i class="fas fa-cog"></i><span data-i18n="settings">${t.settings}</span></a></li>
+                `;
+            } else {
+                nav.innerHTML = `
+                    <li class="nav-item"><a href="user-dashboard.html" class="nav-link"><i class="fas fa-th-large"></i><span data-i18n="dashboard">${t.dashboard}</span></a></li>
+                    <li class="nav-item"><a href="user-centers.html" class="nav-link"><i class="fas fa-map-marker-alt"></i><span data-i18n="centers">${t.centers}</span></a></li>
+                    <li class="nav-item"><a href="user-ideas.html" class="nav-link"><i class="fas fa-lightbulb"></i><span data-i18n="ideas">${t.ideas}</span></a></li>
+                    <li class="nav-item"><a href="user-challenges.html" class="nav-link"><i class="fas fa-trophy"></i><span data-i18n="challenges">${t.challenges}</span></a></li>
+                    <li class="nav-item"><a href="user-complaints.html" class="nav-link"><i class="fas fa-comment-dots"></i><span data-i18n="complaints">${t.complaints}</span></a></li>
+                    <li class="nav-item"><a href="settings.html" class="nav-link active"><i class="fas fa-cog"></i><span data-i18n="settings">${t.settings}</span></a></li>
+                `;
+            }
+        }
+
+        function updateAvatarPreview(avatar, name) {
+            const preview = document.getElementById('profileAvatarPreview');
+            if (avatar) {
+                preview.innerHTML = `<img src="${avatar}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
+            } else {
+                preview.textContent = name.charAt(0).toUpperCase();
+            }
+        }
+
+        // Avatar Upload
+        document.getElementById('avatarInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const base64 = event.target.result;
+                    currentUser.avatar = base64;
+                    updateAvatarPreview(base64, currentUser.name);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Profile Update
+        document.getElementById('profileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const newName = document.getElementById('editName').value;
+            
+            await db.users.update(currentUser.id, {
+                name: newName,
+                avatar: currentUser.avatar
+            });
+            
+            window.showToast('تم تحديث الملف الشخصي بنجاح', 'success');
+            setTimeout(() => location.reload(), 1000);
+        });
+
+        // Theme Toggle
+        document.getElementById('lightThemeBtn').addEventListener('click', () => updateTheme('light'));
+        document.getElementById('darkThemeBtn').addEventListener('click', () => updateTheme('dark'));
+
+        async function updateTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            updateThemeButtons(theme);
+            if (currentUser) {
+                await db.users.update(currentUser.id, { theme });
+            }
+            window.showToast(theme === 'dark' ? 'تم تفعيل الوضع الداكن' : 'تم تفعيل الوضع الفاتح', 'info');
+        }
+
+        function updateThemeButtons(theme) {
+            document.getElementById('lightThemeBtn').classList.toggle('btn-primary', theme === 'light');
+            document.getElementById('darkThemeBtn').classList.toggle('btn-primary', theme === 'dark');
+        }
+
+        // Language Switch
+        document.getElementById('langSelect').addEventListener('change', async (e) => {
+            const lang = e.target.value;
+            localStorage.setItem('lang', lang);
+            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', lang);
+            
+            if (currentUser) {
+                await db.users.update(currentUser.id, { language: lang });
+            }
+            
+            window.showToast(lang === 'ar' ? 'تم تغيير اللغة للعربية' : 'Language changed to English', 'success');
+            setTimeout(() => location.reload(), 1000);
+        });
+    </script>
+</body>
+</html>
