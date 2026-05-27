@@ -1,271 +1,633 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول | منصة الشباب والرياضة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>فريق الأنامل الرقمية | إدارة بنها التعليمية</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="icon" type="image/x-icon" href="image/logo1.jpeg" />
+  <link rel="stylesheet" href="static/css/style.css" />
+  <meta name="description"
+    content="فريق الأنامل الرقمية - فريق طلابي في إدارة بنها التعليمية يهدف إلى تطوير مهارات البرمجة والتقنية بين الطلاب من خلال مشاريع وتدريبات وفعاليات متنوعة." />
+  <style>
+    /* إضافة تنسيق إضافي لتقصير كروت القادة */
+    .leaders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
 
-        .login-card {
-            background: #fff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 450px;
-            text-align: center;
-            animation: slideIn 0.6s ease-out;
-        }
+    .leader-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      height: 350px;
+      /* تحديد ارتفاع الكرت */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .leader-card:hover {
+      transform: translateY(-5px);
+    }
 
-        .login-logo {
-            width: 100px;
-            height: 100px;
-            background: #fff;
-            border-radius: 50%;
-            margin: -90px auto 20px;
-            padding: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            border: 5px solid #fff;
-        }
+    .leader-img {
+      width: 100px;
+      /* تصغير حجم الصورة */
+      height: 100px;
+      /* تصغير حجم الصورة */
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 4px solid var(--primary-color);
+    }
 
-        .login-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+    .leader-info h3 {
+      margin: 10px 0 5px;
+      color: var(--text-color);
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
 
-        .login-header h2 {
-            font-size: 1.8rem;
-            color: #1e293b;
-            margin-bottom: 10px;
-        }
+    .leader-role {
+      display: block;
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
 
-        .login-header p {
-            color: #64748b;
-            margin-bottom: 30px;
-        }
+    .leader-desc {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin: 8px 0;
+      line-height: 1.4;
+      max-height: 40px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-        .role-selector {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            background: #f1f5f9;
-            padding: 5px;
-            border-radius: 12px;
-        }
+    /* تنسيق خاص للقيادات العليا */
+    .senior-leaders {
+      background: linear-gradient(135deg, rgba(74, 0, 224, 0.05) 0%, rgba(142, 45, 226, 0.05) 100%);
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 40px;
+      border: 1px solid rgba(74, 0, 224, 0.1);
+    }
 
-        .role-btn {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            background: transparent;
-            color: #64748b;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s;
-            font-family: inherit;
-        }
+    .senior-title {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 30px;
+      font-size: 1.5rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
 
-        .role-btn.active {
-            background: #fff;
-            color: #2563eb;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
+    .senior-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      transform: translateX(50%);
+      width: 100px;
+      height: 3px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
 
-        .form-group {
-            text-align: right;
-            margin-bottom: 20px;
-        }
+    .senior-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #475569;
-        }
+    .senior-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
 
-        .input-wrapper {
-            position: relative;
-        }
+    .senior-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary-color);
+      box-shadow: 0 10px 25px rgba(74, 0, 224, 0.15);
+    }
 
-        .input-wrapper i {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
-        }
+    .senior-img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 5px solid var(--primary-color);
+    }
 
-        .input-wrapper input {
-            width: 100%;
-            padding: 12px 45px 12px 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-family: inherit;
-            transition: all 0.3s;
-        }
+    .senior-info h3 {
+      margin: 15px 0 8px;
+      color: var(--text-color);
+      font-size: 1.3rem;
+      line-height: 1.4;
+    }
 
-        .input-wrapper input:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-        }
+    .senior-role {
+      display: block;
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+      line-height: 1.3;
+      background: rgba(74, 0, 224, 0.1);
+      padding: 6px 15px;
+      border-radius: 20px;
+      display: inline-block;
+    }
 
-        .btn-login {
-            width: 100%;
-            padding: 14px;
-            background: #2563eb;
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
+    .senior-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin: 10px 0;
+      line-height: 1.5;
+    }
 
-        .btn-login:hover {
-            background: #1e40af;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px rgba(37, 99, 235, 0.2);
-        }
+    /* تنسيق عداد الأعلام */
+    .flag-counter {
+      text-align: center;
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.03);
+      border-radius: 10px;
+      direction: ltr;
+    }
 
-        .signup-link {
-            margin-top: 25px;
-            color: #64748b;
-            font-size: 0.95rem;
-        }
+    .flag-counter img {
+      max-width: 100%;
+      height: auto;
+    }
 
-        .signup-link a {
-            color: #2563eb;
-            font-weight: 700;
-        }
+    /* استجابة للشاشات الصغيرة */
+    @media (max-width: 768px) {
 
-        .signup-link a:hover {
-            text-decoration: underline;
-        }
-    </style>
+      .leaders-grid,
+      .senior-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .leader-card {
+        max-width: 100%;
+        height: 320px;
+        /* تصغير أكثر للشاشات الصغيرة */
+      }
+
+      .senior-card {
+        padding: 20px;
+      }
+
+      .senior-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
 </head>
-<body>
-    <div class="login-card">
-        <div class="login-logo">
-            <img src="logo.png" alt="مديرية الشباب والرياضة">
-        </div>
-        <div class="login-header">
-            <h2 data-i18n="login_title">تسجيل الدخول</h2>
-            <p data-i18n="welcome_back">مرحباً بك مجدداً في منصة الشباب</p>
+
+<body data-theme="light">
+  <!-- القائمة الجانبية -->
+  <aside class="side-nav" id="sideNav">
+    <div class="side-nav-header">
+      <img src="image/logo1.jpeg" alt="شعار" class="nav-logo" />
+      <span class="nav-close" id="closeNav"><i class="fas fa-times"></i></span>
+    </div>
+    <nav class="side-nav-links">
+      <a href="index.html" class="active"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="about.html"><i class="fas fa-users"></i> عن الفريق</a>
+      <a href="history.html"><i class="fas fa-clock-rotate-left"></i> تاريخ الفريق</a>
+      <a href="members.html"><i class="fas fa-address-book"></i> الأعضاء</a>
+      <a href="trainings.html"><i class="fas fa-chalkboard-teacher"></i> التدريبات</a>
+      <a href="projects.html"><i class="fas fa-rocket"></i> المشاريع</a>
+      <a href="announcements.html"><i class="fas fa-bell"></i> الإعلانات</a>
+      <a href="events.html"><i class="fas fa-calendar-check"></i> الفعاليات</a>
+      <a href="resources.html"><i class="fas fa-book"></i> الموارد</a>
+      <a href="faq.html"><i class="fas fa-question"></i> الأسئلة الشائعة</a>
+    </nav>
+    <div class="side-nav-footer">
+      <div class="side-social">
+        <a href="https://www.facebook.com/share/1CDuJyAeHV/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://github.com/Digital-Fingers-Team" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/dfteam_eg?igsh=N2liZ3JkaWVpNXR0" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div class="side-nav-copyright">
+        &copy; 2025 فريق الأنامل الرقمية | DF Team
+      </div>
+    </div>
+  </aside>
+  <div class="overlay" id="navOverlay"></div>
+
+  <!-- الترويسة -->
+  <header class="main-header">
+    <div class="header-left">
+      <img src="image/logo1.jpeg" alt="شعار" class="logo" />
+      <span class="brand-name">DF Team</span>
+    </div>
+    <div class="header-center">
+      <span class="welcome-message">مرحباً بكم في فريق الأنامل الرقمية</span>
+    </div>
+    <div class="header-right">
+      <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="header-menu-btn" id="menuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- الرئيسية/الهيرو -->
+  <section class="hero-section container">
+    <div class="hero-content">
+      <h1 class="hero-title">فريق الأنامل الرقمية | DF Team</h1>
+      <p class="hero-desc">الفريق الصاعد</p>
+      <div class="hero-btns">
+        <a href="about.html" class="btn btn-primary">تعرف علينا</a>
+        <a href="members.html" class="btn btn-primary">فريقنا</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="image/logo1.jpeg" alt="شعار الفريق" />
+    </div>
+  </section>
+
+  <!-- الإحصائيات -->
+  <section class="container">
+    <div class="stats-section">
+      <div class="stat-card">
+        <i class="fas fa-users"></i>
+        <h3>16</h3>
+        <p>عضو بالفريق</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-laptop-code"></i>
+        <h3>11+</h3>
+        <p>مشروع تقني</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <h3>27+</h3>
+        <p>ورشة تدريبية</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-trophy"></i>
+        <h3>3</h3>
+        <p>جوائز تقنية</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- القيادات العليا -->
+  <section class="leaders-section container">
+    <div class="senior-leaders">
+      <h2 class="senior-title">القيادات العليا</h2>
+      <div class="senior-grid">
+        <!-- كارت وكيل الوزارة -->
+        <div class="senior-card">
+          <img src="image/mr-yaser.jpeg" alt="وكيل وزارة التربية والتعليم" class="senior-img" />
+          <div class="senior-info">
+            <h3>دكتور / ياسر محمود محمد </h3>
+            <span class="senior-role">وكيل وزارة التربية والتعليم</span>
+            <p class="senior-desc">مدير مديرية التربية و التعليم بالقليوبية</p>
+          </div>
         </div>
 
-        <form id="loginForm">
-            <div class="form-group">
-                <label data-i18n="email">البريد الإلكتروني</label>
-                <div class="input-wrapper">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" id="email" data-i18n="email" placeholder="name@example.com" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label data-i18n="password">كلمة المرور</label>
-                <div class="input-wrapper">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" id="password" data-i18n="password" placeholder="••••••••" required>
-                </div>
-            </div>
-            <button type="submit" class="btn-login" data-i18n="login_title">تسجيل الدخول</button>
-        </form>
-
-        <div class="signup-link">
-            <span data-i18n="no_account">ليس لديك حساب؟</span> <a href="signup.html" data-i18n="signup_title">إنشاء حساب جديد</a>
+        <!-- كارت مدير الإدارة -->
+        <div class="senior-card">
+          <img src="image/mr-saad.jpeg" alt="مدير إدارة بنها التعليمية" class="senior-img" />
+          <div class="senior-info">
+            <h3>الأستاذ / سعد محمود عسل</h3>
+            <span class="senior-role">مدير إدارة بنها التعليمية</span>
+            <p class="senior-desc">اعلى سلطة بالإدارة ويشرف على الفريق اثناء العمل</p>
+          </div>
         </div>
+      </div>
     </div>
 
-    <script src="https://unpkg.com/dexie@3.2.4/dist/dexie.js"></script>
-    <script src="db.js"></script>
-    <script src="app.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            const user = await window.getLoggedInUser();
-            if (user) {
-                if (user.role === 'admin') window.location.href = 'admin-dashboard.html';
-                else if (user.role === 'manager') window.location.href = 'manager-dashboard.html';
-                else window.location.href = 'user-dashboard.html';
-            }
+    <h2 class="section-title">القادة والمشرفون</h2>
+
+    <!-- صف القادة - قائد الفريق والمشرف العام والإداري -->
+    <div class="leaders-grid">
+      <!-- كارت قائد الفريق -->
+      <div class="leader-card">
+        <img src="image/ahmed.jpg" alt="قائد الفريق" class="leader-img" />
+        <div class="leader-info">
+          <h3>Ahmed Abdelraouf</h3>
+          <span class="leader-role">قائد الفريق</span>
+        </div>
+        <a href="member-details.html?id=0" class="btn btn-primary btn-sm">عرض الصفحة الشخصية</a>
+      </div>
+
+      <!-- كارت المشرف العام والإداري -->
+      <div class="leader-card">
+        <img src="image/mr.emad.jpeg" alt="المشرف العام والإداري" class="leader-img" />
+        <div class="leader-info">
+          <h3>أ. عماد الدين صالح</h3>
+          <span class="leader-role">المشرف العام والإداري</span>
+          <p class="leader-desc">مدير مركز التطوير بالإدارة</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- صف المشرفين التنفيذيين -->
+    <div class="leaders-grid">
+      <!-- كارت المشرف التنفيذي الأول -->
+      <div class="leader-card">
+        <img src="image/hany.jpeg" alt="المشرف التنفيذي" class="leader-img" />
+        <div class="senior-info">
+          <h3>أ. هاني محمد العزب</h3>
+          <span class="leader-role">المشرف التنفيذي</span>
+          <p class="leader-desc">إشراف تنفيذي</p>
+        </div>
+      </div>
+
+      <!-- كارت المشرف التنفيذي الثاني -->
+      <div class="leader-card">
+        <img src="ms khadra.jpeg" alt="المشرف التنفيذي" class="leader-img" />
+        <div class="senior-info">
+          <h3>أ. خضرة عبد الباسط السيد</h3>
+          <span class="leader-role">المشرف التنفيذي</span>
+          <p class="leader-desc">إشراف تنفيذي</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- أحدث التدريبات -->
+  <section class="trainings-section container">
+    <h2 class="section-title">أحدث التدريبات</h2>
+    <div class="trainings-grid">
+      <div class="training-card">
+        <img src="image/WhatsApp Image 2025-08-17 at 01.42.55_b5f8e373.jpg" alt="تدريب" class="training-img" />
+        <div class="training-info">
+          <h3>مهارات التواصل الفعال</h3>
+          <span class="training-date"><i class="far fa-calendar-alt"></i> 13 اغسطس 2025</span>
+          <p>
+            لتطوير المهارات كثل التواصل مع المتدربين و مهارات الإلقاء امام
+            الجمهور و غيرها من المهارات المهمة في المجال
+          </p>
+          <a href="trainings.html" class="btn btn-primary btn-xs">التفاصيل</a>
+        </div>
+      </div>
+      <div class="training-card">
+        <img src="image/IMG-20250820-WA0210.jpg" alt="تدريب" class="training-img" />
+        <div class="training-info">
+          <h3>منحة إعداد مهارات القادة</h3>
+          <span class="training-date"><i class="far fa-calendar-alt"></i> 20 أغسطس 2025</span>
+          <p>تم تدريب مهارات تدريب المدربين لمعرفة كيف تصبح مدرب ناجح</p>
+          <a href="trainings.html" class="btn btn-primary btn-xs">التفاصيل</a>
+        </div>
+      </div>
+      <div class="training-card">
+        <img src="image/IMG-20250820-WA0213.jpg" alt="تدريب" class="training-img" />
+        <div class="training-info">
+          <h3>كورس scratch</h3>
+          <span class="training-date"><i class="far fa-calendar-alt"></i> 25 أغسطس 2025</span>
+          <p>
+            ورشة تدريبية تفاعلية تعرّف المشاركين بأساسيات البرمجة باستخدام
+            بيئة Scratch، حيث تعلّموا كيفية إنشاء ألعاب وقصص ورسوم متحركة
+            بطريقة ممتعة ومبسطة، مع تنمية مهارات التفكير الإبداعي وحل
+            المشكلات.
+          </p>
+          <a href="trainings.html" class="btn btn-primary btn-xs">التفاصيل</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- آراء المتدربين -->
+  <section class="testimonials-section container">
+    <h2 class="section-title">آراء المتدربين</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          تجربة رائعة مع فريق الانامل الرقمية | DF Team، تعلمت الكثير من
+          المهارات التي ساعدتني في بداية مسيرتي.
+        </div>
+        <div class="testimonial-author">
+          <img src="image/loka.png" alt="متدرب" />
+          <span>ملك ممدوح<br /><small>متدربة سابقة</small></span>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          الورش التدريبية كانت عملية ومفيدة والمدربين متعاونين ويمتلكون خبرة
+          كبيرة.
+        </div>
+        <div class="testimonial-author">
+          <img src="image/profile.jpg" alt="متدربة" />
+          <span>سارة أحمد<br /><small>متدربة سابقة</small></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- التذييل -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <img src="image/logo1.jpeg" alt="شعار" class="footer-logo" />
+          <h3>فريق الانامل الرقمية</h3>
+          <p>الفريق الصاعد</p>
+        </div>
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">عن الفريق</a></li>
+            <li><a href="members.html">الأعضاء</a></li>
+            <li><a href="trainings.html">التدريبات</a></li>
+            <li><a href="projects.html">المشاريع</a></li>
+            <li><a href="events.html">الفعاليات</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>تواصل معنا</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> info@dfteam-eg.com</li>
+            <li><i class="fas fa-phone"></i> 01557732629</li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i> بنها - القليوبية - مصر
+            </li>
+          </ul>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/share/1CDuJyAeHV/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://github.com/Digital-Fingers-Team" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/dfteam_eg?igsh=N2liZ3JkaWVpNXR0" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- عداد الأعلام - تمت إضافته هنا -->
+      <div class="flag-counter">
+        <a href="https://info.flagcounter.com/E81I">
+          <img src="https://s01.flagcounter.com/count2/E81I/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0">
+        </a>
+      </div>
+      
+      <div class="footer-bottom">
+        جميع الحقوق محفوظة © 2025 فريق الأنامل الرقمية- DF Team
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // عناصر القائمة الجانبية
+      const sideNav = document.getElementById("sideNav");
+      const closeNav = document.getElementById("closeNav");
+      const menuBtn = document.getElementById("menuBtn");
+      const navOverlay = document.getElementById("navOverlay");
+      const themeToggle = document.getElementById("themeToggle");
+      const themeIcon = themeToggle.querySelector("i");
+
+      // حالات الثيم
+      const themes = ["light", "dark", "purple"];
+      let currentThemeIndex = 0;
+
+      // تطبيق الثيم
+      function applyTheme(themeIndex) {
+        document.body.setAttribute("data-theme", themes[themeIndex]);
+
+        // تغيير الأيقونة حسب الثيم
+        if (themes[themeIndex] === "light") {
+          themeIcon.className = "fas fa-moon";
+        } else if (themes[themeIndex] === "dark") {
+          themeIcon.className = "fas fa-star";
+        } else {
+          themeIcon.className = "fas fa-sun";
+        }
+
+        // حفظ الثيم في localStorage
+        localStorage.setItem("theme", themes[themeIndex]);
+      }
+
+      // تبديل الثيم
+      themeToggle.addEventListener("click", function () {
+        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+        applyTheme(currentThemeIndex);
+      });
+
+      // تحميل الثيم المحفوظ
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        currentThemeIndex = themes.indexOf(savedTheme);
+        if (currentThemeIndex === -1) currentThemeIndex = 0;
+        applyTheme(currentThemeIndex);
+      }
+
+      // فتح القائمة الجانبية
+      function openSideNav() {
+        sideNav.classList.add("open");
+        navOverlay.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      // إغلاق القائمة الجانبية
+      function closeSideNav() {
+        sideNav.classList.remove("open");
+        navOverlay.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      // إضافة مستمع الأحداث لزر الإغلاق
+      if (closeNav) {
+        closeNav.addEventListener("click", closeSideNav);
+      }
+
+      // إضافة مستمع الأحداث لزر القائمة
+      if (menuBtn) {
+        menuBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          openSideNav();
         });
+      }
 
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+      // إضافة مستمع الأحداث للخلفية المظللة
+      if (navOverlay) {
+        navOverlay.addEventListener("click", closeSideNav);
+      }
 
-            try {
-                const user = await db.users.where('email').equals(email).first();
-                
-                if (!user) {
-                    showToast('البريد الإلكتروني غير موجود', 'error');
-                    return;
-                }
+      // إغلاق القائمة عند الضغط على مفتاح Escape
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeSideNav();
+        }
+      });
 
-                if (user.password !== password) {
-                    showToast('كلمة المرور غير صحيحة', 'error');
-                    return;
-                }
+      // تحديث رسالة الترحيب حسب دور المستخدم
+      function updateWelcomeMessage() {
+        const welcomeMessage = document.querySelector(".welcome-message");
+        if (!welcomeMessage) return;
 
-                // Create session
-                const expiresAt = new Date().getTime() + (2 * 60 * 60 * 1000); // 2 hours
-                const sessionData = {
-                    userId: user.id,
-                    loggedIn: true,
-                    role: user.role,
-                    expiresAt: expiresAt
-                };
-                
-                // Try saving to both Storage mechanisms with fallback
-                try {
-                    localStorage.setItem('session', JSON.stringify(sessionData));
-                } catch (e) {
-                    console.warn("LocalStorage full, using SessionStorage only");
-                }
-                
-                try {
-                    sessionStorage.setItem('session', JSON.stringify(sessionData));
-                } catch (e) {
-                    console.error("SessionStorage also full!");
-                }
-                
-                showToast(`مرحباً ${user.name}، جاري توجيهك...`);
-                
-                setTimeout(() => {
-                    if (user.role === 'admin') {
-                        window.location.href = 'admin-dashboard.html';
-                    } else if (user.role === 'manager') {
-                        window.location.href = 'manager-dashboard.html';
-                    } else {
-                        window.location.href = 'user-dashboard.html';
-                    }
-                }, 1000);
+        let userData = null;
+        try {
+          userData =
+            JSON.parse(localStorage.getItem("userData")) ||
+            JSON.parse(sessionStorage.getItem("userData"));
+        } catch (error) {
+          console.log("لا توجد بيانات مستخدم مسجل");
+        }
 
-            } catch (err) {
-                console.error("Login Error:", err);
-                showToast('حدث خطأ أثناء تسجيل الدخول: ' + err.message, 'error');
-            }
+        if (userData && userData.loggedIn) {
+          if (userData.role === "قائد الفريق") {
+            welcomeMessage.textContent = `مرحباً بك قائد فريق الأنامل الرقمية (${userData.name})`;
+          } else {
+            welcomeMessage.textContent = `مرحباً بك عضو فريق الأنامل الرقمية ${userData.name}`;
+          }
+        } else {
+          welcomeMessage.textContent = "مرحباً بكم في فريق الأنامل الرقمية";
+        }
+      }
+
+      window.updateWelcomeMessage = updateWelcomeMessage;
+      updateWelcomeMessage();
+
+      // إضافة تأثيرات ظهور عند التمرير
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-in");
+          }
         });
-    </script>
+      }, observerOptions);
+
+      // مراقبة العناصر لإضافة تأثير الظهور
+      document
+        .querySelectorAll(
+          ".stat-card, .training-card, .testimonial-card, .leader-card, .senior-card"
+        )
+        .forEach(function (card) {
+          observer.observe(card);
+        });
+    });
+    console.log(`DF developers are saying hi`);
+  </script>
 </body>
+
 </html>
