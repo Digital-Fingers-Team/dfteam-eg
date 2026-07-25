@@ -389,6 +389,7 @@
 
     <script>
       // بيانات الفريق محدثة حسب الطلب
+      // "عدل ان انس محمد هو قائد الروبوتكس في الفريق و كمان زود حبيبة طلال عضو قسم البرمجة و الروبوتكس و زود حلا محمد رشاد قائد قسم الاوبيريشن وشيل احمد هشام و هنا جمال و خلي إيد عبد الرؤوف هو Deputy General Leader وسلمى علاء هي Deputy Executive Leader و سلمى سامح هي Executive Leader"
       const members = [
         {
           id: 0,
@@ -416,8 +417,8 @@
           nameAr: "سلمى سامح",
           age: "16 Years old",
           education: "Sec 2",
-          role: "Co-Leader",
-          roleAr: "مساعد القائد",
+          role: "Executive Leader",
+          roleAr: "القائد التنفيذي",
           img: "image/salma sameh.jpg",
           experiences: [
             "Managed project operations and workflow using FileMaker",
@@ -433,8 +434,8 @@
           nameAr: "سلمى علاء",
           age: "14 Years old",
           education: "prep 1",
-          role: "Executive Leader",
-          roleAr: "القائد المنفذ",
+          role: "Deputy Executive Leader",
+          roleAr: "نائب القائد التنفيذي",
           img: "image/salma alaa.jpeg",
           experiences: [
             "Led a small programming team to develop web projects",
@@ -450,8 +451,8 @@
           nameAr: "إياد عبد الرؤوف",
           age: "14 Years old",
           education: "prep 2",
-          role: "Executive Leader",
-          roleAr: "القائد المنفذ",
+          role: "Deputy General Leader",
+          roleAr: "نائب القائد العام",
           img: "image/alpha.jpeg",
           experiences: [
             "Built interactive web pages using HTML, CSS, and JavaScript",
@@ -496,23 +497,39 @@
         },
         {
           id: 6,
-          name: "Ahmed Hesham",
-          nameAr: "أحمد هشام",
-          age: "17 Years old",
+          name: "Hla Mohamed Rashad",
+          nameAr: "حلا محمد رشاد",
+          age: "16 Years old",
           education: "Sec 2",
-          role: "Programming Member",
-          roleAr: "عضو برمجة",
-          img: "image/Ahmed Hesham.jpeg",
-          experiences: [ 
-            "Led a programming team to build full-stack web applications",
-            "Developed server-side logic using Node.js",
-            "Built interactive front-end interfaces with JavaScript and CSS",
-            "Mentored team members in Python and web development"
+          role: "Operation Leader",
+          roleAr: "قائد قسم الأوبريشن",
+          img: "image/hlas.jpeg",
+          experiences: [
+            "Supervised operational workflows and task distribution",
+            "Optimized team processes and coordination",
+            "Managed project timelines and resource allocation"
           ],
-          skills: ["Python", "Html", "Css" , "js" , "node.js"],
+          skills: ["Html", "Css" , "Operation Management", "Leadership"],
         },
         {
           id: 7,
+          name: "Anas Mohamed",
+          nameAr: "أنس محمد",
+          age: "14 Years old",
+          education: "prep 3",
+          role: "Robotics Leader",
+          roleAr: "قائد الروبوتكس",
+          img: "image/file_2025-08-19_11.53.40.png",
+          experiences: [
+            "Led robotics projects and competitions",
+            "Programmed microcontrollers and robotic systems",
+            "Developed automation solutions using embedded systems",
+            "Mentored team members in robotics and programming"
+          ],
+          skills: ["Python", "Html", "Css" , "js", "Robotics", "Arduino", "Embedded Systems"],
+        },
+        {
+          id: 8,
           name: "Soha Sameh",
           nameAr: "سهى سامح",
           age: "15 Years old",
@@ -528,23 +545,23 @@
           skills: ["Python", "Html", "Css" , "js" , "githup"],
         },
         {
-          id: 8,
-          name: "Hla Magdi",
-          nameAr: "حلا مجدي",
-          age: "17 Years old",
-          education: "Sec 2",
-          role: "Programming Member",
-          roleAr: "عضو برمجة",
-          img: "image/hla m.jpeg",
-          experiences: [ 
-            "Styled web pages using HTML and CSS",
-            "Used Git and GitHub to manage and share code with the team",
-            "Created visual content and helped with media tasks"
+          id: 9,
+          name: "Habiba Talal",
+          nameAr: "حبيبة طلال",
+          age: "15 Years old",
+          education: "Sec 1",
+          role: "Programming & Robotics Member",
+          roleAr: "عضو برمجة وروبوتكس",
+          img: "image/habiba.jpeg",
+          experiences: [
+            "Developed robotics projects using microcontrollers",
+            "Worked on both hardware and software for robotic systems",
+            "Collaborated on team programming projects"
           ],
-          skills: ["Html", "Css" , "githup"],
+          skills: ["Python", "Html", "Css", "Robotics", "Arduino"],
         },
         {
-          id: 9,
+          id: 10,
           name: "Maryam Elgohary",
           nameAr: "مريم الجوهري",
           age: "17 Years old",
@@ -560,7 +577,7 @@
           skills: ["Python", "Html", "Css" , "githup"],
         },
         {
-          id: 10,
+          id: 11,
           name: "Retaj Hamdy",
           nameAr: "ريتاج حمدي",
           age: "16 Years old",
@@ -575,7 +592,7 @@
           skills: [ "Html", "Css" , "vibe-coding"],
         },
         {
-          id: 11,
+          id: 12,
           name: "hana abdelazez",
           nameAr: "هنا عبد العزيز",
           age: "17 Years old",
@@ -589,22 +606,6 @@
             "Supported team coordination during project development"
           ],
           skills: ["Html", "operating"],
-        },
-        {
-          id: 12,
-          name: "Anas mohamed",
-          nameAr: "أنس محمد",
-          age: "14 Years old",
-          education: "prep 3",
-          role: "Programming Member",
-          roleAr: "عضو برمجة",
-          img: "image/file_2025-08-19_11.53.40.png",
-          experiences:  [
-            "Created static websites using HTML and CSS",
-            "Practiced JavaScript to add interactivity to web pages",
-            "Worked on Python programming exercises and small projects"
-          ],
-          skills: ["Python", "Html", "Css" , "js"],
         },
         {
           id: 13,
@@ -657,11 +658,17 @@
         let badgeHtml = '';
         if (member.role === "General Leader") {
           badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
-        } else if (member.role === "Co-Leader") {
+        } else if (member.role === "Deputy General Leader") {
           badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
         } else if (member.role === "Executive Leader") {
           badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+        } else if (member.role === "Deputy Executive Leader") {
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
         } else if (member.role === "Programming Leader") {
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+        } else if (member.role === "Robotics Leader") {
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+        } else if (member.role === "Operation Leader") {
           badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
         } else if (member.role === "Media Team Leader & Supervisor") {
           badgeHtml = `<div class="leader-badge">${member.roleAr}</div><div class="supervisor-badge" style="margin-top:5px;">مشرف عام على الإعلام</div>`;
