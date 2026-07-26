@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>صفحة العضو | فريق الأنامل الرقمية</title>
+    <title>أعضاء الفريق | فريق الأنامل الرقمية</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
@@ -14,127 +14,251 @@
     />
     <link rel="icon" type="image/x-icon" href="image/logo1.jpeg" />
     <link rel="stylesheet" href="static/css/style.css" />
+
     <style>
-      .member-details-card {
-        background: var(--card-bg);
-        border-radius: 30px;
-        overflow: hidden;
-        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-        margin-bottom: 2rem;
-        transition: transform 0.3s ease, opacity 0.6s ease;
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      .member-details-card.animate-in {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .member-header {
+      /* Members Grid Styles - بدون دوران */
+      .members-container {
+        width: 100%;
+        padding: 2rem 0;
         text-align: center;
-        padding: 2rem;
-        background: linear-gradient(135deg, rgba(var(--color-accent), 0.15), rgba(var(--color-accent), 0.05));
+        position: relative;
+        margin-top: 60px;
       }
-      .member-header .member-img {
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
+
+      .members-title {
+        color: var(--text-color);
+        margin-bottom: 3rem;
+        font-size: 2.5rem;
+        font-weight: 700;
+        font-family: "Tajawal", sans-serif;
+      }
+
+      .members-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 20px 0;
+      }
+
+      .member-card {
+        background: linear-gradient(
+          135deg,
+          rgba(var(--color-card), 0.15) 0%,
+          rgba(var(--color-card), 0.05) 100%
+        );
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        border: 2px solid rgba(var(--color-card), 0.3);
+        backdrop-filter: blur(5px);
+      }
+
+      [data-theme="light"] .member-card {
+        background: linear-gradient(
+          135deg,
+          rgba(var(--color-card), 0.25) 0%,
+          rgba(var(--color-card), 0.1) 100%
+        );
+        border-color: rgba(var(--color-card), 0.5);
+      }
+
+      .member-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(var(--color-card), 0.8);
+        box-shadow: 0 15px 35px rgba(var(--color-card), 0.2);
+      }
+
+      .member-img {
+        width: 100%;
+        height: 280px;
         object-fit: cover;
-        border: 5px solid var(--border-color);
-        margin-bottom: 1rem;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
       }
-      .member-header .member-name {
-        font-size: 1.8rem;
-        margin-bottom: 0.25rem;
+
+      .member-info {
+        padding: 1.2rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.05);
       }
+
+      .member-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-color);
+        margin: 0 0 0.25rem 0;
+        line-height: 1.3;
+        font-family: "Tajawal", sans-serif;
+      }
+      
       .member-name-arabic {
-        font-size: 1rem;
+        font-size: 0.75rem;
         font-weight: 400;
         color: rgba(var(--text-color-rgb), 0.6);
         margin-bottom: 0.5rem;
+        font-family: "Tajawal", sans-serif;
+        letter-spacing: -0.3px;
       }
-      .member-header .member-role {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: rgba(var(--color-accent), 0.9);
-        display: inline-block;
-        padding: 0.3rem 1rem;
-        background: rgba(var(--color-accent), 0.1);
-        border-radius: 50px;
-      }
-      .member-info {
-        padding: 2rem;
-      }
-      .member-info-item {
-        margin-bottom: 1.5rem;
-        border-bottom: 1px solid rgba(var(--border-color-rgb), 0.3);
-        padding-bottom: 0.8rem;
-      }
-      .member-info-item strong {
-        display: block;
-        font-size: 1.1rem;
-        color: var(--text-color);
-        margin-bottom: 0.5rem;
-      }
-      .member-experiences {
-        margin-bottom: 1.5rem;
-        border-bottom: 1px solid rgba(var(--border-color-rgb), 0.3);
-        padding-bottom: 0.8rem;
-      }
-      .member-experiences strong {
-        display: block;
-        font-size: 1.1rem;
-        margin-bottom: 0.8rem;
-      }
-      .member-experiences ul {
-        list-style: none;
-        padding: 0;
-      }
-      .member-experiences li {
-        padding: 0.5rem 0 0.5rem 1.5rem;
-        position: relative;
-      }
-      .member-experiences li::before {
-        content: "▹";
-        position: absolute;
-        right: 0;
-        color: rgba(var(--color-accent), 0.8);
-      }
-      .member-skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 0.5rem;
-      }
-      .skill-tag {
-        background: rgba(var(--color-accent), 0.15);
-        padding: 0.3rem 1rem;
-        border-radius: 50px;
+
+      .member-role {
         font-size: 0.85rem;
-        font-weight: 500;
+        color: rgba(var(--color-card), 0.9);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-family: "Tajawal", sans-serif;
       }
-      .btn-outline {
-        background: transparent;
-        border: 2px solid var(--border-color);
-        color: var(--text-color);
-        padding: 0.6rem 1.5rem;
-        border-radius: 50px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        display: inline-block;
-      }
-      .btn-outline:hover {
-        background: var(--border-color);
-        color: var(--bg-color);
-      }
-      .leader-badge-detail {
+
+      .leader-badge {
         background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
         color: white;
-        padding: 0.4rem 1rem;
-        border-radius: 30px;
-        font-size: 0.85rem;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.7rem;
         font-weight: 700;
+        margin-top: 0.3rem;
         display: inline-block;
-        margin-top: 0.5rem;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+      
+      .supervisor-badge {
+        background: linear-gradient(45deg, #6b9fff, #8eb8ff);
+        color: white;
+        padding: 0.2rem 0.6rem;
+        border-radius: 20px;
+        font-size: 0.65rem;
+        font-weight: 600;
+        margin-top: 0.2rem;
+        display: inline-block;
+      }
+
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 5px #ff6b6b;
+        }
+        to {
+          box-shadow: 0 0 15px #ff6b6b, 0 0 20px #ff8e8e;
+        }
+      }
+
+      /* join card special styles */
+      .join-card {
+        background: linear-gradient(135deg, rgba(100, 200, 255, 0.2) 0%, rgba(80, 160, 255, 0.1) 100%);
+        border: 2px dashed rgba(100, 180, 255, 0.7);
+        cursor: pointer;
+      }
+      .join-card:hover {
+        border: 2px solid rgba(100, 180, 255, 1);
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(100, 180, 255, 0.3);
+      }
+      .join-icon {
+        font-size: 3.5rem;
+        color: #5fa7ff;
+        margin-bottom: 1rem;
+      }
+      .join-title {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--text-color);
+        margin-bottom: 0.7rem;
+      }
+      .join-sub {
+        font-size: 0.9rem;
+        color: rgba(var(--text-color-rgb), 0.8);
+        margin-bottom: 0.8rem;
+        line-height: 1.5;
+      }
+      .roles-needed {
+        background: rgba(100, 180, 255, 0.2);
+        border-radius: 40px;
+        padding: 0.5rem 0.8rem;
+        margin: 0.8rem auto;
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        max-width: 90%;
+      }
+      .role-tag {
+        background: #3a86ff;
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 0.2rem 0.7rem;
+        border-radius: 30px;
+        font-family: 'Tajawal', sans-serif;
+      }
+      .join-cta {
+        background: linear-gradient(45deg, #3a86ff, #8338ec);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        margin-top: 0.8rem;
+        display: inline-block;
+        transition: 0.2s;
+        font-family: 'Tajawal', sans-serif;
+        cursor: pointer;
+      }
+      .join-cta:hover {
+        transform: scale(1.02);
+        background: linear-gradient(45deg, #2666df, #6b2bc9);
+      }
+      .member-card.join-card {
+        text-align: center;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .members-container {
+          margin-top: 30px;
+          padding: 1rem 0;
+        }
+
+        .members-title {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+        }
+
+        .members-grid {
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+          gap: 20px;
+          padding: 10px;
+        }
+
+        .member-img {
+          height: 240px;
+        }
+
+        .member-name {
+          font-size: 1rem;
+        }
+
+        .member-role {
+          font-size: 0.8rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .members-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .member-img {
+          height: 260px;
+        }
+
+        .members-title {
+          font-size: 1.8rem;
+        }
       }
     </style>
   </head>
@@ -207,13 +331,10 @@
     </header>
 
     <main class="container">
-      <section style="margin-top: 60px">
-        <h1 class="section-title">ملف عضو الفريق</h1>
-        <div id="member-profile" class="member-details-card">
-          <!-- يتم تعبئة بيانات العضو تلقائياً هنا -->
-        </div>
-        <div style="text-align: center; margin-top: 30px">
-          <a href="members.html" class="btn btn-outline btn-sm">عودة لقائمة الأعضاء</a>
+      <section class="members-container">
+        <h1 class="members-title">أعضاء فريق الأنامل الرقمية</h1>
+        <div class="members-grid" id="membersGrid">
+          <!-- Cards will be generated by JavaScript -->
         </div>
       </section>
     </main>
@@ -267,7 +388,8 @@
     </footer>
 
     <script>
-      // بيانات الفريق محدثة (نفس البيانات الموجودة في members.html)
+      // بيانات الفريق محدثة حسب الطلب
+      // "عدل ان انس محمد هو قائد الروبوتكس في الفريق و كمان زود حبيبة طلال عضو قسم البرمجة و الروبوتكس و زود حلا محمد رشاد قائد قسم الاوبيريشن وشيل احمد هشام و هنا جمال و خلي إيد عبد الرؤوف هو Deputy General Leader وسلمى علاء هي Deputy Executive Leader و سلمى سامح هي Executive Leader"
       const members = [
         {
           id: 0,
@@ -283,12 +405,11 @@
             "Worked with Microsoft Qalyubia as a student coach",
             "Completed a Data Analysis training program",
             "Developed multiple projects using Python and JavaScript",
-            "Experienced in leading teams and organizing events",
-            "Skilled in project management and team coordination",
-            "Trainer in programming and digital skills for students",
-            "Organized educational and technology seminars and workshops",
+            "Experienced in leading teams and organizing events"
           ],
-          skills: ["Python", "Html", "Css" , "js" , "training" , "Organization" , "Effective communication" , "Leadership", "Organization Skills", "Project Planning", "Problem Solving","Communication Skills", "Presentation Skills", "Public Speaking", "Negotiation Skills", "Time Management"]
+          skills: ["Python", "Html", "Css" , "js" , "training" ,
+                   "Organization" , "Effective communication" , "Led"
+          ],
         },
         {
           id: 1,
@@ -296,8 +417,8 @@
           nameAr: "سلمى سامح",
           age: "16 Years old",
           education: "Sec 2",
-          role: "Co-Leader",
-          roleAr: "مساعد القائد",
+          role: "Executive Leader",
+          roleAr: "القائد التنفيذي",
           img: "image/salma sameh.jpg",
           experiences: [
             "Managed project operations and workflow using FileMaker",
@@ -310,11 +431,11 @@
         {
           id: 2,
           name: "Salma Alaa",
-          nameAr: "سلمى علاء - المسؤولة في غياب القائد العام و نائبه",
+          nameAr: "سلمى علاء",
           age: "14 Years old",
           education: "prep 1",
-          role: "Executive Leader",
-          roleAr: "القائد المنفذ",
+          role: "Deputy Executive Leader",
+          roleAr: "نائب القائد التنفيذي",
           img: "image/salma alaa.jpeg",
           experiences: [
             "Led a small programming team to develop web projects",
@@ -330,8 +451,8 @@
           nameAr: "إياد عبد الرؤوف",
           age: "14 Years old",
           education: "prep 2",
-          role: "Executive Leader",
-          roleAr: "القائد المنفذ",
+          role: "Deputy General Leader",
+          roleAr: "نائب القائد العام",
           img: "image/alpha.jpeg",
           experiences: [
             "Built interactive web pages using HTML, CSS, and JavaScript",
@@ -364,7 +485,7 @@
           age: "14 Years old",
           education: "prep 1",
           role: "Media Team Leader & Supervisor",
-          roleAr: "قائدة الفريق الإعلامي ومشرف",
+          roleAr: "قائدة الفريق الإعلامي",
           img: "image/hla.jpeg",
           experiences: [
             "Designed promotional graphics and social media content using Photoshop",
@@ -376,23 +497,39 @@
         },
         {
           id: 6,
-          name: "Ahmed Hesham",
-          nameAr: "أحمد هشام",
-          age: "17 Years old",
+          name: "Hla Mohamed Rashad",
+          nameAr: "حلا محمد رشاد",
+          age: "16 Years old",
           education: "Sec 2",
-          role: "Programming Member",
-          roleAr: "عضو برمجة",
-          img: "image/Ahmed Hesham.jpeg",
-          experiences: [ 
-            "Built full-stack web applications",
-            "Developed server-side logic using Node.js",
-            "Built interactive front-end interfaces with JavaScript and CSS",
-            "Mentored team members in Python and web development"
+          role: "Operation Leader",
+          roleAr: "قائد قسم الأوبريشن",
+          img: "image/hlas.jpeg",
+          experiences: [
+            "Supervised operational workflows and task distribution",
+            "Optimized team processes and coordination",
+            "Managed project timelines and resource allocation"
           ],
-          skills: ["Python", "Html", "Css" , "js" , "node.js"],
+          skills: ["Html", "Css" , "Operation Management", "Leadership"],
         },
         {
           id: 7,
+          name: "Anas Mohamed",
+          nameAr: "أنس محمد",
+          age: "14 Years old",
+          education: "prep 3",
+          role: "Robotics Leader",
+          roleAr: "قائد الروبوتكس",
+          img: "image/file_2025-08-19_11.53.40.png",
+          experiences: [
+            "Led robotics projects and competitions",
+            "Programmed microcontrollers and robotic systems",
+            "Developed automation solutions using embedded systems",
+            "Mentored team members in robotics and programming"
+          ],
+          skills: ["Python", "Html", "Css" , "js", "Robotics", "Arduino", "Embedded Systems"],
+        },
+        {
+          id: 8,
           name: "Soha Sameh",
           nameAr: "سهى سامح",
           age: "15 Years old",
@@ -408,23 +545,23 @@
           skills: ["Python", "Html", "Css" , "js" , "githup"],
         },
         {
-          id: 8,
-          name: "Hla Magdi",
-          nameAr: "حلا مجدي",
-          age: "17 Years old",
-          education: "Sec 2",
-          role: "Programming Member",
-          roleAr: "عضو برمجة",
-          img: "image/hla m.jpeg",
-          experiences: [ 
-            "Styled web pages using HTML and CSS",
-            "Used Git and GitHub to manage and share code with the team",
-            "Created visual content and helped with media tasks"
+          id: 9,
+          name: "Habiba Talal",
+          nameAr: "حبيبة طلال",
+          age: "15 Years old",
+          education: "Sec 1",
+          role: "Programming & Robotics Member",
+          roleAr: "عضو برمجة وروبوتكس",
+          img: "image/habiba.jpeg",
+          experiences: [
+            "Developed robotics projects using microcontrollers",
+            "Worked on both hardware and software for robotic systems",
+            "Collaborated on team programming projects"
           ],
-          skills: ["Html", "Css" , "githup"],
+          skills: ["Python", "Html", "Css", "Robotics", "Arduino"],
         },
         {
-          id: 9,
+          id: 10,
           name: "Maryam Elgohary",
           nameAr: "مريم الجوهري",
           age: "17 Years old",
@@ -440,7 +577,7 @@
           skills: ["Python", "Html", "Css" , "githup"],
         },
         {
-          id: 10,
+          id: 11,
           name: "Retaj Hamdy",
           nameAr: "ريتاج حمدي",
           age: "16 Years old",
@@ -451,12 +588,11 @@
           experiences: [
             "Rapidly prototyped web projects using vibe-coding and AI tools",
             "Styled and structured web pages using HTML and CSS",
-            "Explored innovative ways to speed up front-end development"
-          ],
-          skills: ["Html", "Css" , "vibe-coding"],
+            "Explored innovative ways to speed up front-end development"],
+          skills: [ "Html", "Css" , "vibe-coding"],
         },
         {
-          id: 11,
+          id: 12,
           name: "hana abdelazez",
           nameAr: "هنا عبد العزيز",
           age: "17 Years old",
@@ -472,22 +608,6 @@
           skills: ["Html", "operating"],
         },
         {
-          id: 12,
-          name: "Anas mohamed",
-          nameAr: "أنس محمد",
-          age: "14 Years old",
-          education: "prep 3",
-          role: "Programming Member",
-          roleAr: "عضو برمجة",
-          img: "image/file_2025-08-19_11.53.40.png",
-          experiences: [
-            "Created static websites using HTML and CSS",
-            "Practiced JavaScript to add interactivity to web pages",
-            "Worked on Python programming exercises and small projects"
-          ],
-          skills: ["Python", "Html", "Css" , "js"],
-        },
-        {
           id: 13,
           name: "Malak Mamdouh",
           nameAr: "ملك ممدوح",
@@ -498,85 +618,154 @@
           img: "image/loka.png",
           experiences: ["No major past experiences"],
           skills: ["Python", "Html", "Css"],
-        }
+        },
       ];
 
-      function getIdFromUrl() {
-        const params = new URLSearchParams(window.location.search);
-        return parseInt(params.get("id"));
-      }
+      // Color palette for cards
+      const colorPalette = [
+        "142, 249, 252",
+        "142, 252, 204",
+        "142, 252, 157",
+        "215, 252, 142",
+        "252, 252, 142",
+        "252, 208, 142",
+        "252, 142, 142",
+        "252, 142, 239",
+        "204, 142, 252",
+        "142, 202, 252",
+        "142, 252, 240",
+        "252, 182, 142",
+        "182, 142, 252",
+        "252, 142, 182",
+        "142, 182, 252",
+      ];
 
-      function renderProfile() {
-        const id = getIdFromUrl();
-        const member = members.find((m) => m.id === id);
-        const box = document.getElementById("member-profile");
-        if (!member) {
-          box.innerHTML = `<div style="text-align:center;color:#f33">العضو غير موجود</div>`;
-          return;
-        }
+      // Create member cards in a simple grid
+      const membersGrid = document.getElementById("membersGrid");
+
+      members.forEach((member, index) => {
+        const card = document.createElement("a");
+        card.href = `member-details.html?id=${member.id}`;
+        card.className = "member-card";
+        card.style.setProperty(
+          "--color-card",
+          colorPalette[index % colorPalette.length]
+        );
+
+        const imgSrc = member.img || "image/profile.jpg";
         
+        // تحديد الشارة المناسبة
         let badgeHtml = '';
         if (member.role === "General Leader") {
-          badgeHtml = `<div class="leader-badge-detail">${member.roleAr}</div>`;
-        } else if (member.role === "Co-Leader") {
-          badgeHtml = `<div class="leader-badge-detail">${member.roleAr}</div>`;
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+        } else if (member.role === "Deputy General Leader") {
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
         } else if (member.role === "Executive Leader") {
-          badgeHtml = `<div class="leader-badge-detail">${member.roleAr}</div>`;
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+        } else if (member.role === "Deputy Executive Leader") {
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
         } else if (member.role === "Programming Leader") {
-          badgeHtml = `<div class="leader-badge-detail">${member.roleAr}</div>`;
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+        } else if (member.role === "Robotics Leader") {
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+        } else if (member.role === "Operation Leader") {
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
         } else if (member.role === "Media Team Leader & Supervisor") {
-          badgeHtml = `<div class="leader-badge-detail">${member.roleAr}</div>`;
+          badgeHtml = `<div class="leader-badge">${member.roleAr}</div><div class="supervisor-badge" style="margin-top:5px;">مشرف عام على الإعلام</div>`;
         } else {
           badgeHtml = '';
         }
         
-        box.innerHTML = `
-          <div class="member-header">
-            <img src="${member.img}" alt="${member.name}" class="member-img" onerror="this.src='image/logo1.jpeg'">
-            <h2 class="member-name">${member.name}</h2>
+        card.innerHTML = `
+          <div class="member-img" style="background-image: url('${imgSrc}'); background-size: cover; background-position: center;"></div>
+          <div class="member-info">
+            <h3 class="member-name">${member.name}</h3>
             <div class="member-name-arabic">${member.nameAr}</div>
             <span class="member-role">${member.role}</span>
             ${badgeHtml}
           </div>
-          <div class="member-info">
-            <div class="member-info-item">
-              <strong>العمر:</strong> ${member.age}
-            </div>
-            <div class="member-info-item">
-              <strong>التعليم:</strong> ${member.education}
-            </div>
-            ${
-              member.experiences && member.experiences.length > 0
-                ? `
-            <div class="member-experiences">
-              <strong>الخبرات:</strong>
-              <ul>
-                ${member.experiences.map((e) => `<li>${e}</li>`).join("")}
-              </ul>
-            </div>
-            `
-                : ""
-            }
-            ${
-              member.skills && member.skills.length > 0
-                ? `
-            <div class="member-info-item">
-              <strong>المهارات:</strong>
-              <div class="member-skills">
-                ${member.skills
-                  .map((s) => `<span class="skill-tag">${s}</span>`)
-                  .join("")}
-              </div>
-            </div>
-            `
-                : ""
-            }
-          </div>
         `;
-      }
+
+        membersGrid.appendChild(card);
+      });
+
+      // ----- إضافة الكارت الفارغ للإنضمام -----
+      const joinCard = document.createElement("div");
+      joinCard.className = "member-card join-card";
+      // نعطي لون مميز لكارد الانضمام
+      joinCard.style.setProperty("--color-card", "100, 180, 255");
+      
+      // المجالات المطلوبة حسب الطلب
+      const requiredRoles = [
+        "⚙️ 2 هارد وير",
+        "🎬 4 ميديا ",
+        "📋 4 اوبريشن",
+        "📱 1 مبرمج تطبيقات",
+        "💻 1 مطور مواقع"
+      ];
+      
+      const roleTagsHtml = requiredRoles.map(role => `<span class="role-tag">${role}</span>`).join('');
+      
+      joinCard.innerHTML = `
+        <div class="member-info" style="padding: 1.5rem 1rem;">
+          <div class="join-icon">
+            <i class="fas fa-hand-peace"></i>
+          </div>
+          <div class="join-title">مكانك معانا!</div>
+          <div class="join-sub">نحن نبحث عن أعضاء جدد لاستكمال المسيرة</div>
+          <div class="roles-needed">
+            ${roleTagsHtml}
+          </div>
+          <div class="join-sub" style="font-size:0.85rem;">🔹 انضم إلى فريق الأنامل الرقمية وكن جزءاً من النجاح 🔹</div>
+          <div class="join-cta" id="openJoinModalBtn">
+            <i class="fas fa-arrow-left"></i> قدّم طلب انضمام الآن
+          </div>
+          <div style="margin-top: 0.8rem; font-size: 0.7rem; color: rgba(var(--text-color-rgb),0.6);">
+            ننتظرك لتكون العضو رقم 11 أو 12 أو أكثر 💫
+          </div>
+        </div>
+      `;
+      
+      // منع السلوك الافتراضي للرابط لأن هذا ليس رابط تفاصيل
+      joinCard.addEventListener("click", (e) => {
+        // نتأكد إنه مش الضغط على الزر نفسه عشان ما يتضاعف
+        if(e.target.closest('#openJoinModalBtn')) return;
+        e.preventDefault();
+        // فتح رابط او رسالة عند الضغط على الكارد (اختياري)
+        alert("📢 شكراً لاهتمامك! اضغط على زر 'قدّم طلب انضمام الآن' للتقديم على المجالات المطلوبة. فريق الأنامل الرقمية يرحب بمواهبك!");
+      });
+      
+      // إضافة الحدث لزر الانضمام
+      const joinButtonHandler = () => {
+        let joinMsg = "✨ مرحباً بك في فريق الأنامل الرقمية ✨\n\n"
+        joinMsg += "نحن بحاجة للأعضاء في المجالات التالية:\n";
+        joinMsg += "• 2 هارد وير\n";
+        joinMsg += "• 4 ميديا (بنات و ولاد بالنص)\n";
+        joinMsg += "• 4 اوبريشن\n";
+        joinMsg += "• 1 مبرمج تطبيقات\n";
+        joinMsg += "• 1 مطور مواقع\n\n";
+        joinMsg += "للانضمام: يُرجى التواصل مع إدارة الفريق عبر البريد الإلكتروني: info@dfteam-eg.com أو عبر صفحات التواصل الاجتماعي. \n\nنتمنى انضمامك قريباً! 🚀";
+        alert(joinMsg);
+      };
+      
+      membersGrid.appendChild(joinCard);
+      
+      // بعد إضافة العنصر نربط الزر
+      setTimeout(() => {
+        const openBtn = document.getElementById("openJoinModalBtn");
+        if (openBtn) {
+          openBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            joinButtonHandler();
+          });
+        }
+      }, 0);
+      
+      // End of join card logic
 
       // JavaScript لإدارة القائمة الجانبية وتبديل الثيمات
       document.addEventListener("DOMContentLoaded", function () {
+        // عناصر القائمة الجانبية
         const sideNav = document.getElementById("sideNav");
         const closeNav = document.getElementById("closeNav");
         const menuBtn = document.getElementById("menuBtn");
@@ -584,11 +773,15 @@
         const themeToggle = document.getElementById("themeToggle");
         const themeIcon = themeToggle.querySelector("i");
 
+        // حالات الثيم
         const themes = ["light", "dark", "purple"];
         let currentThemeIndex = 0;
 
+        // تطبيق الثيم
         function applyTheme(themeIndex) {
           document.body.setAttribute("data-theme", themes[themeIndex]);
+
+          // تغيير الأيقونة حسب الثيم
           if (themes[themeIndex] === "light") {
             themeIcon.className = "fas fa-moon";
           } else if (themes[themeIndex] === "dark") {
@@ -596,14 +789,18 @@
           } else {
             themeIcon.className = "fas fa-sun";
           }
+
+          // حفظ الثيم في localStorage
           localStorage.setItem("theme", themes[themeIndex]);
         }
 
+        // تبديل الثيم
         themeToggle.addEventListener("click", function () {
           currentThemeIndex = (currentThemeIndex + 1) % themes.length;
           applyTheme(currentThemeIndex);
         });
 
+        // تحميل الثيم المحفوظ
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme) {
           currentThemeIndex = themes.indexOf(savedTheme);
@@ -611,32 +808,59 @@
           applyTheme(currentThemeIndex);
         }
 
+        // فتح القائمة الجانبية
         function openSideNav() {
           sideNav.classList.add("open");
           navOverlay.classList.add("open");
           document.body.style.overflow = "hidden";
         }
 
+        // إغلاق القائمة الجانبية
         function closeSideNav() {
           sideNav.classList.remove("open");
           navOverlay.classList.remove("open");
           document.body.style.overflow = "";
         }
 
-        if (closeNav) closeNav.addEventListener("click", closeSideNav);
-        if (menuBtn) menuBtn.addEventListener("click", openSideNav);
-        if (navOverlay) navOverlay.addEventListener("click", closeSideNav);
+        // إضافة مستمع الأحداث لزر الإغلاق
+        if (closeNav) {
+          closeNav.addEventListener("click", closeSideNav);
+        }
+
+        // إضافة مستمع الأحداث لزر القائمة
+        if (menuBtn) {
+          menuBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            openSideNav();
+          });
+        }
+
+        // إضافة مستمع الأحداث للخلفية المظللة
+        if (navOverlay) {
+          navOverlay.addEventListener("click", closeSideNav);
+        }
+
+        // إغلاق القائمة عند الضغط على مفتاح Escape
         document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape") closeSideNav();
+          if (e.key === "Escape") {
+            closeSideNav();
+          }
         });
 
+        // تحديث رسالة الترحيب حسب دور المستخدم
         function updateWelcomeMessage() {
           const welcomeMessage = document.querySelector(".welcome-message");
           if (!welcomeMessage) return;
+
           let userData = null;
           try {
-            userData = JSON.parse(localStorage.getItem("userData")) || JSON.parse(sessionStorage.getItem("userData"));
-          } catch (error) {}
+            userData =
+              JSON.parse(localStorage.getItem("userData")) ||
+              JSON.parse(sessionStorage.getItem("userData"));
+          } catch (error) {
+            console.log("لا توجد بيانات مستخدم مسجل");
+          }
+
           if (userData && userData.loggedIn) {
             if (userData.role === "قائد الفريق") {
               welcomeMessage.textContent = `مرحباً بك قائد فريق الأنامل الرقمية (${userData.name})`;
@@ -647,16 +871,9 @@
             welcomeMessage.textContent = "مرحباً بكم في فريق الأنامل الرقمية";
           }
         }
-        updateWelcomeMessage();
 
-        const observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) entry.target.classList.add("animate-in");
-          });
-        }, { threshold: 0.1 });
-        document.querySelectorAll(".member-details-card").forEach(card => observer.observe(card));
-        
-        renderProfile();
+        window.updateWelcomeMessage = updateWelcomeMessage;
+        updateWelcomeMessage();
       });
     </script>
   </body>
