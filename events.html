@@ -105,7 +105,192 @@
     </div>
   </section>
 
-  <!-- المحتوى الرئيسي -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فعاليات فريق الأنامل الرقمية</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Tahoma', system-ui, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f6f9fc 0%, #eef2f7 100%);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* intro card */
+    .intro-card {
+      background: white;
+      padding: 1.8rem 2.5rem;
+      border-radius: 60px 20px 60px 20px;
+      box-shadow: 0 15px 30px -8px rgba(0, 20, 40, 0.15);
+      margin-bottom: 3rem;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #1e3a5f;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(2px);
+      transition: all 0.3s ease;
+    }
+
+    .intro-card p {
+      margin: 0;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    /* event cards */
+    .event-card {
+      background: #ffffff;
+      border-radius: 32px 16px 32px 16px;
+      box-shadow: 0 12px 28px -8px rgba(0, 20, 40, 0.12);
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(2px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .event-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 40px -12px rgba(0, 40, 80, 0.25);
+      border-color: #b0d0f0;
+    }
+
+    .event-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: #d9e2ed;
+      border-bottom: 3px solid #eef4fa;
+    }
+
+    .event-info {
+      padding: 1.5rem 1.5rem 1.8rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: white;
+    }
+
+    .event-info h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2a44;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .event-badge {
+      background: #ffd966;
+      color: #1e3a5f;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      display: inline-block;
+      box-shadow: 0 2px 6px rgba(255, 200, 0, 0.3);
+    }
+
+    .event-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eef4fa;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #1d4a7a;
+      font-weight: 600;
+      width: fit-content;
+      margin: 0.4rem 0 0.8rem 0;
+    }
+
+    .event-date i {
+      color: #2a6b9e;
+    }
+
+    .event-info p {
+      color: #1e3a4f;
+      line-height: 1.7;
+      font-size: 0.98rem;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    .event-trainer, .event-location {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f0f6fe;
+      padding: 0.5rem 1.2rem;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #0f3b60;
+      margin-top: 0.3rem;
+      width: fit-content;
+      border: 1px solid #d9e6f5;
+    }
+
+    .event-trainer i, .event-location i {
+      color: #1f6eb0;
+      font-size: 1.1rem;
+    }
+
+    .highlight-event {
+      border-right: 6px solid #f5b042;
+      background: #fefcf7;
+    }
+
+    .highlight-event .event-badge {
+      background: #f5b042;
+      color: #1e2f40;
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+      .intro-card {
+        padding: 1.2rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 30px 12px 30px 12px;
+      }
+      .event-info h3 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
   <main class="container">
     <section class="events-section">
       <div class="intro-card">
@@ -114,7 +299,25 @@
 
       <div class="events-grid">
         
-        <!-- ============== الحدث الأول: الظهور على التلفاز (في البداية) ============== -->
+        <!-- ============================================================= -->
+        <!-- 1. الظهور الثاني على التلفاز – قناة الحدث اليوم (31 يوليو 2026) -->
+        <!-- ============================================================= -->
+        <div class="event-card highlight-event">
+          <img src="image/ontv.jpeg" alt="الظهور الثاني على التلفاز" class="event-img">
+          <div class="event-info">
+            <h3>📺 الظهور الثاني للفريق على قناة الحدث اليوم <span class="event-badge">حدث تاريخي</span></h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> 31 يوليو 2026</span>
+            <p>حلّ فريق الأنامل الرقمية ضيفاً على برنامج <strong>"نقطة ومن أول السطر"</strong> مع الإعلامية الدكتورة <strong>رحاب فارس</strong>، للحديث عن قصة نجاح الفريق وإنجازاته التي حققها خلال عام حافل بالتميز.</p>
+            <div class="event-trainer">
+              <i class="fas fa-microphone-alt"></i>
+              <span>ضيوف: فريق الأنامل الرقمية</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- 2. الظهور الأول على التلفاز (13 سبتمبر 2025) -->
+        <!-- ============================================================= -->
         <div class="event-card highlight-event">
           <img src="image/ontv.jpeg" alt="تكريم القائد العام على التلفاز" class="event-img">
           <div class="event-info">
@@ -128,11 +331,13 @@
           </div>
         </div>
         
-        <!-- ============== الحدث الثاني: إيفنت عرض الإنجازات ============== -->
+        <!-- ============================================================= -->
+        <!-- 3. إيفنت عرض إنجازات DF Team (17 سبتمبر 2025) -->
+        <!-- ============================================================= -->
         <div class="event-card">
           <img src="image/our evvent.jpeg" alt="إيفنت عرض إنجازات DF Team" class="event-img">
           <div class="event-info">
-            <h3>إيفنت عرض إنجازات DF Team</h3>
+            <h3>🎤 إيفنت عرض إنجازات DF Team</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 17 سبتمبر 2025</span>
             <p>إقامة إيفنت لعرض إنجازات فريق الأنامل الرقمية بعد مرور شهر و13 يوم من انطلاق النشاط الصيفي وتحولهم من متدربين إلى فريق له حضور ومنافسين. شهد الإيفنت حضور قيادات الإدارة وعدد من الضيوف المميزين.</p>
             <div class="event-trainer">
@@ -141,10 +346,42 @@
             </div>
           </div>
         </div>
+
+                <!-- ============================================================= -->
+        <!-- 4. زيارة الدكتور سعد عسل والأستاذ أحمد زهران – حملة Upgrade (مدرسة الثانوية بنات) -->
+        <!-- ============================================================= -->
+        <div class="event-card highlight-event">
+          <img src="image/المؤمنين.jpeg" alt="زيارة قيادات الإدارة لمتابعة Upgrade" class="event-img">
+          <div class="event-info">
+            <h3>👥 زيارة الدكتور سعد عسل والأستاذ أحمد زهران</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> (خلال حملة Upgrade – القليوبية)</span>
+            <p>قام <strong>الدكتور سعد عسل (مدير إدارة بنها)</strong> و<strong>الأستاذ أحمد زهران (مدير الشؤون التنفيذية)</strong> بزيارة تفقدية لفريق الأنامل الرقمية وسط فعاليات حملة <strong>Upgrade الرسمية المعتمدة على مستوى القليوبية</strong> بمدرسة الثانوية بنات، لمتابعة حسن سير العمل والاطلاع على الأداء المتميز للفريق.</p>
+            <div class="event-location">
+              <i class="fas fa-map-marker-alt"></i> مدرسة الثانوية بنات – بنها
+            </div>
+          </div>
+        </div>
+
         
-        <!-- ============== باقي الأحداث من الأحدث إلى الأقدم (مرتبة تنازلياً حسب التاريخ) ============== -->
-        
-        <!-- 9 ابريل 2026 - اجتماع الفريق في مكتبة مصر العامة -->
+        <!-- ============================================================= -->
+        <!-- 5. تكريم الفريق بمناسبة مرور عام من النجاح (إدارة بنها التعليمية) -->
+        <!-- ============================================================= -->
+        <div class="event-card">
+          <img src="image/our evvent.jpeg" alt="تكريم عام النجاح" class="event-img">
+          <div class="event-info">
+            <h3>🏆 تكريم فريق الأنامل الرقمية – مرور عام من النجاح</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> (بعد إيفنت سبتمبر 2025)</span>
+            <p>أقامت <strong>إدارة بنها التعليمية</strong> حفل تكريم خاص لفريق الأنامل الرقمية بمناسبة مرور عام مليئ بالإنجازات المثمرة. تم تكريم القائد العام وأعضاء الفريق تقديراً لجهودهم المتميزة وتأثيرهم الإيجابي في المجتمع التعليمي.</p>
+            <div class="event-trainer">
+              <i class="fas fa-award"></i>
+              <span>تكريم من إدارة بنها التعليمية</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- 6. اجتماع الفريق في مكتبة مصر العامة (9 ابريل 2026) -->
+        <!-- ============================================================= -->
         <div class="event-card">
           <img src="image/meet.jpeg" alt="اجتماع مكتبة مصر العامة" class="event-img">
           <div class="event-info">
@@ -156,8 +393,10 @@
             </div>
           </div>
         </div>
-        
-        <!-- 13 مارس 2026 - حملة Upgrade المستوى الثاني Level 2 -->
+
+        <!-- ============================================================= -->
+        <!-- 7. حملة Upgrade – المستوى الثاني (13 مارس 2026) -->
+        <!-- ============================================================= -->
         <div class="event-card highlight-event">
           <img src="image/المؤمنين.jpeg" alt="حملة Upgrade المستوى الثاني" class="event-img">
           <div class="event-info">
@@ -170,8 +409,10 @@
             </div>
           </div>
         </div>
-        
-        <!-- 15 فبراير 2026 - تنفيذ حملة Upgrade - مدرسة الشبان المسلمين -->
+
+        <!-- ============================================================= -->
+        <!-- 8. حملة Upgrade – مدرسة الشبان المسلمين (15 فبراير 2026) -->
+        <!-- ============================================================= -->
         <div class="event-card">
           <img src="image/الشبان.jpeg" alt="حملة Upgrade مدرسة الشبان المسلمين" class="event-img">
           <div class="event-info">
@@ -183,8 +424,10 @@
             </div>
           </div>
         </div>
-        
-        <!-- 12 فبراير 2026 - تنفيذ حملة Upgrade - مدرسة مصطفى كامل -->
+
+        <!-- ============================================================= -->
+        <!-- 9. حملة Upgrade – مدرسة مصطفى كامل (12 فبراير 2026) -->
+        <!-- ============================================================= -->
         <div class="event-card">
           <img src="image/kamel.s.jpeg" alt="حملة Upgrade مدرسة مصطفى كامل" class="event-img">
           <div class="event-info">
@@ -196,8 +439,10 @@
             </div>
           </div>
         </div>
-        
-        <!-- 10 فبراير 2026 - حملة Upgrade - المعتمدة من الوزارتين -->
+
+        <!-- ============================================================= -->
+        <!-- 10. حملة Upgrade – اعتماد رسمي (10 فبراير 2026) -->
+        <!-- ============================================================= -->
         <div class="event-card highlight-event">
           <img src="image/up.jpeg" alt="حملة Upgrade" class="event-img">
           <div class="event-info">
@@ -210,8 +455,10 @@
             </div>
           </div>
         </div>
-        
-        <!-- 25 يناير 2026 - حدث توعية الشباب في مدرسة EIS -->
+
+        <!-- ============================================================= -->
+        <!-- 11. حدث توعية الشباب – EIS الشيخ زايد (25 يناير 2026) -->
+        <!-- ============================================================= -->
         <div class="event-card">
           <img src="image/eis.jpeg" alt="مدرسة EIS" class="event-img">
           <div class="event-info">
@@ -223,8 +470,10 @@
             </div>
           </div>
         </div>
-        
-        <!-- 19 يناير 2026 - انتقال الفريق إلى مركز التطوير -->
+
+        <!-- ============================================================= -->
+        <!-- 12. انتقال الفريق إلى مركز التطوير (19 يناير 2026) -->
+        <!-- ============================================================= -->
         <div class="event-card">
           <img src="image/زيارة المدير.jpeg" alt="انتقال الفريق إلى مركز التطوير" class="event-img">
           <div class="event-info">
@@ -236,28 +485,50 @@
             </div>
           </div>
         </div>
-        
-        <!-- 10 ديسمبر 2025 - معرض مسابقة ISEF المستوى المحلي -->
+
+        <!-- ============================================================= -->
+        <!-- 13. معرض ISEF المستوى المحلي (10 ديسمبر 2025) -->
+        <!-- ============================================================= -->
         <div class="event-card">
           <img src="image/ISEF QAL.jpeg" alt="معرض مسابقة ISEF المستوى المحلي" class="event-img">
           <div class="event-info">
-            <h3>معرض مسابقة ISEF المستوى المحلي</h3>
+            <h3>🏅 معرض مسابقة ISEF المستوى المحلي</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 10 ديسمبر 2025</span>
             <p>تعبنا لكن حققنا إنجاز عظيم ووضعنا لمسة فريق الأنامل في المسابقة وحصل مشروع البراء سعد السيد وأحمد عبدالرؤوف سمير على المركز الأول بإدارة بنها لفئة تحت السن.</p>
           </div>
         </div>
-        
-        <!-- 18 نوفمبر 2025 - معرض مسابقة ISEF المستوى الإداري -->
+
+        <!-- ============================================================= -->
+        <!-- 14. معرض ISEF المستوى الإداري (18 نوفمبر 2025) -->
+        <!-- ============================================================= -->
         <div class="event-card">
           <img src="image/isef ed.jpeg" alt="معرض مسابقة ISEF المستوى الإداري" class="event-img">
           <div class="event-info">
-            <h3>معرض مسابقة ISEF المستوى الإداري</h3>
+            <h3>🏅 معرض مسابقة ISEF المستوى الإداري</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 18 نوفمبر 2025</span>
             <p>حيث قدم الأعضاء مشاريع أبهَرت كل لجنة الحكام ودخلنا بحوالي 4 مشاريع و 8 أعضاء وتأهل منهم مشروعان وأربعة أعضاء إلى المستوى المحلي.</p>
           </div>
         </div>
-        
-        <!-- سبتمبر 2025 - أحدث ندوة ثقافية -->
+
+        <!-- ============================================================= -->
+        <!-- 15. مقتطفات من تدريبات الأنشطة الصيفية – بايثون مع المدربة ريتاج -->
+        <!-- ============================================================= -->
+        <div class="event-card highlight-event">
+          <img src="image/logo1.jpeg" alt="تدريبات الأنشطة الصيفية" class="event-img">
+          <div class="event-info">
+            <h3>☀️ مقتطفات من تدريبات الأنشطة الصيفية</h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> صيف 2025</span>
+            <p>شهدت التدريبات الصيفية للفريق إقبالاً شديداً تجاوز <strong>100 طالب</strong> في الجلسة الواحدة. تميزت محاضرات <strong>بايثون</strong> التي قدمتها المدربة <strong>ريتاج محمد</strong> بإعجاب كبير من الحضور، حيث تفاعل الطلاب بشكل لافت مع المحتوى التدريبي.</p>
+            <div class="event-trainer">
+              <i class="fas fa-chalkboard-teacher"></i>
+              <span>المدربة: ريتاج محمد</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- 16. ندوة ثقافية – سبتمبر 2025 -->
+        <!-- ============================================================= -->
         <div class="event-card">
           <img src="image/WhatsApp Image 2025-09-09 at 1.53.42 AM.jpeg" alt="أحدث ندوة ثقافية" class="event-img">
           <div class="event-info">
@@ -266,10 +537,12 @@
             <p>انعقدت الندوة الثقافية الثالثة بمدرسة الشهيد مدحت طلعت بعنوان مهارات الاتصال والتواصل الفعّال. شهدت حضوراً وتفاعلاً مميزاً من أولياء الأمور والطلاب. هدفت إلى إبراز الفرق بين الاتصال والتواصل وأثرهما في بناء علاقات فعّالة.</p>
           </div>
         </div>
-        
-        <!-- 30 أغسطس 2025 - ندوة مهارات الاتصال والتواصل الفعّال -->
+
+        <!-- ============================================================= -->
+        <!-- 17. ندوة مهارات الاتصال (30 أغسطس 2025) -->
+        <!-- ============================================================= -->
         <div class="event-card">
-          <img src="image/WhatsApp Image 2025-09-09 at 1.53.42 AM.jpeg" alt="ندوة مهارات الاتصال والتواصل الفعّال" class="event-img">
+          <img src="image/WhatsApp Image 2025-09-09 at 1.53.42 AM.jpeg" alt="ندوة مهارات الاتصال" class="event-img">
           <div class="event-info">
             <h3>ندوة مهارات الاتصال والتواصل الفعّال</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 30 أغسطس 2025</span>
@@ -280,8 +553,10 @@
             </div>
           </div>
         </div>
-        
-        <!-- 25 أغسطس 2025 - ورشة برمجة Scratch -->
+
+        <!-- ============================================================= -->
+        <!-- 18. ورشة برمجة Scratch (25 أغسطس 2025) -->
+        <!-- ============================================================= -->
         <div class="event-card">
           <img src="image/logo1.jpeg" alt="ورشة Scratch" class="event-img">
           <div class="event-info">
@@ -294,8 +569,10 @@
             </div>
           </div>
         </div>
-        
-        <!-- 20 أغسطس 2025 - منحة إعداد مهارات القادة -->
+
+        <!-- ============================================================= -->
+        <!-- 19. منحة إعداد مهارات القادة (20 أغسطس 2025) -->
+        <!-- ============================================================= -->
         <div class="event-card">
           <img src="image/IMG-20250820-WA0210.jpg" alt="منحة إعداد مهارات القادة" class="event-img">
           <div class="event-info">
@@ -308,8 +585,10 @@
             </div>
           </div>
         </div>
-        
-        <!-- أغسطس 2025 - ندوة ثقافية -->
+
+        <!-- ============================================================= -->
+        <!-- 20. ندوة ثقافية – أغسطس 2025 -->
+        <!-- ============================================================= -->
         <div class="event-card">
           <img src="image/تدريب.jpg" alt="ندوة ثقافية" class="event-img">
           <div class="event-info">
@@ -318,11 +597,12 @@
             <p>ندوة مميزة عن مهارات العرض والتقديم (Presentation Skills) بهدف تنمية قدرات المشاركين على التواصل الفعّال وتقديم أفكارهم بثقة واحترافية.</p>
           </div>
         </div>
-        
+
       </div>
     </section>
   </main>
-
+</body>
+</html>
   <!-- التذييل -->
   <footer class="main-footer">
     <div class="container">
