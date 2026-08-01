@@ -45,613 +45,6 @@
       font-size: 0.7rem;
       margin-right: 0.5rem;
     }
-
-    /* ===== أنماط الثيمات الثلاثة ===== */
-    :root {
-      --bg-primary: #f6f9fc;
-      --bg-secondary: #eef2f7;
-      --bg-card: #ffffff;
-      --text-primary: #0b2a44;
-      --text-secondary: #1e3a5f;
-      --text-muted: #5a7a9a;
-      --border-color: rgba(255, 255, 255, 0.5);
-      --shadow-color: rgba(0, 20, 40, 0.12);
-      --shadow-hover: rgba(0, 40, 80, 0.25);
-      --primary-color: #1f6eb0;
-      --primary-light: #eef4fa;
-      --intro-bg: #ffffff;
-      --intro-text: #1e3a5f;
-      --badge-bg: #ffd966;
-      --badge-text: #1e3a5f;
-      --highlight-border: #f5b042;
-      --highlight-bg: #fefcf7;
-      --event-img-bg: #d9e2ed;
-    }
-
-    body[data-theme="dark"] {
-      --bg-primary: #1a1a2e;
-      --bg-secondary: #16213e;
-      --bg-card: #1e2a4a;
-      --text-primary: #e8e8f0;
-      --text-secondary: #c8d0e0;
-      --text-muted: #8899b0;
-      --border-color: rgba(255, 255, 255, 0.1);
-      --shadow-color: rgba(0, 0, 0, 0.3);
-      --shadow-hover: rgba(0, 0, 0, 0.5);
-      --primary-color: #4a8fc9;
-      --primary-light: #1e2a4a;
-      --intro-bg: #1e2a4a;
-      --intro-text: #c8d0e0;
-      --badge-bg: #c9a84c;
-      --badge-text: #1a1a2e;
-      --highlight-border: #c9a84c;
-      --highlight-bg: #1e2a4a;
-      --event-img-bg: #2a3a5a;
-    }
-
-    body[data-theme="purple"] {
-      --bg-primary: #f0eef7;
-      --bg-secondary: #e8e3f0;
-      --bg-card: #f5f0ff;
-      --text-primary: #2d1b4e;
-      --text-secondary: #4a2d7a;
-      --text-muted: #7a5a9a;
-      --border-color: rgba(180, 140, 220, 0.3);
-      --shadow-color: rgba(80, 40, 120, 0.15);
-      --shadow-hover: rgba(80, 40, 120, 0.3);
-      --primary-color: #7a3ac0;
-      --primary-light: #ede0ff;
-      --intro-bg: #f5f0ff;
-      --intro-text: #4a2d7a;
-      --badge-bg: #c9a8f0;
-      --badge-text: #2d1b4e;
-      --highlight-border: #9a5ad0;
-      --highlight-bg: #f5f0ff;
-      --event-img-bg: #d9c8e8;
-    }
-
-    /* تطبيق المتغيرات على العناصر */
-    body {
-      background: linear-gradient(145deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-      min-height: 100vh;
-      padding: 2rem 1rem;
-      transition: background 0.4s ease, color 0.3s ease;
-    }
-
-    .intro-card {
-      background: var(--intro-bg);
-      color: var(--intro-text);
-      border: 1px solid var(--border-color);
-      box-shadow: 0 15px 30px -8px var(--shadow-color);
-    }
-
-    .event-card {
-      background: var(--bg-card);
-      box-shadow: 0 12px 28px -8px var(--shadow-color);
-      border: 1px solid var(--border-color);
-    }
-
-    .event-card:hover {
-      box-shadow: 0 25px 40px -12px var(--shadow-hover);
-      border-color: var(--primary-color);
-    }
-
-    .event-img {
-      background: var(--event-img-bg);
-      border-bottom: 3px solid var(--primary-light);
-    }
-
-    .event-info h3 {
-      color: var(--text-primary);
-    }
-
-    .event-info p {
-      color: var(--text-secondary);
-    }
-
-    .event-date {
-      background: var(--primary-light);
-      color: var(--text-secondary);
-    }
-
-    .event-date i {
-      color: var(--primary-color);
-    }
-
-    .event-trainer, .event-location {
-      background: var(--primary-light);
-      color: var(--text-secondary);
-      border: 1px solid var(--border-color);
-    }
-
-    .event-trainer i, .event-location i {
-      color: var(--primary-color);
-    }
-
-    .highlight-event {
-      border-right: 6px solid var(--highlight-border);
-      background: var(--highlight-bg);
-    }
-
-    .highlight-event .event-badge {
-      background: var(--highlight-border);
-      color: var(--badge-text);
-    }
-
-    .event-badge {
-      background: var(--badge-bg);
-      color: var(--badge-text);
-      box-shadow: 0 2px 6px rgba(200, 170, 0, 0.3);
-    }
-
-    .event-info h3 {
-      color: var(--text-primary);
-    }
-
-    /* باقي التنسيقات كما هي */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', 'Tahoma', system-ui, sans-serif;
-    }
-
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
-    }
-
-    .intro-card {
-      padding: 1.8rem 2.5rem;
-      border-radius: 60px 20px 60px 20px;
-      margin-bottom: 3rem;
-      text-align: center;
-      font-size: 1.25rem;
-      font-weight: 500;
-      backdrop-filter: blur(2px);
-      transition: all 0.3s ease;
-    }
-
-    .intro-card p {
-      margin: 0;
-    }
-
-    .events-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-
-    .event-card {
-      border-radius: 32px 16px 32px 16px;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
-      backdrop-filter: blur(2px);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .event-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .event-info {
-      padding: 1.5rem 1.5rem 1.8rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .event-info h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .event-badge {
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 0.2rem 0.9rem;
-      border-radius: 40px;
-      letter-spacing: 0.3px;
-      display: inline-block;
-    }
-
-    .event-date {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      width: fit-content;
-      margin: 0.4rem 0 0.8rem 0;
-    }
-
-    .event-info p {
-      line-height: 1.7;
-      font-size: 0.98rem;
-      margin-bottom: 1rem;
-      flex: 1;
-    }
-
-    .event-trainer, .event-location {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 0.5rem 1.2rem;
-      border-radius: 60px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-top: 0.3rem;
-      width: fit-content;
-    }
-
-    .event-trainer i, .event-location i {
-      font-size: 1.1rem;
-    }
-
-    @media (max-width: 700px) {
-      .events-grid {
-        grid-template-columns: 1fr;
-      }
-      .intro-card {
-        padding: 1.2rem 1.5rem;
-        font-size: 1rem;
-        border-radius: 30px 12px 30px 12px;
-      }
-      .event-info h3 {
-        font-size: 1.1rem;
-      }
-    }
-
-    /* تنسيقات الـ Hero والهيدر والفوتر - محافظة على التنسيقات الأصلية */
-    .hero-section {
-      text-align: center;
-      padding: 2rem 0 3rem 0;
-    }
-    .hero-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-    }
-    .hero-desc {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-    }
-
-    .main-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: var(--bg-card);
-      border-radius: 20px;
-      box-shadow: 0 4px 15px var(--shadow-color);
-      margin-bottom: 2rem;
-      border: 1px solid var(--border-color);
-    }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .logo {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .brand-name {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text-primary);
-    }
-
-    .welcome-message {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .theme-toggle {
-      background: var(--primary-light);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.2rem;
-      color: var(--text-primary);
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .theme-toggle:hover {
-      transform: rotate(20deg);
-      background: var(--primary-color);
-      color: white;
-    }
-
-    .header-menu-btn {
-      background: var(--primary-light);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.2rem;
-      color: var(--text-primary);
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .header-menu-btn:hover {
-      background: var(--primary-color);
-      color: white;
-    }
-
-    /* تنسيق القائمة الجانبية */
-    .side-nav {
-      position: fixed;
-      top: 0;
-      right: -350px;
-      width: 320px;
-      height: 100vh;
-      background: var(--bg-card);
-      box-shadow: -5px 0 30px var(--shadow-color);
-      z-index: 1000;
-      transition: right 0.4s cubic-bezier(0.2, 0, 0, 1);
-      padding: 2rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      border-left: 1px solid var(--border-color);
-    }
-
-    .side-nav.open {
-      right: 0;
-    }
-
-    .side-nav-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-
-    .nav-logo {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .nav-close {
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text-primary);
-      transition: all 0.3s ease;
-    }
-
-    .nav-close:hover {
-      transform: rotate(90deg);
-      color: #ff6b6b;
-    }
-
-    .side-nav-links {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-
-    .side-nav-links a {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      padding: 0.8rem 1rem;
-      border-radius: 12px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-
-    .side-nav-links a:hover {
-      background: var(--primary-light);
-      color: var(--primary-color);
-    }
-
-    .side-nav-links a.active {
-      background: var(--primary-color);
-      color: white;
-    }
-
-    .side-nav-links a i {
-      width: 22px;
-      text-align: center;
-    }
-
-    .side-nav-footer {
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .side-social {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-bottom: 0.8rem;
-    }
-
-    .side-social a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--primary-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .side-social a:hover {
-      background: var(--primary-color);
-      color: white;
-      transform: translateY(-3px);
-    }
-
-    .side-nav-copyright {
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-    }
-
-    .overlay.open {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* تنسيق الفوتر */
-    .main-footer {
-      margin-top: 4rem;
-      padding: 3rem 0 1rem;
-      background: var(--bg-card);
-      border-radius: 30px 30px 0 0;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .footer-col h3, .footer-col h4 {
-      color: var(--text-primary);
-      margin-bottom: 0.8rem;
-    }
-
-    .footer-col p, .footer-col li {
-      color: var(--text-secondary);
-    }
-
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col ul li {
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .footer-col ul li a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-col ul li a:hover {
-      color: var(--primary-color);
-    }
-
-    .footer-logo {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 0.8rem;
-      margin-top: 0.8rem;
-    }
-
-    .footer-social a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--primary-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .footer-social a:hover {
-      background: var(--primary-color);
-      color: white;
-      transform: translateY(-3px);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 1.5rem;
-      margin-top: 2rem;
-      border-top: 1px solid var(--border-color);
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    /* أنيميشن */
-    .event-card {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
-    }
-
-    .event-card.animate-in {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 
@@ -712,6 +105,192 @@
     </div>
   </section>
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فعاليات فريق الأنامل الرقمية</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Tahoma', system-ui, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f6f9fc 0%, #eef2f7 100%);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* intro card */
+    .intro-card {
+      background: white;
+      padding: 1.8rem 2.5rem;
+      border-radius: 60px 20px 60px 20px;
+      box-shadow: 0 15px 30px -8px rgba(0, 20, 40, 0.15);
+      margin-bottom: 3rem;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #1e3a5f;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(2px);
+      transition: all 0.3s ease;
+    }
+
+    .intro-card p {
+      margin: 0;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    /* event cards */
+    .event-card {
+      background: #ffffff;
+      border-radius: 32px 16px 32px 16px;
+      box-shadow: 0 12px 28px -8px rgba(0, 20, 40, 0.12);
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(2px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .event-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 40px -12px rgba(0, 40, 80, 0.25);
+      border-color: #b0d0f0;
+    }
+
+    .event-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: #d9e2ed;
+      border-bottom: 3px solid #eef4fa;
+    }
+
+    .event-info {
+      padding: 1.5rem 1.5rem 1.8rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: white;
+    }
+
+    .event-info h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2a44;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .event-badge {
+      background: #ffd966;
+      color: #1e3a5f;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      display: inline-block;
+      box-shadow: 0 2px 6px rgba(255, 200, 0, 0.3);
+    }
+
+    .event-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eef4fa;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #1d4a7a;
+      font-weight: 600;
+      width: fit-content;
+      margin: 0.4rem 0 0.8rem 0;
+    }
+
+    .event-date i {
+      color: #2a6b9e;
+    }
+
+    .event-info p {
+      color: #1e3a4f;
+      line-height: 1.7;
+      font-size: 0.98rem;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    .event-trainer, .event-location {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f0f6fe;
+      padding: 0.5rem 1.2rem;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #0f3b60;
+      margin-top: 0.3rem;
+      width: fit-content;
+      border: 1px solid #d9e6f5;
+    }
+
+    .event-trainer i, .event-location i {
+      color: #1f6eb0;
+      font-size: 1.1rem;
+    }
+
+    .highlight-event {
+      border-right: 6px solid #f5b042;
+      background: #fefcf7;
+    }
+
+    .highlight-event .event-badge {
+      background: #f5b042;
+      color: #1e2f40;
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+      .intro-card {
+        padding: 1.2rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 30px 12px 30px 12px;
+      }
+      .event-info h3 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
   <main class="container">
     <section class="events-section">
       <div class="intro-card">
@@ -720,25 +299,31 @@
 
       <div class="events-grid">
         
-        <!-- ============================================================= -->
-        <!-- 1. الظهور الثاني على التلفاز – قناة الحدث اليوم (31 يوليو 2026) -->
-        <!-- ============================================================= -->
+  <!-- المحتوى الرئيسي -->
+  <main class="container">
+    <section class="events-section">
+      <div class="intro-card">
+        <p>هنا تجد أهم الفعاليات والمعسكرات والأنشطة التي شاركنا فيها.</p>
+      </div>
+
+      <div class="events-grid">
+        
+  
+              <!-- ============== الحدث الأول: الظهور على التلفاز (في البداية) ============== -->
         <div class="event-card highlight-event">
-          <img src="image/ontv.jpeg" alt="الظهور الثاني على التلفاز" class="event-img">
+          <img src="image/ontv.jpeg" alt="تكريم القائد العام على التلفاز" class="event-img">
           <div class="event-info">
             <h3>📺 الظهور الثاني للفريق على قناة الحدث اليوم <span class="event-badge">حدث تاريخي</span></h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 31 يوليو 2026</span>
-            <p>حلّ فريق الأنامل الرقمية ضيفاً على برنامج <strong>"نقطة ومن أول السطر"</strong> مع الإعلامية الدكتورة <strong>رحاب فارس</strong>، للحديث عن قصة نجاح الفريق وإنجازاته التي حققها خلال عام حافل بالتميز.</p>
+            <p>حلّ فريق الأنامل الرقمية ضيفاً على برنامج <strong>"نقطة ومن أول السطر"  </strong> الإعلامية الدكتورة رحاب فارس، للحديث عن قصة نجاح الفريق وإنجازاته التي حققها خلال عام حافل بالتميز. <strong>أصغر مدرب دولي معتمد في جمهورية مصر العربية</strong> والقائد المعتمد. هذا التكريم يعكس مدى التميز والاحترافية التي وصل إليها الفريق تحت قيادته.</p>
             <div class="event-trainer">
-              <i class="fas fa-microphone-alt"></i>
-              <span>ضيوف: فريق الأنامل الرقمية</span>
+              <i class="fas fa-trophy"></i>
+              <span>استضافة: فريق الأنامل الرقمية</span>
             </div>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 2. الظهور الأول على التلفاز (13 سبتمبر 2025) -->
-        <!-- ============================================================= -->
+        
+        <!-- ============== الحدث الأول: الظهور على التلفاز (في البداية) ============== -->
         <div class="event-card highlight-event">
           <img src="image/ontv.jpeg" alt="تكريم القائد العام على التلفاز" class="event-img">
           <div class="event-info">
@@ -752,13 +337,11 @@
           </div>
         </div>
         
-        <!-- ============================================================= -->
-        <!-- 3. إيفنت عرض إنجازات DF Team (17 سبتمبر 2025) -->
-        <!-- ============================================================= -->
+        <!-- ============== الحدث الثاني: إيفنت عرض الإنجازات ============== -->
         <div class="event-card">
           <img src="image/our evvent.jpeg" alt="إيفنت عرض إنجازات DF Team" class="event-img">
           <div class="event-info">
-            <h3>🎤 إيفنت عرض إنجازات DF Team</h3>
+            <h3>إيفنت عرض إنجازات DF Team</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 17 سبتمبر 2025</span>
             <p>إقامة إيفنت لعرض إنجازات فريق الأنامل الرقمية بعد مرور شهر و13 يوم من انطلاق النشاط الصيفي وتحولهم من متدربين إلى فريق له حضور ومنافسين. شهد الإيفنت حضور قيادات الإدارة وعدد من الضيوف المميزين.</p>
             <div class="event-trainer">
@@ -767,41 +350,36 @@
             </div>
           </div>
         </div>
+        
+        <!-- ============== باقي الأحداث من الأحدث إلى الأقدم (مرتبة تنازلياً حسب التاريخ) ============== -->
 
-        <!-- ============================================================= -->
-        <!-- 4. زيارة الدكتور سعد عسل والأستاذ أحمد زهران – حملة Upgrade (مدرسة الثانوية بنات) -->
-        <!-- ============================================================= -->
-        <div class="event-card highlight-event">
-          <img src="image/المؤمنين.jpeg" alt="زيارة قيادات الإدارة لمتابعة Upgrade" class="event-img">
+                <!-- 9 ابريل 2026 - اجتماع الفريق في مكتبة مصر العامة -->
+        <div class="event-card">
+          <img src="image/meet.jpeg" alt="اجتماع مكتبة مصر العامة" class="event-img">
           <div class="event-info">
             <h3>👥 زيارة الدكتور سعد عسل والأستاذ أحمد زهران</h3>
-            <span class="event-date"><i class="far fa-calendar-alt"></i> (خلال حملة Upgrade – القليوبية)</span>
-            <p>قام <strong>الدكتور سعد عسل (مدير إدارة بنها)</strong> و<strong>الأستاذ أحمد زهران (مدير الشؤون التنفيذية)</strong> بزيارة تفقدية لفريق الأنامل الرقمية وسط فعاليات حملة <strong>Upgrade الرسمية المعتمدة على مستوى القليوبية</strong> بمدرسة الثانوية بنات، لمتابعة حسن سير العمل والاطلاع على الأداء المتميز للفريق.</p>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> 28 يوليو 2026</span>
+            <p>قام<strong>الدكتور سعد عسل (مدير إدارة بنها) والأستاذ أحمد زهران (مدير الشؤون التنفيذية)</strong>زيارة تفقدية لفريق الأنامل الرقمية وسط فعاليات حملة Upgrade الرسمية المعتمدة على مستوى القليوبية بمدرسة الثانوية بنات، لمتابعة حسن سير العمل والاطلاع على الأداء المتميز للفريق.</p>
             <div class="event-location">
               <i class="fas fa-map-marker-alt"></i> مدرسة الثانوية بنات – بنها
             </div>
           </div>
         </div>
 
-        <!-- ============================================================= -->
-        <!-- 5. تكريم الفريق بمناسبة مرور عام من النجاح (إدارة بنها التعليمية) -->
-        <!-- ============================================================= -->
+                        <!-- 9 ابريل 2026 - اجتماع الفريق في مكتبة مصر العامة -->
         <div class="event-card">
-          <img src="image/our evvent.jpeg" alt="تكريم عام النجاح" class="event-img">
+          <img src="image/meet.jpeg" alt="اجتماع مكتبة مصر العامة" class="event-img">
           <div class="event-info">
-            <h3>🏆 تكريم فريق الأنامل الرقمية – مرور عام من النجاح</h3>
-            <span class="event-date"><i class="far fa-calendar-alt"></i> (بعد إيفنت سبتمبر 2025)</span>
-            <p>أقامت <strong>إدارة بنها التعليمية</strong> حفل تكريم خاص لفريق الأنامل الرقمية بمناسبة مرور عام مليئ بالإنجازات المثمرة. تم تكريم القائد العام وأعضاء الفريق تقديراً لجهودهم المتميزة وتأثيرهم الإيجابي في المجتمع التعليمي.</p>
-            <div class="event-trainer">
-              <i class="fas fa-award"></i>
-              <span>تكريم من إدارة بنها التعليمية</span>
+            <h3>🏆 تكريم فريق الأنامل الرقمية – مرور عام من النجاح </h3>
+            <span class="event-date"><i class="far fa-calendar-alt"></i> 20 يوليو 2026</span>
+            <p>أقامت<strong>إدارة بنها التعليمية في حضور نخبة من القيدات</strong>حفل تكريم خاص لفريق الأنامل الرقمية بمناسبة مرور عام مليئ بالإنجازات المثمرة. تم تكريم القائد العام وأعضاء الفريق تقديراً لجهودهم المتميزة وتأثيرهم الإيجابي في المجتمع التعليمي.</p>
+            <div class="event-location">
+              <i class="fas fa-map-marker-alt"></i> مرور عام كمل على انشاء الفريق
             </div>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 6. اجتماع الفريق في مكتبة مصر العامة (9 ابريل 2026) -->
-        <!-- ============================================================= -->
+        
+        <!-- 9 ابريل 2026 - اجتماع الفريق في مكتبة مصر العامة -->
         <div class="event-card">
           <img src="image/meet.jpeg" alt="اجتماع مكتبة مصر العامة" class="event-img">
           <div class="event-info">
@@ -813,10 +391,8 @@
             </div>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 7. حملة Upgrade – المستوى الثاني (13 مارس 2026) -->
-        <!-- ============================================================= -->
+        
+        <!-- 13 مارس 2026 - حملة Upgrade المستوى الثاني Level 2 -->
         <div class="event-card highlight-event">
           <img src="image/المؤمنين.jpeg" alt="حملة Upgrade المستوى الثاني" class="event-img">
           <div class="event-info">
@@ -829,10 +405,8 @@
             </div>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 8. حملة Upgrade – مدرسة الشبان المسلمين (15 فبراير 2026) -->
-        <!-- ============================================================= -->
+        
+        <!-- 15 فبراير 2026 - تنفيذ حملة Upgrade - مدرسة الشبان المسلمين -->
         <div class="event-card">
           <img src="image/الشبان.jpeg" alt="حملة Upgrade مدرسة الشبان المسلمين" class="event-img">
           <div class="event-info">
@@ -844,10 +418,8 @@
             </div>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 9. حملة Upgrade – مدرسة مصطفى كامل (12 فبراير 2026) -->
-        <!-- ============================================================= -->
+        
+        <!-- 12 فبراير 2026 - تنفيذ حملة Upgrade - مدرسة مصطفى كامل -->
         <div class="event-card">
           <img src="image/kamel.s.jpeg" alt="حملة Upgrade مدرسة مصطفى كامل" class="event-img">
           <div class="event-info">
@@ -859,10 +431,8 @@
             </div>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 10. حملة Upgrade – اعتماد رسمي (10 فبراير 2026) -->
-        <!-- ============================================================= -->
+        
+        <!-- 10 فبراير 2026 - حملة Upgrade - المعتمدة من الوزارتين -->
         <div class="event-card highlight-event">
           <img src="image/up.jpeg" alt="حملة Upgrade" class="event-img">
           <div class="event-info">
@@ -875,10 +445,8 @@
             </div>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 11. حدث توعية الشباب – EIS الشيخ زايد (25 يناير 2026) -->
-        <!-- ============================================================= -->
+        
+        <!-- 25 يناير 2026 - حدث توعية الشباب في مدرسة EIS -->
         <div class="event-card">
           <img src="image/eis.jpeg" alt="مدرسة EIS" class="event-img">
           <div class="event-info">
@@ -890,10 +458,8 @@
             </div>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 12. انتقال الفريق إلى مركز التطوير (19 يناير 2026) -->
-        <!-- ============================================================= -->
+        
+        <!-- 19 يناير 2026 - انتقال الفريق إلى مركز التطوير -->
         <div class="event-card">
           <img src="image/زيارة المدير.jpeg" alt="انتقال الفريق إلى مركز التطوير" class="event-img">
           <div class="event-info">
@@ -905,50 +471,28 @@
             </div>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 13. معرض ISEF المستوى المحلي (10 ديسمبر 2025) -->
-        <!-- ============================================================= -->
+        
+        <!-- 10 ديسمبر 2025 - معرض مسابقة ISEF المستوى المحلي -->
         <div class="event-card">
           <img src="image/ISEF QAL.jpeg" alt="معرض مسابقة ISEF المستوى المحلي" class="event-img">
           <div class="event-info">
-            <h3>🏅 معرض مسابقة ISEF المستوى المحلي</h3>
+            <h3>معرض مسابقة ISEF المستوى المحلي</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 10 ديسمبر 2025</span>
             <p>تعبنا لكن حققنا إنجاز عظيم ووضعنا لمسة فريق الأنامل في المسابقة وحصل مشروع البراء سعد السيد وأحمد عبدالرؤوف سمير على المركز الأول بإدارة بنها لفئة تحت السن.</p>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 14. معرض ISEF المستوى الإداري (18 نوفمبر 2025) -->
-        <!-- ============================================================= -->
+        
+        <!-- 18 نوفمبر 2025 - معرض مسابقة ISEF المستوى الإداري -->
         <div class="event-card">
           <img src="image/isef ed.jpeg" alt="معرض مسابقة ISEF المستوى الإداري" class="event-img">
           <div class="event-info">
-            <h3>🏅 معرض مسابقة ISEF المستوى الإداري</h3>
+            <h3>معرض مسابقة ISEF المستوى الإداري</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 18 نوفمبر 2025</span>
             <p>حيث قدم الأعضاء مشاريع أبهَرت كل لجنة الحكام ودخلنا بحوالي 4 مشاريع و 8 أعضاء وتأهل منهم مشروعان وأربعة أعضاء إلى المستوى المحلي.</p>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 15. مقتطفات من تدريبات الأنشطة الصيفية – بايثون مع المدربة ريتاج -->
-        <!-- ============================================================= -->
-        <div class="event-card highlight-event">
-          <img src="image/logo1.jpeg" alt="تدريبات الأنشطة الصيفية" class="event-img">
-          <div class="event-info">
-            <h3>☀️ مقتطفات من تدريبات الأنشطة الصيفية</h3>
-            <span class="event-date"><i class="far fa-calendar-alt"></i> صيف 2025</span>
-            <p>شهدت التدريبات الصيفية للفريق إقبالاً شديداً تجاوز <strong>100 طالب</strong> في الجلسة الواحدة. تميزت محاضرات <strong>بايثون</strong> التي قدمتها المدربة <strong>ريتاج محمد</strong> بإعجاب كبير من الحضور، حيث تفاعل الطلاب بشكل لافت مع المحتوى التدريبي.</p>
-            <div class="event-trainer">
-              <i class="fas fa-chalkboard-teacher"></i>
-              <span>المدربة: ريتاج محمد</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ============================================================= -->
-        <!-- 16. ندوة ثقافية – سبتمبر 2025 -->
-        <!-- ============================================================= -->
+        
+        <!-- سبتمبر 2025 - أحدث ندوة ثقافية -->
         <div class="event-card">
           <img src="image/WhatsApp Image 2025-09-09 at 1.53.42 AM.jpeg" alt="أحدث ندوة ثقافية" class="event-img">
           <div class="event-info">
@@ -957,12 +501,10 @@
             <p>انعقدت الندوة الثقافية الثالثة بمدرسة الشهيد مدحت طلعت بعنوان مهارات الاتصال والتواصل الفعّال. شهدت حضوراً وتفاعلاً مميزاً من أولياء الأمور والطلاب. هدفت إلى إبراز الفرق بين الاتصال والتواصل وأثرهما في بناء علاقات فعّالة.</p>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 17. ندوة مهارات الاتصال (30 أغسطس 2025) -->
-        <!-- ============================================================= -->
+        
+        <!-- 30 أغسطس 2025 - ندوة مهارات الاتصال والتواصل الفعّال -->
         <div class="event-card">
-          <img src="image/WhatsApp Image 2025-09-09 at 1.53.42 AM.jpeg" alt="ندوة مهارات الاتصال" class="event-img">
+          <img src="image/WhatsApp Image 2025-09-09 at 1.53.42 AM.jpeg" alt="ندوة مهارات الاتصال والتواصل الفعّال" class="event-img">
           <div class="event-info">
             <h3>ندوة مهارات الاتصال والتواصل الفعّال</h3>
             <span class="event-date"><i class="far fa-calendar-alt"></i> 30 أغسطس 2025</span>
@@ -973,10 +515,8 @@
             </div>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 18. ورشة برمجة Scratch (25 أغسطس 2025) -->
-        <!-- ============================================================= -->
+        
+        <!-- 25 أغسطس 2025 - ورشة برمجة Scratch -->
         <div class="event-card">
           <img src="image/logo1.jpeg" alt="ورشة Scratch" class="event-img">
           <div class="event-info">
@@ -989,10 +529,8 @@
             </div>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 19. منحة إعداد مهارات القادة (20 أغسطس 2025) -->
-        <!-- ============================================================= -->
+        
+        <!-- 20 أغسطس 2025 - منحة إعداد مهارات القادة -->
         <div class="event-card">
           <img src="image/IMG-20250820-WA0210.jpg" alt="منحة إعداد مهارات القادة" class="event-img">
           <div class="event-info">
@@ -1005,10 +543,8 @@
             </div>
           </div>
         </div>
-
-        <!-- ============================================================= -->
-        <!-- 20. ندوة ثقافية – أغسطس 2025 -->
-        <!-- ============================================================= -->
+        
+        <!-- أغسطس 2025 - ندوة ثقافية -->
         <div class="event-card">
           <img src="image/تدريب.jpg" alt="ندوة ثقافية" class="event-img">
           <div class="event-info">
@@ -1017,11 +553,16 @@
             <p>ندوة مميزة عن مهارات العرض والتقديم (Presentation Skills) بهدف تنمية قدرات المشاركين على التواصل الفعّال وتقديم أفكارهم بثقة واحترافية.</p>
           </div>
         </div>
-
+        
       </div>
     </section>
   </main>
 
+      </div>
+    </section>
+  </main>
+</body>
+</html>
   <!-- التذييل -->
   <footer class="main-footer">
     <div class="container">
@@ -1078,38 +619,31 @@
 
       // تطبيق الثيم
       function applyTheme(themeIndex) {
-        const themeName = themes[themeIndex];
-        document.body.setAttribute('data-theme', themeName);
+        document.body.setAttribute('data-theme', themes[themeIndex]);
 
-        // تغيير أيقونة الزر حسب الثيم
-        if (themeName === 'light') {
+        if (themes[themeIndex] === 'light') {
           themeIcon.className = 'fas fa-moon';
-        } else if (themeName === 'dark') {
+        } else if (themes[themeIndex] === 'dark') {
           themeIcon.className = 'fas fa-star';
-        } else { // purple
+        } else {
           themeIcon.className = 'fas fa-sun';
         }
 
-        localStorage.setItem('theme', themeName);
+        localStorage.setItem('theme', themes[themeIndex]);
       }
 
-      // حدث تغيير الثيم عند النقر
       themeToggle.addEventListener('click', function () {
         currentThemeIndex = (currentThemeIndex + 1) % themes.length;
         applyTheme(currentThemeIndex);
       });
 
-      // استعادة الثيم المحفوظ
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme) {
-        const index = themes.indexOf(savedTheme);
-        if (index !== -1) {
-          currentThemeIndex = index;
-          applyTheme(currentThemeIndex);
-        }
+        currentThemeIndex = themes.indexOf(savedTheme);
+        if (currentThemeIndex === -1) currentThemeIndex = 0;
+        applyTheme(currentThemeIndex);
       }
 
-      // فتح وإغلاق القائمة الجانبية
       function openSideNav() {
         sideNav.classList.add('open');
         navOverlay.classList.add('open');
@@ -1130,7 +664,6 @@
         if (e.key === 'Escape') closeSideNav();
       });
 
-      // تحديث رسالة الترحيب
       function updateWelcomeMessage() {
         const welcomeMessage = document.querySelector('.welcome-message');
         if (!welcomeMessage) return;
@@ -1157,7 +690,6 @@
       window.updateWelcomeMessage = updateWelcomeMessage;
       updateWelcomeMessage();
 
-      // أنيميشن ظهور البطاقات عند التمرير
       const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
       const observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
