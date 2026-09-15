@@ -1,681 +1,779 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>أعضاء الفريق | فريق الأنامل الرقمية</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <link rel="icon" type="image/x-icon" href="image/logo1.jpeg" />
-    <link rel="stylesheet" href="static/css/style.css" />
 
-    <style>
-      /* Members Grid Styles - بدون دوران */
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أعضاء الفريق | فريق الأنامل الرقمية</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="icon" type="image/x-icon" href="image/logo1.jpeg" />
+  <link rel="stylesheet" href="static/css/style.css" />
+
+  <style>
+    /* Members Grid Styles - بدون دوران */
+    .members-container {
+      width: 100%;
+      padding: 2rem 0;
+      text-align: center;
+      position: relative;
+      margin-top: 60px;
+    }
+
+    .members-title {
+      color: var(--text-color);
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+      font-family: "Tajawal", sans-serif;
+    }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 20px 0;
+    }
+
+    .member-card {
+      background: linear-gradient(135deg,
+          rgba(var(--color-card), 0.15) 0%,
+          rgba(var(--color-card), 0.05) 100%);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      border: 2px solid rgba(var(--color-card), 0.3);
+      backdrop-filter: blur(5px);
+    }
+
+    [data-theme="light"] .member-card {
+      background: linear-gradient(135deg,
+          rgba(var(--color-card), 0.25) 0%,
+          rgba(var(--color-card), 0.1) 100%);
+      border-color: rgba(var(--color-card), 0.5);
+    }
+
+    .member-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(var(--color-card), 0.8);
+      box-shadow: 0 15px 35px rgba(var(--color-card), 0.2);
+    }
+
+    .member-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    .member-info {
+      padding: 1.2rem;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .member-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-color);
+      margin: 0 0 0.25rem 0;
+      line-height: 1.3;
+      font-family: "Tajawal", sans-serif;
+    }
+
+    .member-name-arabic {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: rgba(var(--text-color-rgb), 0.6);
+      margin-bottom: 0.5rem;
+      font-family: "Tajawal", sans-serif;
+      letter-spacing: -0.3px;
+    }
+
+    .member-role {
+      font-size: 0.85rem;
+      color: rgba(var(--color-card), 0.9);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-family: "Tajawal", sans-serif;
+    }
+
+    .leader-badge {
+      background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-top: 0.3rem;
+      display: inline-block;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .supervisor-badge {
+      background: linear-gradient(45deg, #6b9fff, #8eb8ff);
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      margin-top: 0.2rem;
+      display: inline-block;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 5px #ff6b6b;
+      }
+
+      to {
+        box-shadow: 0 0 15px #ff6b6b, 0 0 20px #ff8e8e;
+      }
+    }
+
+    /* join card special styles */
+    .join-card {
+      background: linear-gradient(135deg, rgba(100, 200, 255, 0.2) 0%, rgba(80, 160, 255, 0.1) 100%);
+      border: 2px dashed rgba(100, 180, 255, 0.7);
+      cursor: pointer;
+    }
+
+    .join-card:hover {
+      border: 2px solid rgba(100, 180, 255, 1);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(100, 180, 255, 0.3);
+    }
+
+    .join-icon {
+      font-size: 3.5rem;
+      color: #5fa7ff;
+      margin-bottom: 1rem;
+    }
+
+    .join-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text-color);
+      margin-bottom: 0.7rem;
+    }
+
+    .join-sub {
+      font-size: 0.9rem;
+      color: rgba(var(--text-color-rgb), 0.8);
+      margin-bottom: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .roles-needed {
+      background: rgba(100, 180, 255, 0.2);
+      border-radius: 40px;
+      padding: 0.5rem 0.8rem;
+      margin: 0.8rem auto;
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      max-width: 90%;
+    }
+
+    .role-tag {
+      background: #3a86ff;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    .join-cta {
+      background: linear-gradient(45deg, #3a86ff, #8338ec);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      margin-top: 0.8rem;
+      display: inline-block;
+      transition: 0.2s;
+      font-family: 'Tajawal', sans-serif;
+      cursor: pointer;
+    }
+
+    .join-cta:hover {
+      transform: scale(1.02);
+      background: linear-gradient(45deg, #2666df, #6b2bc9);
+    }
+
+    .member-card.join-card {
+      text-align: center;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
       .members-container {
-        width: 100%;
-        padding: 2rem 0;
-        text-align: center;
-        position: relative;
-        margin-top: 60px;
+        margin-top: 30px;
+        padding: 1rem 0;
       }
 
       .members-title {
-        color: var(--text-color);
-        margin-bottom: 3rem;
-        font-size: 2.5rem;
-        font-weight: 700;
-        font-family: "Tajawal", sans-serif;
+        font-size: 2rem;
+        margin-bottom: 2rem;
       }
 
       .members-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 30px;
-        padding: 20px 0;
-      }
-
-      .member-card {
-        background: linear-gradient(
-          135deg,
-          rgba(var(--color-card), 0.15) 0%,
-          rgba(var(--color-card), 0.05) 100%
-        );
-        border-radius: 20px;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        text-decoration: none;
-        color: inherit;
-        display: block;
-        border: 2px solid rgba(var(--color-card), 0.3);
-        backdrop-filter: blur(5px);
-      }
-
-      [data-theme="light"] .member-card {
-        background: linear-gradient(
-          135deg,
-          rgba(var(--color-card), 0.25) 0%,
-          rgba(var(--color-card), 0.1) 100%
-        );
-        border-color: rgba(var(--color-card), 0.5);
-      }
-
-      .member-card:hover {
-        transform: translateY(-10px);
-        border-color: rgba(var(--color-card), 0.8);
-        box-shadow: 0 15px 35px rgba(var(--color-card), 0.2);
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+        padding: 10px;
       }
 
       .member-img {
-        width: 100%;
-        height: 280px;
-        object-fit: cover;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-      }
-
-      .member-info {
-        padding: 1.2rem;
-        text-align: center;
-        background: rgba(255, 255, 255, 0.05);
+        height: 240px;
       }
 
       .member-name {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: var(--text-color);
-        margin: 0 0 0.25rem 0;
-        line-height: 1.3;
-        font-family: "Tajawal", sans-serif;
-      }
-      
-      .member-name-arabic {
-        font-size: 0.75rem;
-        font-weight: 400;
-        color: rgba(var(--text-color-rgb), 0.6);
-        margin-bottom: 0.5rem;
-        font-family: "Tajawal", sans-serif;
-        letter-spacing: -0.3px;
+        font-size: 1rem;
       }
 
       .member-role {
-        font-size: 0.85rem;
-        color: rgba(var(--color-card), 0.9);
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        font-family: "Tajawal", sans-serif;
-      }
-
-      .leader-badge {
-        background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-        color: white;
-        padding: 0.3rem 0.8rem;
-        border-radius: 20px;
-        font-size: 0.7rem;
-        font-weight: 700;
-        margin-top: 0.3rem;
-        display: inline-block;
-        animation: glow 2s ease-in-out infinite alternate;
-      }
-      
-      .supervisor-badge {
-        background: linear-gradient(45deg, #6b9fff, #8eb8ff);
-        color: white;
-        padding: 0.2rem 0.6rem;
-        border-radius: 20px;
-        font-size: 0.65rem;
-        font-weight: 600;
-        margin-top: 0.2rem;
-        display: inline-block;
-      }
-
-      @keyframes glow {
-        from {
-          box-shadow: 0 0 5px #ff6b6b;
-        }
-        to {
-          box-shadow: 0 0 15px #ff6b6b, 0 0 20px #ff8e8e;
-        }
-      }
-
-      /* join card special styles */
-      .join-card {
-        background: linear-gradient(135deg, rgba(100, 200, 255, 0.2) 0%, rgba(80, 160, 255, 0.1) 100%);
-        border: 2px dashed rgba(100, 180, 255, 0.7);
-        cursor: pointer;
-      }
-      .join-card:hover {
-        border: 2px solid rgba(100, 180, 255, 1);
-        transform: translateY(-10px);
-        box-shadow: 0 15px 35px rgba(100, 180, 255, 0.3);
-      }
-      .join-icon {
-        font-size: 3.5rem;
-        color: #5fa7ff;
-        margin-bottom: 1rem;
-      }
-      .join-title {
-        font-size: 1.3rem;
-        font-weight: 800;
-        color: var(--text-color);
-        margin-bottom: 0.7rem;
-      }
-      .join-sub {
-        font-size: 0.9rem;
-        color: rgba(var(--text-color-rgb), 0.8);
-        margin-bottom: 0.8rem;
-        line-height: 1.5;
-      }
-      .roles-needed {
-        background: rgba(100, 180, 255, 0.2);
-        border-radius: 40px;
-        padding: 0.5rem 0.8rem;
-        margin: 0.8rem auto;
-        display: inline-flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
-        max-width: 90%;
-      }
-      .role-tag {
-        background: #3a86ff;
-        color: white;
-        font-size: 0.7rem;
-        font-weight: 600;
-        padding: 0.2rem 0.7rem;
-        border-radius: 30px;
-        font-family: 'Tajawal', sans-serif;
-      }
-      .join-cta {
-        background: linear-gradient(45deg, #3a86ff, #8338ec);
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 40px;
-        font-weight: 600;
         font-size: 0.8rem;
-        margin-top: 0.8rem;
-        display: inline-block;
-        transition: 0.2s;
-        font-family: 'Tajawal', sans-serif;
-        cursor: pointer;
       }
-      .join-cta:hover {
-        transform: scale(1.02);
-        background: linear-gradient(45deg, #2666df, #6b2bc9);
-      }
-      .member-card.join-card {
-        text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .members-grid {
+        grid-template-columns: 1fr;
       }
 
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .members-container {
-          margin-top: 30px;
-          padding: 1rem 0;
-        }
-
-        .members-title {
-          font-size: 2rem;
-          margin-bottom: 2rem;
-        }
-
-        .members-grid {
-          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-          gap: 20px;
-          padding: 10px;
-        }
-
-        .member-img {
-          height: 240px;
-        }
-
-        .member-name {
-          font-size: 1rem;
-        }
-
-        .member-role {
-          font-size: 0.8rem;
-        }
+      .member-img {
+        height: 260px;
       }
 
-      @media (max-width: 480px) {
-        .members-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .member-img {
-          height: 260px;
-        }
-
-        .members-title {
-          font-size: 1.8rem;
-        }
+      .members-title {
+        font-size: 1.8rem;
       }
-    </style>
-  </head>
+    }
+  </style>
+</head>
 
-  <body data-theme="light">
-    <!-- القائمة الجانبية -->
-    <aside class="side-nav" id="sideNav">
-      <div class="side-nav-header">
-        <img src="image/logo1.jpeg" alt="شعار" class="nav-logo" />
-        <span class="nav-close" id="closeNav"
-          ><i class="fas fa-times"></i
-        ></span>
+<body data-theme="light">
+  <!-- القائمة الجانبية -->
+  <aside class="side-nav" id="sideNav">
+    <div class="side-nav-header">
+      <img src="image/logo1.jpeg" alt="شعار" class="nav-logo" />
+      <span class="nav-close" id="closeNav"><i class="fas fa-times"></i></span>
+    </div>
+    <nav class="side-nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="about.html"><i class="fas fa-users"></i> عن الفريق</a>
+      <a href="history.html"><i class="fas fa-clock-rotate-left"></i> تاريخ الفريق</a>
+      <a href="members.html" class="active"><i class="fas fa-address-book"></i> الأعضاء</a>
+      <a href="trainings.html"><i class="fas fa-chalkboard-teacher"></i> التدريبات</a>
+      <a href="projects.html"><i class="fas fa-rocket"></i> المشاريع</a>
+      <a href="announcements.html"><i class="fas fa-bell"></i> الإعلانات</a>
+      <a href="events.html"><i class="fas fa-calendar-check"></i> الفعاليات</a>
+      <a href="resources.html"><i class="fas fa-book"></i> الموارد</a>
+      <a href="faq.html"><i class="fas fa-question"></i> الأسئلة الشائعة</a>
+    </nav>
+    <div class="side-nav-footer">
+      <div class="side-social">
+        <a href="https://www.facebook.com/share/1AZsPrUD2n/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://github.com/Digital-Fingers-Team" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/dfteam_eg?igsh=N2liZ3JkaWVpNXR0" target="_blank"><i
+            class="fab fa-instagram"></i></a>
       </div>
-      <nav class="side-nav-links">
-        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
-        <a href="about.html"><i class="fas fa-users"></i> عن الفريق</a>
-        <a href="history.html"
-          ><i class="fas fa-clock-rotate-left"></i> تاريخ الفريق</a
-        >
-        <a href="members.html" class="active"
-          ><i class="fas fa-address-book"></i> الأعضاء</a
-        >
-        <a href="trainings.html"
-          ><i class="fas fa-chalkboard-teacher"></i> التدريبات</a
-        >
-        <a href="projects.html"><i class="fas fa-rocket"></i> المشاريع</a>
-        <a href="announcements.html"><i class="fas fa-bell"></i> الإعلانات</a>
-        <a href="events.html"
-          ><i class="fas fa-calendar-check"></i> الفعاليات</a
-        >
-        <a href="resources.html"><i class="fas fa-book"></i> الموارد</a>
-        <a href="faq.html"><i class="fas fa-question"></i> الأسئلة الشائعة</a>
-      </nav>
-      <div class="side-nav-footer">
-        <div class="side-social">
-          <a href="https://www.facebook.com/share/1AZsPrUD2n/" target="_blank"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-          <a href="https://github.com/Digital-Fingers-Team" target="_blank"
-            ><i class="fab fa-github"></i
-          ></a>
-          <a href="https://www.instagram.com/dfteam_eg?igsh=N2liZ3JkaWVpNXR0" target="_blank"><i class="fab fa-instagram"></i></a>
+      <div class="side-nav-copyright">
+        &copy; 2025 فريق الأنامل الرقمية | DF Team
+      </div>
+    </div>
+  </aside>
+  <div class="overlay" id="navOverlay"></div>
+
+  <!-- الترويسة -->
+  <header class="main-header">
+    <div class="header-left">
+      <img src="image/logo1.jpeg" alt="شعار" class="logo" />
+      <span class="brand-name">DF Team</span>
+    </div>
+    <div class="header-center">
+      <span class="welcome-message">مرحباً بكم أعضاء وقائد فريق الأنامل الرقمية</span>
+    </div>
+    <div class="header-right">
+      <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="header-menu-btn" id="menuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="members-container">
+      <h1 class="members-title">أعضاء فريق الأنامل الرقمية</h1>
+      <div class="members-grid" id="membersGrid">
+        <!-- Cards will be generated by JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- التذييل -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <img src="image/logo1.jpeg" alt="شعار" class="footer-logo" />
+          <h3>فريق الانامل الرقمية</h3>
+          <p>الفريق الصاعد</p>
         </div>
-        <div class="side-nav-copyright">
-          &copy; 2025 فريق الأنامل الرقمية | DF Team
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">عن الفريق</a></li>
+            <li><a href="members.html">الأعضاء</a></li>
+            <li><a href="trainings.html">التدريبات</a></li>
+            <li><a href="projects.html">المشاريع</a></li>
+            <li><a href="events.html">الفعاليات</a></li>
+          </ul>
         </div>
-      </div>
-    </aside>
-    <div class="overlay" id="navOverlay"></div>
-
-    <!-- الترويسة -->
-    <header class="main-header">
-      <div class="header-left">
-        <img src="image/logo1.jpeg" alt="شعار" class="logo" />
-        <span class="brand-name">DF Team</span>
-      </div>
-      <div class="header-center">
-        <span class="welcome-message"
-          >مرحباً بكم أعضاء وقائد فريق الأنامل الرقمية</span
-        >
-      </div>
-      <div class="header-right">
-        <button class="theme-toggle" id="themeToggle">
-          <i class="fas fa-moon"></i>
-        </button>
-        <button class="header-menu-btn" id="menuBtn">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-    </header>
-
-    <main class="container">
-      <section class="members-container">
-        <h1 class="members-title">أعضاء فريق الأنامل الرقمية</h1>
-        <div class="members-grid" id="membersGrid">
-          <!-- Cards will be generated by JavaScript -->
-        </div>
-      </section>
-    </main>
-
-    <!-- التذييل -->
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-col">
-            <img src="image/logo1.jpeg" alt="شعار" class="footer-logo" />
-            <h3>فريق الانامل الرقمية</h3>
-            <p>الفريق الصاعد</p>
-          </div>
-          <div class="footer-col">
-            <h4>روابط سريعة</h4>
-            <ul>
-              <li><a href="index.html">الرئيسية</a></li>
-              <li><a href="about.html">عن الفريق</a></li>
-              <li><a href="members.html">الأعضاء</a></li>
-              <li><a href="trainings.html">التدريبات</a></li>
-              <li><a href="projects.html">المشاريع</a></li>
-              <li><a href="events.html">الفعاليات</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>تواصل معنا</h4>
-            <ul>
-              <li><i class="fas fa-envelope"></i> info@dfteam-eg.com</li>
-              <li><i class="fas fa-phone"></i> 01557732629</li>
-              <li>
-                <i class="fas fa-map-marker-alt"></i> بنها - القليوبية - مصر
-              </li>
-            </ul>
-            <div class="footer-social">
-              <a
-                href="https://www.facebook.com/share/1AZsPrUD2n/"
-                target="_blank"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="https://github.com/Digital-Fingers-Team" target="_blank"
-                ><i class="fab fa-github"></i
-              ></a>
-              <a href="https://www.instagram.com/dfteam_eg?igsh=N2liZ3JkaWVpNXR0" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
+        <div class="footer-col">
+          <h4>تواصل معنا</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> info@dfteam-eg.com</li>
+            <li><i class="fas fa-phone"></i> 01557732629</li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i> بنها - القليوبية - مصر
+            </li>
+          </ul>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/share/1AZsPrUD2n/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://github.com/Digital-Fingers-Team" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/dfteam_eg?igsh=N2liZ3JkaWVpNXR0" target="_blank"><i
+                class="fab fa-instagram"></i></a>
           </div>
         </div>
-        <div class="footer-bottom">
-          جميع الحقوق محفوظة © 2025 فريق الأنامل الرقمية- DF Team
-        </div>
       </div>
-    </footer>
+      <div class="footer-bottom">
+        جميع الحقوق محفوظة © 2025 فريق الأنامل الرقمية- DF Team
+      </div>
+    </div>
+  </footer>
 
-    <script>
-      // بيانات الفريق محدثة حسب الطلب
-      // "عدل ان انس محمد هو قائد الروبوتكس في الفريق و كمان زود حبيبة طلال عضو قسم البرمجة و الروبوتكس و زود حلا محمد رشاد قائد قسم الاوبيريشن وشيل احمد هشام و هنا جمال و خلي إيد عبد الرؤوف هو Deputy General Leader وسلمى علاء هي Deputy Executive Leader و سلمى سامح هي Executive Leader"
-      const members = [
-        {
-          id: 0,
-          name: "Ahmed AbdelRaouf Samir",
-          nameAr: "أحمد عبد الرؤوف سمير",
-          age: "17 years old",
-          education: "Secondary 2",
-          role: "General Leader",
-          roleAr: "القائد العام",
-          img: "image/nimo.jpeg",
-          experiences: [
-            "Certified Python Instructor (TOT certified)",
-            "Worked with Microsoft Qalyubia as a student coach",
-            "Completed a Data Analysis training program",
-            "Developed multiple projects using Python and JavaScript",
-            "Experienced in leading teams and organizing events"
-          ],
-          skills: ["Python", "Html", "Css" , "js" , "training" ,
-                   "Organization" , "Effective communication" , "Led"
-          ],
-        },
-        {
-          id: 1,
-          name: "Salma Sameh",
-          nameAr: "سلمى سامح",
-          age: "16 Years old",
-          education: "Sec 2",
-          role: "Executive Leader",
-          roleAr: "القائد التنفيذي",
-          img: "image/salma sameh.jpg",
-          experiences: [
-            "Managed project operations and workflow using FileMaker",
-            "Designed web interfaces using HTML and CSS",
-            "Developed Python scripts for data handling and automation",
-            "Coordinated team tasks and ensured smooth project execution"
-          ],
-          skills: ["Python", "Html", "Css" , "file maker" , "Operating"],
-        },
-        {
-          id: 2,
-          name: "Salma Alaa",
-          nameAr: "سلمى علاء",
-          age: "14 Years old",
-          education: "prep 1",
-          role: "Deputy Executive Leader",
-          roleAr: "نائب القائد التنفيذي",
-          img: "image/salma alaa.jpeg",
-          experiences: [
-            "Led a small programming team to develop web projects",
-            "Managed code versions and collaboration using Git and GitHub",
-            "Built responsive web pages using HTML, CSS, and JavaScript",
-            "Implemented logic and algorithms using Python"
-          ],
-          skills: ["Python", "Html", "Css", "js" , "githup"],
-        },
-        {
-          id: 3,
-          name: "Eyad Abdelraouf",
-          nameAr: "إياد عبد الرؤوف",
-          age: "14 Years old",
-          education: "prep 2",
-          role: "Deputy General Leader",
-          roleAr: "نائب القائد العام",
-          img: "image/alpha.jpeg",
-          experiences: [
-            "Built interactive web pages using HTML, CSS, and JavaScript",
-            "Developed console-based applications and games in Python",
-            "Participated in team coding sessions and project development"
-          ],
-          skills: ["Python", "Html", "Css" , "js"],
-        },
-        {
-          id: 4,
-          name: "Baraa Saad Elsayed",
-          nameAr: "براء سعد السيد",
-          age: "15 Years old",
-          education: "Prep 2",
-          role: "Programming Leader",
-          roleAr: "قائد البرمجة",
-          img: "image/Baraa.jpeg",
-          experiences: [
-            "Built and deployed web applications using modern hosting platforms",
-            "Developed front-end interfaces with HTML, CSS, and JavaScript",
-            "Created backend logic and scripts using Python",
-            "Assisted in managing and operating team projects"
-          ],
-          skills: ["Hosting", "Html", "Css", "JavaScript" , "Operating" , "Python" , "vibe Coding" , "github"],
-        },
-        {
-          id: 5,
-          name: "Hla Sarhan",
-          nameAr: "حلا سرحان",
-          age: "14 Years old",
-          education: "prep 1",
-          role: "Media Team Leader & Supervisor",
-          roleAr: "قائدة الفريق الإعلامي",
-          img: "image/hla.jpeg",
-          experiences: [
-            "Designed promotional graphics and social media content using Photoshop",
-            "Created simple web pages using HTML",
-            "Wrote basic Python scripts for task automation",
-            "Led the media team in creating visual content for the group"
-          ],
-          skills: ["Python", "Html", "Photoshop" , "Designer"],
-        },
-        {
-          id: 6,
-          name: "Hla Mohamed Rashad",
-          nameAr: "حلا محمد رشاد",
-          age: "16 Years old",
-          education: "Sec 2",
-          role: "Operation Leader",
-          roleAr: "قائد قسم الأوبريشن",
-          img: "image/hlas.jpeg",
-          experiences: [
-            "Supervised operational workflows and task distribution",
-            "Optimized team processes and coordination",
-            "Managed project timelines and resource allocation"
-          ],
-          skills: ["Html", "Css" , "Operation Management", "Leadership"],
-        },
-        {
-          id: 7,
-          name: "Anas Mohamed",
-          nameAr: "أنس محمد",
-          age: "14 Years old",
-          education: "prep 3",
-          role: "Robotics Leader",
-          roleAr: "قائد الروبوتكس",
-          img: "image/file_2025-08-19_11.53.40.png",
-          experiences: [
-            "Led robotics projects and competitions",
-            "Programmed microcontrollers and robotic systems",
-            "Developed automation solutions using embedded systems",
-            "Mentored team members in robotics and programming"
-          ],
-          skills: ["Python", "Html", "Css" , "js", "Robotics", "Arduino", "Embedded Systems"],
-        },
-        {
-          id: 8,
-          name: "Soha Sameh",
-          nameAr: "سهى سامح",
-          age: "15 Years old",
-          education: "Sec 1",
-          role: "Programming Member",
-          roleAr: "عضو برمجة",
-          img: "image/soha sameh.jpg",
-          experiences: [
-            "Contributed to team projects using Git and GitHub",
-            "Developed web pages with HTML, CSS, and JavaScript",
-            "Built Python programs to solve basic programming challenges"
-          ],
-          skills: ["Python", "Html", "Css" , "js" , "githup"],
-        },
-        {
-          id: 9,
-          name: "Habiba Talal",
-          nameAr: "حبيبة طلال",
-          age: "15 Years old",
-          education: "Sec 1",
-          role: "Programming & Robotics Member",
-          roleAr: "عضو برمجة وروبوتكس",
-          img: "image/habiba.png",
-          experiences: [
-            "Developed robotics projects using microcontrollers",
-            "Worked on both hardware and software for robotic systems",
-            "Collaborated on team programming projects"
-          ],
-          skills: ["Python", "Html", "Css", "Robotics", "Arduino"],
-        },
-        {
-          id: 10,
-          name: "Retaj Hamdy",
-          nameAr: "ريتاج حمدي",
-          age: "16 Years old",
-          education: "Sec 1",
-          role: "Programming Member",
-          roleAr: "عضو برمجة",
-          img: "image/retaj.jpeg",
-          experiences: [
-            "Rapidly prototyped web projects using vibe-coding and AI tools",
-            "Styled and structured web pages using HTML and CSS",
-            "Explored innovative ways to speed up front-end development"],
-          skills: [ "Html", "Css" , "vibe-coding"],
-        },
-        {
-          id: 11,
-          name: "Maryam Elgohary",
-          nameAr: "مريم الجوهري",
-          age: "17 Years old",
-          education: "Sec 2",
-          role: "Programming Member",
-          roleAr: "عضو برمجة",
-          img: "image/maryam.jpeg",
-          experiences: [
-            "Managed code versions and collaborated via Git and GitHub",
-            "Developed Python scripts and web interfaces (HTML/CSS)",
-            "Worked on team projects to build functional websites"
-          ],
-          skills: ["Python", "Html", "Css" , "githup"],
-        },
-        {
-          id: 12,
-          name: "Hla Magdi",
-          nameAr: "حلا مجدي",
-          age: "17 Years old",
-          education: "Sec 2",
-          role: "Programming Member",
-          roleAr: "عضو برمجة",
-          img: "image/hla m.jpeg",
-          experiences: [ 
-            "Styled web pages using HTML and CSS",
-            "Used Git and GitHub to manage and share code with the team",
-            "Created visual content and helped with media tasks"
-          ],
-          skills: ["Html", "Css" , "githup"],
-        },
-        {
-          id: 13,
-          name: "Malak Mamdouh",
-          nameAr: "ملك ممدوح",
-          age: "14 Years old",
-          education: "Sec 1",
-          role: "Team Member",
-          roleAr: "عضو متميز",
-          img: "image/loka.png",
-          experiences: ["No major past experiences"],
-          skills: ["Python", "Html", "Css"],
-        },
-      ];
-      // Color palette for cards
-      const colorPalette = [
-        "142, 249, 252",
-        "142, 252, 204",
-        "142, 252, 157",
-        "215, 252, 142",
-        "252, 252, 142",
-        "252, 208, 142",
-        "252, 142, 142",
-        "252, 142, 239",
-        "204, 142, 252",
-        "142, 202, 252",
-        "142, 252, 240",
-        "252, 182, 142",
-        "182, 142, 252",
-        "252, 142, 182",
-        "142, 182, 252",
-      ];
+  <script>
+    // بيانات الفريق محدثة حسب الطلب
+    // "عدل ان انس محمد هو قائد الروبوتكس في الفريق و كمان زود حبيبة طلال عضو قسم البرمجة و الروبوتكس و زود حلا محمد رشاد قائد قسم الاوبيريشن وشيل احمد هشام و هنا جمال و خلي إيد عبد الرؤوف هو Deputy General Leader وسلمى علاء هي Deputy Executive Leader و سلمى سامح هي Executive Leader"
+    const members = [
+      {
+        id: 0,
+        name: "Ahmed AbdelRaouf Samir",
+        nameAr: "أحمد عبد الرؤوف سمير",
+        age: "18 years old",
+        education: "Secondary 3",
+        role: "General Leader",
+        roleAr: "القائد العام",
+        img: "image/nimo.jpeg",
+        experiences: [
+          "Certified Python Instructor (TOT certified)",
+          "Worked with Microsoft Qalyubia as a student coach",
+          "Completed a Data Analysis training program",
+          "Developed multiple projects using Python and JavaScript",
+          "Experienced in leading teams and organizing events"
+        ],
+        skills: ["Python", "Html", "Css", "js", "training", "Youngest researcher",
+          "Organization", "Effective communication", "Led"
+        ],
+      },
+      {
+        id: 1,
+        name: "Salma Sameh",
+        nameAr: "سلمى سامح",
+        age: "16 Years old",
+        education: "Sec 3",
+        role: "Executive Leader",
+        roleAr: "القائد التنفيذي",
+        img: "image/salma sameh.jpg",
+        experiences: [
+          "Managed project operations and workflow using FileMaker",
+          "Designed web interfaces using HTML and CSS",
+          "Developed Python scripts for data handling and automation",
+          "Coordinated team tasks and ensured smooth project execution"
+        ],
+        skills: ["Python", "Html", "Css", "file maker", "Operating"],
+      },
+      {
+        id: 2,
+        name: "Eyad Abdelraouf",
+        nameAr: "إياد عبد الرؤوف",
+        age: "15 Years old",
+        education: "prep 3",
+        role: "Deputy General Leader",
+        roleAr: "نائب القائد العام",
+        img: "image/alpha.jpeg",
+        experiences: [
+          "Built interactive web pages using HTML, CSS, and JavaScript",
+          "Developed console-based applications and games in Python",
+          "Participated in team coding sessions and project development"
+        ],
+        skills: ["Python", "Html", "Css", "js"],
+      },
+      {
+        id: 3,
+        name: "Salma Alaa",
+        nameAr: "سلمى علاء",
+        age: "14 Years old",
+        education: "prep 2",
+        role: "Deputy Executive Leader",
+        roleAr: "نائب القائد التنفيذي",
+        img: "image/salma alaa.jpeg",
+        experiences: [
+          "Led a small programming team to develop web projects",
+          "Managed code versions and collaboration using Git and GitHub",
+          "Built responsive web pages using HTML, CSS, and JavaScript",
+          "Implemented logic and algorithms using Python"
+        ],
+        skills: ["Python", "Html", "Css", "js", "githup"],
+      },
+      {
+        id: 4,
+        name: "Baraa Saad Elsayed",
+        nameAr: "براء سعد السيد",
+        age: "15 Years old",
+        education: "Prep 3",
+        role: "Programming Leader",
+        roleAr: "قائد البرمجة",
+        img: "image/Baraa.jpeg",
+        experiences: [
+          "Built and deployed web applications using modern hosting platforms",
+          "Developed front-end interfaces with HTML, CSS, and JavaScript",
+          "Created backend logic and scripts using Python",
+          "Assisted in managing and operating team projects"
+        ],
+        skills: ["Hosting", "Html", "Css", "JavaScript", "Operating", "Python", "vibe Coding", "github"],
+      },
+      {
+        id: 5,
+        name: "Hla Sarhan",
+        nameAr: "حلا سرحان",
+        age: "14 Years old",
+        education: "prep 2",
+        role: "Media Team Leader & Supervisor",
+        roleAr: "قائدة الفريق الإعلامي",
+        img: "image/hla.jpeg",
+        experiences: [
+          "Designed promotional graphics and social media content using Photoshop",
+          "Created simple web pages using HTML",
+          "Wrote basic Python scripts for task automation",
+          "Led the media team in creating visual content for the group"
+        ],
+        skills: ["Python", "Html", "Photoshop", "Designer"],
+      },
+      {
+        id: 6,
+        name: "Hla Mohamed Rashad",
+        nameAr: "حلا محمد رشاد",
+        age: "14 Years old",
+        education: "Prep 2",
+        role: "Operation Leader",
+        roleAr: "قائد قسم الأوبريشن",
+        img: "image/hlas.jpeg",
+        experiences: [
+          "Supervised operational workflows and task distribution",
+          "Optimized team processes and coordination",
+          "Managed project timelines and resource allocation"
+        ],
+        skills: ["Html", "Css", "Operation Management", "Leadership"],
+      },
+      {
+        id: 7,
+        name: "Anas Mohamed",
+        nameAr: "أنس محمد",
+        age: "15 Years old",
+        education: "sec 1",
+        role: "Robotics Leader",
+        roleAr: "قائد الروبوتكس",
+        img: "image/file_2025-08-19_11.53.40.png",
+        experiences: [
+          "Led robotics projects and competitions",
+          "Programmed microcontrollers and robotic systems",
+          "Developed automation solutions using embedded systems",
+          "Mentored team members in robotics and programming"
+        ],
+        skills: ["Python", "Html", "Css", "js", "Robotics", "Arduino", "Embedded Systems"],
+      },
+      {
+        id: 8,
+        name: "Soha Sameh",
+        nameAr: "سهى سامح",
+        age: "15 Years old",
+        education: "Sec 2",
+        role: "Programming Member",
+        roleAr: "عضو برمجة",
+        img: "image/soha sameh.jpg",
+        experiences: [
+          "Contributed to team projects using Git and GitHub",
+          "Developed web pages with HTML, CSS, and JavaScript",
+          "Built Python programs to solve basic programming challenges"
+        ],
+        skills: ["Python", "Html", "Css", "js", "githup"],
+      },
+      {
+        id: 9,
+        name: "Habiba Talal",
+        nameAr: "حبيبة طلال",
+        age: "15 Years old",
+        education: "Sec 1",
+        role: "Programming & Robotics Member",
+        roleAr: "عضو برمجة وروبوتكس",
+        img: "image/habiba.png",
+        experiences: [
+          "Developed robotics projects using microcontrollers",
+          "Worked on both hardware and software for robotic systems",
+          "Collaborated on team programming projects"
+        ],
+        skills: ["Python", "Html", "Css", "Robotics", "Arduino"],
+      },
+      {
+        id: 10,
+        name: "Mohannad Ahmed",
+        nameAr: "مهند احمد",
+        age: "16 Years old",
+        education: "Sec 1",
+        role: "Programming Member",
+        roleAr: "عضو برمجة",
+        img: "image/mohaned.jpeg",
+        experiences: [
+          "Rapidly prototyped web projects using vibe-coding and AI tools",
+          "Styled and structured web pages using HTML and CSS",
+          "Explored innovative ways to speed up front-end development"],
+        skills: ["Html", "Css", "vibe-coding"],
+      },
+      {
+        id: 11,
+        name: "Abdullah Qadry",
+        nameAr: "عبد الله قدري",
+        age: "17 Years old",
+        education: "Sec 2",
+        role: "Programming Member",
+        roleAr: "عضو برمجة",
+        img: "image/abdallah.jpeg",
+        experiences: [
+          "Built interactive web pages using HTML, CSS, and JavaScript",
+          "Developed console-based applications and games in Python",
+          "Participated in team coding sessions and project development"
+        ],
+        skills: ["Python", "Html", "Css", "js"],
+      },
+      {
+        id: 12,
+        name: "Alaa Elsayed",
+        nameAr: "الاء السيد",
+        age: "16 Years old",
+        education: "Sec 1",
+        role: "Programming Member",
+        roleAr: "عضو برمجة",
+        img: "image/alaa.jpg",
+        experiences: [
+          "Built interactive web pages using HTML, CSS, and JavaScript",
+          "Developed console-based applications and games in Python",
+          "Participated in team coding sessions and project development"
+        ],
+        skills: ["Python", "Html", "Css", "js"],
+      },
+      {
+        id: 13,
+        name: "Abdullah Eslam",
+        nameAr: "عبد الله إسلام",
+        age: "14 Years old",
+        education: "prep 2",
+        role: "Programming Member",
+        roleAr: "عضو برمجة",
+        img: "image/abdullah.jpg",
+        experiences: [
+          "Built interactive web pages using HTML, CSS, and JavaScript",
+          "Developed console-based applications and games in Python",
+          "Participated in team coding sessions and project development"
+        ],
+        skills: ["Python", "Html", "Css", "js"],
+      },
+      {
+        id: 14,
+        name: "Sandy Adham",
+        nameAr: "ساندي ادهم",
+        age: "14 Years old",
+        education: "prep 2",
+        role: "Media Member",
+        roleAr: "عضو ميديا",
+        img: "image/sandy.jpg",
+        experiences: [
+          "Edited high-retention and visually engaging videos using Premiere Pro, After Effects, and Photoshop",
+          "Developed custom motion graphics, text animations, and visual effects for diverse video formats",
+          "Participated in team creative sessions and collaborative post-production project development"
+        ],
+        skills: ["montage", "Content Creator", "Python", "Html"],
+      },
+      {
+        id: 15,
+        name: "Lamar Mahmoud",
+        nameAr: "لمار محمود",
+        age: "15 Years old",
+        education: "prep 3",
+        role: "Media Member",
+        roleAr: "عضو ميديا",
+        img: "image/lamar.jpg",
+        experiences: [
+          "Edited high-retention and visually engaging videos using Premiere Pro, After Effects, and Photoshop",
+          "Developed custom motion graphics, text animations, and visual effects for diverse video formats",
+          "Participated in team creative sessions and collaborative post-production project development"
+        ],
+        skills: ["photoshop", "Graphic Design", "Python", "Html"],
+      },
+      {
+        id: 16,
+        name: "Salma Ramy",
+        nameAr: "سلمى رامي",
+        age: "17 Years old",
+        education: "sec 2",
+        role: "Operation Member",
+        roleAr: "عضو أوبريشن",
+        img: "image/salma r.jfif",
+        experiences: [
+          "Supervised operational workflows and task distribution",
+          "Optimized team processes and coordination",
+          "Managed project timelines and resource allocation"
+        ],
+        skills: ["Html", "Css", "Operation Management", "Leadership"],
+      },
+      {
+        id: 17,
+        name: "Asser Hatem",
+        nameAr: "اسر حاتم",
+        age: "15 Years old",
+        education: "sec 1",
+        role: "Operation Member",
+        roleAr: "عضو أوبريشن",
+        img: "image/asser.jpeg",
+        experiences: [
+          "Supervised operational workflows and task distribution",
+          "Optimized team processes and coordination",
+          "Managed project timelines and resource allocation"
+        ],
+        skills: ["Html", "Css", "Operation Management", "Leadership"],
+      },
+      {
+        id: 16,
+        name: "Eyad Ahmed",
+        nameAr: "إياد احمد",
+        age: "17 Years old",
+        education: "sec 3",
+        role: "Operation Member",
+        roleAr: "عضو أوبريشن",
+        img: "image/eyad.jpeg",
+        experiences: [
+          "Supervised operational workflows and task distribution",
+          "Optimized team processes and coordination",
+          "Managed project timelines and resource allocation"
+        ],
+        skills: ["Html", "Css", "Operation Management", "Leadership"],
+      },
+      {
+        id: 18,
+        name: "Maryam Elgohary",
+        nameAr: "مريم الجوهري",
+        age: "17 Years old",
+        education: "Sec 2",
+        role: "Programming Member",
+        roleAr: "عضو برمجة",
+        img: "image/maryam.jpeg",
+        experiences: [
+          "Managed code versions and collaborated via Git and GitHub",
+          "Developed Python scripts and web interfaces (HTML/CSS)",
+          "Worked on team projects to build functional websites"
+        ],
+        skills: ["Python", "Html", "Css", "githup"],
+      },
+      {
+        id: 19,
+        name: "Hla Magdi",
+        nameAr: "حلا مجدي",
+        age: "17 Years old",
+        education: "Sec 2",
+        role: "Programming Member",
+        roleAr: "عضو برمجة",
+        img: "image/hla m.jpeg",
+        experiences: [
+          "Styled web pages using HTML and CSS",
+          "Used Git and GitHub to manage and share code with the team",
+          "Created visual content and helped with media tasks"
+        ],
+        skills: ["Html", "Css", "githup"],
+      },
+    ];
+    // Color palette for cards
+    const colorPalette = [
+      "142, 249, 252",
+      "142, 252, 204",
+      "142, 252, 157",
+      "215, 252, 142",
+      "252, 252, 142",
+      "252, 208, 142",
+      "252, 142, 142",
+      "252, 142, 239",
+      "204, 142, 252",
+      "142, 202, 252",
+      "142, 252, 240",
+      "252, 182, 142",
+      "182, 142, 252",
+      "252, 142, 182",
+      "142, 182, 252",
+    ];
 
-      // Create member cards in a simple grid
-      const membersGrid = document.getElementById("membersGrid");
+    // Create member cards in a simple grid
+    const membersGrid = document.getElementById("membersGrid");
 
-      members.forEach((member, index) => {
-        const card = document.createElement("a");
-        card.href = `member-details.html?id=${member.id}`;
-        card.className = "member-card";
-        card.style.setProperty(
-          "--color-card",
-          colorPalette[index % colorPalette.length]
-        );
+    members.forEach((member, index) => {
+      const card = document.createElement("a");
+      card.href = `member-details.html?id=${member.id}`;
+      card.className = "member-card";
+      card.style.setProperty(
+        "--color-card",
+        colorPalette[index % colorPalette.length]
+      );
 
-        const imgSrc = member.img || "image/profile.jpg";
-        
-        // تحديد الشارة المناسبة
-        let badgeHtml = '';
-        if (member.role === "General Leader") {
-          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
-        } else if (member.role === "Deputy General Leader") {
-          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
-        } else if (member.role === "Executive Leader") {
-          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
-        } else if (member.role === "Deputy Executive Leader") {
-          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
-        } else if (member.role === "Programming Leader") {
-          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
-        } else if (member.role === "Robotics Leader") {
-          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
-        } else if (member.role === "Operation Leader") {
-          badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
-        } else if (member.role === "Media Team Leader & Supervisor") {
-          badgeHtml = `<div class="leader-badge">${member.roleAr}</div><div class="supervisor-badge" style="margin-top:5px;">مشرف عام على الإعلام</div>`;
-        } else {
-          badgeHtml = '';
-        }
-        
-        card.innerHTML = `
+      const imgSrc = member.img || "image/profile.jpg";
+
+      // تحديد الشارة المناسبة
+      let badgeHtml = '';
+      if (member.role === "General Leader") {
+        badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+      } else if (member.role === "Deputy General Leader") {
+        badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+      } else if (member.role === "Executive Leader") {
+        badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+      } else if (member.role === "Deputy Executive Leader") {
+        badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+      } else if (member.role === "Programming Leader") {
+        badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+      } else if (member.role === "Robotics Leader") {
+        badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+      } else if (member.role === "Operation Leader") {
+        badgeHtml = `<div class="leader-badge">${member.roleAr}</div>`;
+      } else if (member.role === "Media Team Leader & Supervisor") {
+        badgeHtml = `<div class="leader-badge">${member.roleAr}</div><div class="supervisor-badge" style="margin-top:5px;">مشرف عام على الإعلام</div>`;
+      } else {
+        badgeHtml = '';
+      }
+
+      card.innerHTML = `
           <div class="member-img" style="background-image: url('${imgSrc}'); background-size: cover; background-position: center;"></div>
           <div class="member-info">
             <h3 class="member-name">${member.name}</h3>
@@ -685,195 +783,135 @@
           </div>
         `;
 
-        membersGrid.appendChild(card);
-      });
+      membersGrid.appendChild(card);
+    });
 
-      // ----- إضافة الكارت الفارغ للإنضمام -----
-      const joinCard = document.createElement("div");
-      joinCard.className = "member-card join-card";
-      // نعطي لون مميز لكارد الانضمام
-      joinCard.style.setProperty("--color-card", "100, 180, 255");
-      
-      // المجالات المطلوبة حسب الطلب
-      const requiredRoles = [
-        "⚙️ 2 هارد وير",
-        "🎬 4 ميديا ",
-        "📋 4 اوبريشن",
-        "📱 1 مبرمج تطبيقات",
-        "💻 1 مطور مواقع"
-      ];
-      
-      const roleTagsHtml = requiredRoles.map(role => `<span class="role-tag">${role}</span>`).join('');
-      
-      joinCard.innerHTML = `
-        <div class="member-info" style="padding: 1.5rem 1rem;">
-          <div class="join-icon">
-            <i class="fas fa-hand-peace"></i>
-          </div>
-          <div class="join-title">مكانك معانا!</div>
-          <div class="join-sub">نحن نبحث عن أعضاء جدد لاستكمال المسيرة</div>
-          <div class="roles-needed">
-            ${roleTagsHtml}
-          </div>
-          <div class="join-sub" style="font-size:0.85rem;">🔹 انضم إلى فريق الأنامل الرقمية وكن جزءاً من النجاح 🔹</div>
-          <div class="join-cta" id="openJoinModalBtn">
-            <i class="fas fa-arrow-left"></i> قدّم طلب انضمام الآن
-          </div>
-          <div style="margin-top: 0.8rem; font-size: 0.7rem; color: rgba(var(--text-color-rgb),0.6);">
-            ننتظرك لتكون العضو رقم 11 أو 12 أو أكثر 💫
-          </div>
-        </div>
-      `;
-      
-      // منع السلوك الافتراضي للرابط لأن هذا ليس رابط تفاصيل
-      joinCard.addEventListener("click", (e) => {
-        // نتأكد إنه مش الضغط على الزر نفسه عشان ما يتضاعف
-        if(e.target.closest('#openJoinModalBtn')) return;
-        e.preventDefault();
-        // فتح رابط او رسالة عند الضغط على الكارد (اختياري)
-        alert("📢 شكراً لاهتمامك! اضغط على زر 'قدّم طلب انضمام الآن' للتقديم على المجالات المطلوبة. فريق الأنامل الرقمية يرحب بمواهبك!");
-      });
-      
-      // إضافة الحدث لزر الانضمام
-      const joinButtonHandler = () => {
-        let joinMsg = "✨ مرحباً بك في فريق الأنامل الرقمية ✨\n\n"
-        joinMsg += "نحن بحاجة للأعضاء في المجالات التالية:\n";
-        joinMsg += "• 2 هارد وير\n";
-        joinMsg += "• 4 ميديا (بنات و ولاد بالنص)\n";
-        joinMsg += "• 4 اوبريشن\n";
-        joinMsg += "• 1 مبرمج تطبيقات\n";
-        joinMsg += "• 1 مطور مواقع\n\n";
-        joinMsg += "للانضمام: يُرجى التواصل مع إدارة الفريق عبر البريد الإلكتروني: info@dfteam-eg.com أو عبر صفحات التواصل الاجتماعي. \n\nنتمنى انضمامك قريباً! 🚀";
-        alert(joinMsg);
-      };
-      
-      membersGrid.appendChild(joinCard);
-      
-      // بعد إضافة العنصر نربط الزر
-      setTimeout(() => {
-        const openBtn = document.getElementById("openJoinModalBtn");
-        if (openBtn) {
-          openBtn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            joinButtonHandler();
-          });
-        }
-      }, 0);
-      
-      // End of join card logic
-
-      // JavaScript لإدارة القائمة الجانبية وتبديل الثيمات
-      document.addEventListener("DOMContentLoaded", function () {
-        // عناصر القائمة الجانبية
-        const sideNav = document.getElementById("sideNav");
-        const closeNav = document.getElementById("closeNav");
-        const menuBtn = document.getElementById("menuBtn");
-        const navOverlay = document.getElementById("navOverlay");
-        const themeToggle = document.getElementById("themeToggle");
-        const themeIcon = themeToggle.querySelector("i");
-
-        // حالات الثيم
-        const themes = ["light", "dark", "purple"];
-        let currentThemeIndex = 0;
-
-        // تطبيق الثيم
-        function applyTheme(themeIndex) {
-          document.body.setAttribute("data-theme", themes[themeIndex]);
-
-          // تغيير الأيقونة حسب الثيم
-          if (themes[themeIndex] === "light") {
-            themeIcon.className = "fas fa-moon";
-          } else if (themes[themeIndex] === "dark") {
-            themeIcon.className = "fas fa-star";
-          } else {
-            themeIcon.className = "fas fa-sun";
-          }
-
-          // حفظ الثيم في localStorage
-          localStorage.setItem("theme", themes[themeIndex]);
-        }
-
-        // تبديل الثيم
-        themeToggle.addEventListener("click", function () {
-          currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-          applyTheme(currentThemeIndex);
+    // بعد إضافة العنصر نربط الزر
+    setTimeout(() => {
+      const openBtn = document.getElementById("openJoinModalBtn");
+      if (openBtn) {
+        openBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          joinButtonHandler();
         });
+      }
+    }, 0);
 
-        // تحميل الثيم المحفوظ
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme) {
-          currentThemeIndex = themes.indexOf(savedTheme);
-          if (currentThemeIndex === -1) currentThemeIndex = 0;
-          applyTheme(currentThemeIndex);
+    // End of join card logic
+
+    // JavaScript لإدارة القائمة الجانبية وتبديل الثيمات
+    document.addEventListener("DOMContentLoaded", function () {
+      // عناصر القائمة الجانبية
+      const sideNav = document.getElementById("sideNav");
+      const closeNav = document.getElementById("closeNav");
+      const menuBtn = document.getElementById("menuBtn");
+      const navOverlay = document.getElementById("navOverlay");
+      const themeToggle = document.getElementById("themeToggle");
+      const themeIcon = themeToggle.querySelector("i");
+
+      // حالات الثيم
+      const themes = ["light", "dark", "purple"];
+      let currentThemeIndex = 0;
+
+      // تطبيق الثيم
+      function applyTheme(themeIndex) {
+        document.body.setAttribute("data-theme", themes[themeIndex]);
+
+        // تغيير الأيقونة حسب الثيم
+        if (themes[themeIndex] === "light") {
+          themeIcon.className = "fas fa-moon";
+        } else if (themes[themeIndex] === "dark") {
+          themeIcon.className = "fas fa-star";
+        } else {
+          themeIcon.className = "fas fa-sun";
         }
 
-        // فتح القائمة الجانبية
-        function openSideNav() {
-          sideNav.classList.add("open");
-          navOverlay.classList.add("open");
-          document.body.style.overflow = "hidden";
-        }
+        // حفظ الثيم في localStorage
+        localStorage.setItem("theme", themes[themeIndex]);
+      }
 
-        // إغلاق القائمة الجانبية
-        function closeSideNav() {
-          sideNav.classList.remove("open");
-          navOverlay.classList.remove("open");
-          document.body.style.overflow = "";
-        }
-
-        // إضافة مستمع الأحداث لزر الإغلاق
-        if (closeNav) {
-          closeNav.addEventListener("click", closeSideNav);
-        }
-
-        // إضافة مستمع الأحداث لزر القائمة
-        if (menuBtn) {
-          menuBtn.addEventListener("click", function (e) {
-            e.preventDefault();
-            openSideNav();
-          });
-        }
-
-        // إضافة مستمع الأحداث للخلفية المظللة
-        if (navOverlay) {
-          navOverlay.addEventListener("click", closeSideNav);
-        }
-
-        // إغلاق القائمة عند الضغط على مفتاح Escape
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape") {
-            closeSideNav();
-          }
-        });
-
-        // تحديث رسالة الترحيب حسب دور المستخدم
-        function updateWelcomeMessage() {
-          const welcomeMessage = document.querySelector(".welcome-message");
-          if (!welcomeMessage) return;
-
-          let userData = null;
-          try {
-            userData =
-              JSON.parse(localStorage.getItem("userData")) ||
-              JSON.parse(sessionStorage.getItem("userData"));
-          } catch (error) {
-            console.log("لا توجد بيانات مستخدم مسجل");
-          }
-
-          if (userData && userData.loggedIn) {
-            if (userData.role === "قائد الفريق") {
-              welcomeMessage.textContent = `مرحباً بك قائد فريق الأنامل الرقمية (${userData.name})`;
-            } else {
-              welcomeMessage.textContent = `مرحباً بك عضو فريق الأنامل الرقمية ${userData.name}`;
-            }
-          } else {
-            welcomeMessage.textContent = "مرحباً بكم في فريق الأنامل الرقمية";
-          }
-        }
-
-        window.updateWelcomeMessage = updateWelcomeMessage;
-        updateWelcomeMessage();
+      // تبديل الثيم
+      themeToggle.addEventListener("click", function () {
+        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+        applyTheme(currentThemeIndex);
       });
-    </script>
-  </body>
+
+      // تحميل الثيم المحفوظ
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        currentThemeIndex = themes.indexOf(savedTheme);
+        if (currentThemeIndex === -1) currentThemeIndex = 0;
+        applyTheme(currentThemeIndex);
+      }
+
+      // فتح القائمة الجانبية
+      function openSideNav() {
+        sideNav.classList.add("open");
+        navOverlay.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      // إغلاق القائمة الجانبية
+      function closeSideNav() {
+        sideNav.classList.remove("open");
+        navOverlay.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      // إضافة مستمع الأحداث لزر الإغلاق
+      if (closeNav) {
+        closeNav.addEventListener("click", closeSideNav);
+      }
+
+      // إضافة مستمع الأحداث لزر القائمة
+      if (menuBtn) {
+        menuBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          openSideNav();
+        });
+      }
+
+      // إضافة مستمع الأحداث للخلفية المظللة
+      if (navOverlay) {
+        navOverlay.addEventListener("click", closeSideNav);
+      }
+
+      // إغلاق القائمة عند الضغط على مفتاح Escape
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeSideNav();
+        }
+      });
+
+      // تحديث رسالة الترحيب حسب دور المستخدم
+      function updateWelcomeMessage() {
+        const welcomeMessage = document.querySelector(".welcome-message");
+        if (!welcomeMessage) return;
+
+        let userData = null;
+        try {
+          userData =
+            JSON.parse(localStorage.getItem("userData")) ||
+            JSON.parse(sessionStorage.getItem("userData"));
+        } catch (error) {
+          console.log("لا توجد بيانات مستخدم مسجل");
+        }
+
+        if (userData && userData.loggedIn) {
+          if (userData.role === "قائد الفريق") {
+            welcomeMessage.textContent = `مرحباً بك قائد فريق الأنامل الرقمية (${userData.name})`;
+          } else {
+            welcomeMessage.textContent = `مرحباً بك عضو فريق الأنامل الرقمية ${userData.name}`;
+          }
+        } else {
+          welcomeMessage.textContent = "مرحباً بكم في فريق الأنامل الرقمية";
+        }
+      }
+
+      window.updateWelcomeMessage = updateWelcomeMessage;
+      updateWelcomeMessage();
+    });
+  </script>
+</body>
+
 </html>
